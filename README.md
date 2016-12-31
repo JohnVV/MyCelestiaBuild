@@ -6,13 +6,11 @@ My edits and files i use for Celestia
 Use this to build 
 
 <code>
-
 mkdir BUILD
 
 cd BUILD
 
 qmake-qt4 ../
-
 </code>
 
 -- OR --
@@ -27,7 +25,6 @@ make
 su
 
 make install 
-
 </code>
 
 
