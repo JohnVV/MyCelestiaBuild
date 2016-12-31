@@ -1,0 +1,88 @@
+Celestia Install instructions for UNIX
+--------------------------------------
+
+You need to have the following components installed before Celestia
+will build: OpenGL (tested with Mesa 3.4), glu, libjpeg, and libpng.
+Should you have a package based installation (most Linux distributions these
+days are), you will also need to install the devel packages for your OpenGL,
+glu and glibc packages.
+
+OK, assuming you've collected all the necessary libraries, here's
+what you need to do to build and run Celestia:
+
+	./configure --with-INTERFACE                   [*]
+	make
+	make install
+
+[*] INTERFACE must be replaced with one of "kde", "gtk", "gnome", or "glut".
+
+Four interfaces are available for Celestia:
+- glut: minimal interface, barebone Celestia core with no toolbar or menu...
+- GTK: A full interface with minimal dependencies, adds a menu, a configuration
+       dialog some other utilities.
+- Gnome: The full GTK interface plus a few Gnome integration goodies, such as
+         preference saving in GConf. This looks and works very much like the
+         Windows interface.
+- KDE3: brings contextual menus, toolbars, KDE integration,
+        internationalization, bookmarks...
+
+To build the KDE interface (requires various kde-devel packages):
+	configure --with-kde
+
+To build the Gnome interface (requires gnome-devel and all GTK requirements):
+	configure --with-gnome
+
+To build the GTK interface (requires gtkglext and gtkglext-devel):
+	configure --with-gtk
+
+To build the GLUT interface (requires glut and glut-devel):
+	configure --with-glut
+
+At the end of the configure output shows which interface has been selected, you
+should check it is correct before running make.
+
+Starting with version 1.3.1, Lua is the new scripting engine for Celestia, 
+the old homegrown scripting engine is still available. By default Lua support
+will NOT be compiled in, to enable it you need to download the Lua library
+from:
+	http://www.lua.org/
+Version 5.0 or newer is required.
+
+Once Lua has been installed on your system, you need to run:
+	configure --with-lua=/path/to/lua
+
+To check wether your Celestia has been compiled with Lua support, go to File
+-> Open. If you have '*.cel *.celx' in the filter box, then Lua is available
+otherwise the filter will contain only '*.cel'.
+
+The GtkGLExt widget that is required in order to build Celestia with Gtk+ may
+be downloaded from http://gtkglext.sf.net. Note that depending in your
+distribution you may also need other packages containing various files needed
+by the build process. For instance, to build under SUSE Linux, you will also
+need to have the gtk-devel package installed.
+
+Celestia will be installed into /usr/local by default, with data files landing
+in /usr/local/share/celestia , but you may specify a new location with the
+--prefix option to configure:
+
+	configure --prefix=/home/my_directory
+
+All the other usual configure parameters apply; you may see which options
+are available using 'configure --help'
+
+If while running configure you see an error reporting that gl.h,
+is missing, you either don't have OpenGL installed on your system,
+or you don't have the corresponding devel package installed.  If for
+instance you have Mesa installed, you will also have to install the
+mesa-devel package (or something named similarly).  Missing glu.h or glut.h
+means that you don't have GLU, GLUT, or their devel pacakges installed.
+
+
+Chris Laurel                &      Deon Ramsey
+claurel@.shatters.net              dramsey@users.sourceforge.net
+
+Updated 2003-06-10 by
+Christophe Teyssier
+chris@teyssier.org
+
+Updated 2004-04-28 by pat@suwalski.net
