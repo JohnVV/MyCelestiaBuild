@@ -8,9 +8,7 @@ Use this to build
 <code>
 
 mkdir BUILD
-
 cd BUILD
-
 qmake-qt4 ../
 
 </code>
@@ -19,13 +17,10 @@ qmake-qt4 ../
 
 <code>
 autoreconf -v -i
-
 ./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice
 
 make 
-
 su
-
 make install 
 
 
