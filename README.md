@@ -5,16 +5,19 @@ My edits and files i use for Celestia
 
 Use this to build 
 
---- code ---
+[code]
 
 mkdir BUILD
 
 cd BUILD
 
 qmake-qt4 ../
-
+[/code]
 --- end code ---
 
+-- OR --
+
+--- 
 
 
 -- very much still a work in progress 
