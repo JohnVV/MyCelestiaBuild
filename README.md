@@ -17,7 +17,18 @@ qmake-qt4 ../
 
 -- OR --
 
---- 
+<code>
+autoreconf -v -i
+
+./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice
+
+make 
+
+su
+
+make install 
+
+
 
 
 -- very much still a work in progress 
