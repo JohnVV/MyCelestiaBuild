@@ -5,6 +5,7 @@ My edits and files i use for Celestia
 
 Use this to build 
 
+--------
 <code>
 mkdir BUILD
 
@@ -13,8 +14,11 @@ cd BUILD
 qmake-qt4 ../
 </code>
 
--- OR --
+-------
 
+-- OR use autotools --
+
+------
 <code>
 autoreconf -v -i
 
@@ -26,6 +30,8 @@ su
 
 make install 
 </code>
+
+--------
 
 
 -- very much still a work in progress 
