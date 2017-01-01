@@ -2,6 +2,7 @@
 My NAIF SPICE  and SUSE leap build 
 
 My edits and files i use for Celestia 
+https://raw.githubusercontent.com/JohnVV/MyCelestiaBuild/master/celestia/splash.png
 
 Use this to build 
 
