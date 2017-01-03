@@ -1,0 +1,55 @@
+ 
+This folder is for the naif spice kernels you NEED to download
+
+see list below 
+
+these files ARE TIME AND DATE DEPENDANT!!!!! 
+
+for the file "1.Barycenters.ssc"
+
+ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de436.bsp
+
+
+for : "SolarSystem.inner.ssc" 
+you also need the rotation , leapsecond
+
+the Rotation "pck00010.tpc"
+ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck
+
+and Leapsecond - this one changes every few years "naif0012.tls"
+ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk
+
+
+
+and a few Special ones for " THE EARTH " 
+
+"earth_000101_170324_161231.bpc" and "earth_fixed.tf"
+
+ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/
+
+
+and for mars's moons  "mar097.bsp"
+ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/
+
+
+For Jupiter the large Jup340.bsp ??????????????
+
+ftp://ssd.jpl.nasa.gov/pub/eph/satellites/bsp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

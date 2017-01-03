@@ -1,0 +1,125 @@
+ 
+ images used 
+ 
+ Mercury
+ 
+ 2k.Mercury.png
+reduced data from
+http://pds-imaging.jpl.nasa.gov/data/messenger/msgrmds_5001/MDR/
+
+Venus 
+
+2k.Venus.png
+reduced and cleaned up data from magellan radar data 
+http://pds-imaging.jpl.nasa.gov/volumes/magellan.html#mgnFMAP
+
+
+2k.VenusNormal.png
+produced using NMS for correct spherical mapping of the normals 
+based on the data from
+http://pds-imaging.jpl.nasa.gov/data/mgn-v-rdrs-5-gdr-emissivity-v1.0/mg_3002/
+
+
+2k.VenusClouds.png
+100% synthetic used "GaseousGiganticus.c" to create it 
+
+The Earth
+
+2k.Earth.png
+based on the bluemarble2 data 
+http://mirrors.arsc.edu/nasa/world_500m/
+
+2k.EarthLights.png
+derived from
+https://www.ngdc.noaa.gov/eog/viirs/download_ut_mos.html
+and calibrated to 
+https://www.ngdc.noaa.gov/eog/dmsp/download_radcal.html
+
+2k.EarthNormal.png
+produced using NMS for correct spherical mapping of the normals 
+derived from "ds15_grd.zip"
+https://topotools.cr.usgs.gov/gmted_viewer/gmted2010_global_grids.php
+
+2k.EarthSpec.png
+derived from the heightmap 
+
+2k.EarthCloud.png
+
+based on the 43200 x 21600 visable earth mapping
+http://visibleearth.nasa.gov/view.php?id=57747
+
+
+
+The Moon 
+
+2k.MoonLRO-WAC.png
+based on 
+http://lroc.sese.asu.edu/data/LRO-L-LROC-5-RDR-V1.0/LROLRC_2001/DATA/BDR/WAC_GLOBAL/
+
+2k.MoonNormalLRO_WAC.png
+produced using NMS for correct spherical mapping of the normals
+http://lroc.sese.asu.edu/data/LRO-L-LROC-5-RDR-V1.0/LROLRC_2001/DATA/SDP/WAC_GLD100/
+
+
+
+Mars
+
+2k.Mars.png
+based on the older data from MSSS 
+http://www.msss.com/mgcwg/mgm/
+
+2k.MarsNormal.png
+produced using NMS for correct spherical mapping of the normals
+based on the 128 ppd Mola data
+http://pds-geosciences.wustl.edu/missions/mgs/megdr.html
+
+
+Phobos
+
+Phobos.cmod 
+shape file extracted from 
+http://sbn.psi.edu/pds/resource/phobosshape.html
+VO1_SA_VISA_VISB_5_PHOBOSSHAPE_V1_0.zip
+
+2k.PhobosMap.png
+derived from  "phobos_cyl_dlr_control.fit" 
+http://sbn.psi.edu/pds/resource/stookemaps.html
+MULTI-SA-MULTI-6-STOOKEMAPS-V2.0 
+
+
+Deimos 
+
+Deimos.low.bin.cmod
+derived from "m2deimos.tab"
+http://sbn.psi.edu/pds/resource/oshape.html
+EAR_A_5_DDR_SHAPE_MODELS_V2_1.zip
+
+2k.Deimos.png
+based on "deimos_cyl_viking_mro.fit"
+http://sbn.psi.edu/pds/resource/stookemaps.html
+MULTI-SA-MULTI-6-STOOKEMAPS-V2.0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+ReferencePoint "Mercury_bary" "Sol"
+  {
+  Beginning      "1549 12 31 00:00:00.000"
+  Ending         "2650 01 25 00:00:00.000"
+  
+  OrbitFrame     { EclipticJ2000 { Center "SSB"}}
+  Visible        true
+  Clickable      true
+  
+  SpiceOrbit
+  {
+    Kernel       "de436.bsp"
+    Target       "1"
+    Origin       "0" 
+    Period        0.25
+    BoundingRadius 1e10
+    }
+   }
+ 
+  ReferencePoint "Venus_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame     { EclipticJ2000 { Center "SSB"}}
+      Visible        true
+      Clickable      true
+      
+      SpiceOrbit
+      {
+        Kernel       "de436.bsp"
+        Target       "2"
+        Origin       "0" 
+        Period        1
+        BoundingRadius 1e10
+      }
+    }
+    
+    ReferencePoint "Earth_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame     { EclipticJ2000 { Center "SSB"}}
+      Visible        true
+      Clickable      true
+          
+      SpiceOrbit
+      {
+        Kernel       "de436.bsp"
+        Target       "3"
+        Origin       "0" 
+        Period        1
+        BoundingRadius 1e10
+      }      
+    }
+        
+    ReferencePoint "Mars_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame     { EclipticJ2000 { Center "SSB"}}
+      Visible        true
+      Clickable      true
+      SpiceOrbit
+      {
+        Kernel       "de436.bsp"
+        Target       "4"
+        Origin       "0" 
+        Period        2
+        BoundingRadius 1e10
+      }
+    }
+       
+    ReferencePoint "Jupiter_bary" "Sol"
+    {   
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame { EclipticJ2000 { Center "SSB"}}
+      Visible true
+      Clickable true
+      
+      SpiceOrbit
+      {
+        Kernel "de436.bsp"
+        Target "5"
+        Origin "0" 
+        Period  12
+        BoundingRadius 1e10
+      }     
+    }
+    
+    ReferencePoint "Saturn_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame { EclipticJ2000 { Center "SSB"}}
+      Visible true
+      Clickable true
+      
+      SpiceOrbit
+      {
+        Kernel "de436.bsp"
+        Target "6"
+        Origin "0" 
+        Period 29.4577
+        BoundingRadius 1e10
+      }
+    }
+    
+    ReferencePoint "Uranus_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame { EclipticJ2000 { Center "SSB"}}
+      Visible true
+      Clickable true
+      SpiceOrbit
+      {
+        Kernel "de436.bsp"
+        Target "7"
+        Origin "0" 
+        Period 85
+        BoundingRadius 1e10
+      }
+    }
+    
+    ReferencePoint "Neptune_bary" "Sol"
+    {
+      Beginning      "1549 12 31 00:00:00.000"
+      Ending         "2650 01 25 00:00:00.000"
+      
+      OrbitFrame { EclipticJ2000 { Center "SSB"}}
+      Visible true
+      Clickable true
+      
+      SpiceOrbit
+      {
+        Kernel "de436.bsp"
+        Target "8"
+        Origin "0" 
+        Period 166
+        BoundingRadius 1e10
+      }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
