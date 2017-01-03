@@ -42,3 +42,7 @@ make install
 -- fixed cmodtools headers not found
 
 -- turned on the qt4 splashscreen and using my splash image 
+
+-- added inner solarsystem spice ssc files 
+
+.
