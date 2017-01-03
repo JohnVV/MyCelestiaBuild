@@ -3,18 +3,37 @@ My NAIF SPICE  and SUSE leap build
 
 My edits and files i use for Celestia 
 
+![] (https://raw.githubusercontent.com/JohnVV/MyCelestiaBuild/master/celestia/splash.png)
+
 Use this to build 
 
---- code ---
-
+--------
+<code>
 mkdir BUILD
 
 cd BUILD
 
 qmake-qt4 ../
+</code>
 
---- end code ---
+-------
 
+-- OR use autotools --
+
+------
+<code>
+autoreconf -v -i
+
+./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice
+
+make 
+
+su
+
+make install 
+</code>
+
+--------
 
 
 -- very much still a work in progress 
