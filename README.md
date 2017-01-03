@@ -19,6 +19,7 @@ qmake-qt4 ../
 -------
 
 -- OR use autotools --
+
 currently i am having a gettext issue so...."--disable-nls"
 ------
 <code>
