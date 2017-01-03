@@ -19,12 +19,12 @@ qmake-qt4 ../
 -------
 
 -- OR use autotools --
-
+currently i am having a gettext issue so...."--disable-nls"
 ------
 <code>
 autoreconf -v -i
 
-./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice
+./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice --disable-nls
 
 make 
 
