@@ -45,4 +45,6 @@ make install
 
 -- added inner solarsystem spice ssc files 
 
+-- removed old kde3 code ( except for the translations in the *.po files)
+
 .
