@@ -3,9 +3,6 @@
 // Copyright (C) 2007-2008, Celestia Development Team
 // celestia-developers@lists.sourceforge.net
 //
-// Preferences dialog for Celestia's Qt front-end. Based on
-// kdepreferencesdialog.h by Christophe Teyssier.
-//
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
 // as published by the Free Software Foundation; either version 2

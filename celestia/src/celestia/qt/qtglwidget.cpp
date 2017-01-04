@@ -1,5 +1,5 @@
 /***************************************************************************
-                          kdeglwidget.cpp  -  description
+                        
                              -------------------
     begin                : Tue Jul 16 2002
     copyright            : (C) 2002 by Christophe Teyssier

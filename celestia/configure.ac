@@ -13,7 +13,6 @@ dnl BEFORE anything is checked.
 ui_glut="no"
 ui_gtk="no"
 ui_gnome="no"
-ui_kde="no"
 ui_qt="no"
 
 AC_ARG_WITH([glut],
@@ -28,25 +27,22 @@ AC_ARG_WITH([gnome],
             AS_HELP_STRING([--with-gnome],[Use Gnome for an enhanced GUI]),
             ui_gnome="yes"; ui_gtk="yes")
 
-AC_ARG_WITH([kde],
-            AS_HELP_STRING([--with-kde],[Use KDE for an enhanced GUI]),
-            ui_kde="yes")
+
 
 AC_ARG_WITH([qt],
             AS_HELP_STRING([--with-qt],[Use Qt4 for an enhanced GUI]),
             ui_qt="yes")
 
 dnl Following line left in: great for debugging.
-dnl AC_MSG_ERROR([$ui_glut $ui_gtk $ui_gnome $ui_kde])
+dnl AC_MSG_ERROR([$ui_glut $ui_gtk $ui_gnome ])
 
 dnl Check that an interface was provided
-if (test "$ui_glut" != "yes" -a "$ui_gtk" != "yes" -a "$ui_gnome" != "yes" -a "$ui_kde" != "yes" -a "$ui_qt" != "yes"); then
+if (test "$ui_glut" != "yes" -a "$ui_gtk" != "yes" -a "$ui_gnome" != "yes"  -a "$ui_qt" != "yes"); then
 	AC_MSG_ERROR([You must select an interface to build.
                   Possible options are:
                     --with-glut      GLUT front-end
                     --with-gtk       Enhanced GTK GUI
                     --with-gnome     Enhanced GTK GUI with Gnome features
-                    --with-kde       Enhanced KDE GUI
                     --with-qt        Enhanced Qt4 GUI]);
 fi
 
@@ -59,7 +55,7 @@ AC_ARG_ENABLE([theora],
               enable_theora="$enableval", enable_theora="auto")
 
 
-dnl For KDE interface
+
 AC_CONFIG_AUX_DIR(admin)
 
 dnl "admin/acinclude.m4.in" generates "acinclude.m4", which has a broken
@@ -81,9 +77,7 @@ AM_INIT_AUTOMAKE([-Wno-portability])
 AM_CONFIG_HEADER(config.h)
 
 AM_PO_SUBDIRS
-dnl Specifying the AM_GNU_GETTEXT_VERSION macro causes autopoint to run,
-dnl replacing many files from the KDE project in the admin/ directory. We
-dnl will leave it out for now.
+
 dnl AM_GNU_GETTEXT_VERSION([0.15])
 AM_GNU_GETTEXT([external])
 
@@ -176,12 +170,7 @@ else
 	AC_MSG_RESULT(no)
 fi
 
-AC_MSG_CHECKING([whether to enable KDE])
-if (test "$ui_kde" != "no"); then
-	AC_MSG_RESULT(yes)
-else
-	AC_MSG_RESULT(no)
-fi
+
 
 AC_MSG_CHECKING([whether to enable Qt4])
 if (test "$ui_qt" != "no"); then
@@ -190,8 +179,6 @@ else
 	AC_MSG_RESULT(no)
 fi
 
-
-AC_CHECK_COMPILERS
 
 dnl (Copied from Pidgin's configure.ac)
 dnl FreeBSD doesn't have libdl, dlopen is provided by libc
@@ -278,27 +265,6 @@ AM_CONDITIONAL(ENABLE_GTK, test "$ui_gtk" = "yes")
 AM_CONDITIONAL(ENABLE_GNOME, test "$ui_gnome" = "yes")
 
 
-dnl
-dnl KDE
-dnl
-
-dnl Make certain ARTS is not conditionally defined, like GConf for Gnome
-AM_CONDITIONAL(include_ARTS, test "x" = "y")
-
-if (test "$ui_kde" != "no"); then
-	dnl KDE_SET_PREFIX
-	AC_ENABLE_SHARED(yes)
-	AC_ENABLE_STATIC(no)
-
-	KDE_PROG_LIBTOOL
-	AM_KDE_WITH_NLS
-
-	dnl KDE_USE_QT(3)
-	AC_PATH_KDE
-
-        check_theora="yes"
-fi
-AM_CONDITIONAL(ENABLE_KDE, test "$ui_kde" = "yes")
 
 if (test "$ui_qt" != "no"); then
 	PKG_CHECK_MODULES(QT, QtCore QtGui QtOpenGL)
@@ -443,10 +409,6 @@ AC_CONFIG_FILES([ shaders/Makefile ])
 AC_CONFIG_FILES([ fonts/Makefile ])
 AC_CONFIG_FILES([ src/celestia/win32/Makefile ])
 AC_CONFIG_FILES([ src/celestia/win32/res/Makefile ])
-AC_CONFIG_FILES([ src/celestia/kde/Makefile ])
-AC_CONFIG_FILES([ src/celestia/kde/data/Makefile ])
-AC_CONFIG_FILES([ src/celestia/kde/doc/Makefile ])
-AC_CONFIG_FILES([ src/celestia/kde/doc/celestia/Makefile ])
 AC_CONFIG_FILES([ src/celestia/gtk/Makefile ])
 AC_CONFIG_FILES([ src/celestia/gtk/data/Makefile ])
 AC_CONFIG_FILES([ src/celestia/qt/Makefile ])
@@ -477,9 +439,6 @@ if (test "$ui_gnome" = "yes"); then
 	AC_MSG_RESULT([Front-End: Gnome]);
 fi
 
-if (test "$ui_kde" = "yes"); then
-	AC_MSG_RESULT([Front-End: KDE]);
-fi
 
 if (test "$ui_qt" = "yes"); then
 	AC_MSG_RESULT([Front-End: Qt4]);

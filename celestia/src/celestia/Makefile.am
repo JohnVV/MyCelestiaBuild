@@ -5,12 +5,6 @@ AM_CPPFLAGS = -I$(top_srcdir)/src -I$(top_srcdir)/thirdparty/Eigen -I$(top_srcdi
 
 DEFS = -DCONFIG_DATA_DIR='"$(PKGDATADIR)"' -DLOCALEDIR='"$(datadir)/locale"' @DEFS@
 
-if ENABLE_KDE
-SUBDIRS += kde
-celestiaKDELIBS = $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) $(LIB_KFILE) \
-                  $(LIBSOCKET) -lDCOP kde/libkdegui.a
-celestia_LDFLAGS = $(all_libraries) $(KDE_RPATH)
-endif
 
 if ENABLE_GTK
 SUBDIRS += gtk
@@ -61,7 +55,6 @@ celestia_CXXFLAGS = $(LUA_CFLAGS) $(SPICE_CFLAGS) $(THEORA_CFLAGS) -Wl,--no-as-n
 celestia_SOURCES = $(COMMONSOURCES) $(CELXSOURCES) $(GLUTSOURCES) $(THEORASOURCES)
 
 celestia_LDADD = \
-	$(celestiaKDELIBS) \
 	$(celestiaGTKLIBS) \
 	$(celestiaQTLIBS) \
 	$(LUA_LIBS) \

@@ -75,7 +75,6 @@ void dialogEclipseFinder(AppData* app)
 
 	/* Create listbox list.
 	 * Six invisible ints at the end to hold actual time.
-	 * This will save string parsing like in KDE version.
 	 * Last field holds pointer to selected Body. */
 	ed->eclipseListStore = gtk_list_store_new(12,
 	                                   G_TYPE_STRING,

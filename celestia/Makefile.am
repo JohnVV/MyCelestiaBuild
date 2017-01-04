@@ -29,11 +29,6 @@ SUBDIRS = src data extras extras-standard textures models shaders fonts po po2 l
 # Non-automake directories
 NONAUTO = admin macosx windows
 
-# From KDE app template
-
-# We already have a configure.in file, we don't build it from configure.in.in 
-#$(top_srcdir)/configure.in: configure.in.in $(top_srcdir)/subdirs
-#	cd $(top_srcdir) && $(MAKE) -f admin/Makefile.common configure.in ;
 
 $(top_srcdir)/subdirs:
 	cd $(top_srcdir) && $(MAKE) -f admin/Makefile.common subdirs
@@ -62,12 +57,5 @@ dist-hook:
 	cd $(top_distdir) && perl admin/am_edit -padmin
 	cd $(top_distdir) && $(MAKE) -f admin/Makefile.common subdirs
 
-install-data-hook:
-	if [ "$(kde_datadir)" -a -d $(DESTDIR)/$(kde_datadir)/@PACKAGE@ -a ! -h $(DESTDIR)/$(kde_datadir)/@PACKAGE@ ] ; then \
-		mv -f -b $(DESTDIR)/$(kde_datadir)/@PACKAGE@/* $(DESTDIR)/$(datadir)/@PACKAGE@/ ; \
-		rmdir $(DESTDIR)/$(kde_datadir)/@PACKAGE@ ; \
-	fi
-	if [ "$(kde_datadir)" -a ! -h $(DESTDIR)/$(kde_datadir)/@PACKAGE@ ] ; then \
-		ln -s $(datadir)/@PACKAGE@ $(DESTDIR)/$(kde_datadir)/@PACKAGE@ ; \
-	fi
+
 

@@ -2218,7 +2218,6 @@ void CelestiaCore::start(double t)
 {
     if (config->initScriptFile != "")
     {
-        // using the KdeAlerter in runScript would create an infinite loop,
         // break it here by resetting config->initScriptFile:
         string filename = config->initScriptFile;
         config->initScriptFile = "";

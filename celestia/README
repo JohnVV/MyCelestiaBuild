@@ -61,14 +61,9 @@ The GTK version is built with...
   make
   make install
 
-The KDE3 version is built with...
-  ./configure --with-kde
-  make
-  make install
 
-  Note: some systems may require configure to be executed with
-        --with-qt-includes=/usr/include/qt3
 
+ 
 The Gnome version is built with...
   ./configure --with-gnome
   make

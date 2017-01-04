@@ -1068,11 +1068,7 @@ void Celx_DoError(lua_State* l, const char* errorMsg)
 
 bool LuaState::tick(double dt)
 {
-    // Due to the way CelestiaCore::tick is called (at least for KDE),
-    // this method may be entered a second time when we show the error-alerter
-    // Workaround: check if we are alive, return true(!) when we aren't anymore
-    // this way the script isn't deleted after the second enter, but only
-    // when we return from the first enter. OMG.
+    
 
     // better Solution: defer showing the error-alterter to CelestiaCore, using
     // getErrorMessage()
