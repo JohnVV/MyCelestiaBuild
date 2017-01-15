@@ -1,0 +1,2795 @@
+ 
+ 
+ Replace "Mercury" "Sol"
+ {
+   Texture "Mercury.png"
+   Radius 2440
+   
+   Timeline
+   [
+   # Before SPICE
+   {
+     
+     BodyFrame { EquatorJ2000 { Center "Sol" } }
+     Ending   "1550 02 27 00:00:00.000"  # add 2 months for orbit drawing 
+     CustomOrbit "vsop87-mercury"
+     CustomRotation "iau-mercury"
+   }
+   # Spice
+   {
+     OrbitFrame { EclipticJ2000  { Center "Sol/Mercury_bary" }}
+     BodyFrame  { EclipticJ2000 { Center "Sol"              }}
+     Ending     "2649 11 25 00:00:00.000"  # less 2 month for orbit drawing
+   
+     
+     SpiceOrbit
+     {
+       Kernel  "de436.bsp"
+       Target  "199"
+       Origin  "1" 
+       Period   0.2441  # earth years
+       BoundingRadius 1e10
+     }
+     
+     #CustomRotation "iau-mercury"
+     SpiceRotation
+     {
+       Kernel    [ "pck00010.tpc"  "naif0012.tls"  ]
+       Frame     "IAU_MERCURY"  
+     }
+     } 
+     # After SPICE
+     {       
+       BodyFrame { EquatorJ2000 { Center "Sol" } }
+       CustomOrbit "vsop87-mercury"
+       CustomRotation "iau-mercury"
+     }
+   ]
+   Albedo            0.06
+   }
+    
+ Replace "Venus" "Sol"
+   {
+     Texture "Venus.png"
+    
+     NormalMap "VenusNormal.png"
+     HazeColor [ 0.23 0.18 0.2 ]
+     HazeDensity 0.15
+     SpecularColor [ 0.13 0.12 0.12 ]
+     SpecularPower 2.5
+     Radius 6052
+     
+     Atmosphere {
+       Height 60
+       Lower [ 0.8 0.7 0.5 ]
+       Upper [ 0.6 0.6 0.6 ]
+       Sky [ 0.8 0.8 0.5 ]
+       Mie              0.001
+       MieAsymmetry    -0.2
+       Rayleigh   [ 0.00001 0.0 0.0 ]
+       Absorption [ 0.00025 0.0003 0.0004 ]
+       MieScaleHeight 60.0 
+       CloudMap "VenusClouds.png"
+       CloudHeight 60
+       CloudSpeed  90
+     }
+     
+     Timeline
+     [
+     # Before SPICE
+     {
+       BodyFrame { EquatorJ2000 { Center "Sol" } }
+       Ending   "1550 02 27 00:00:00.000"  # add 2 months for orbit drawing       
+       CustomOrbit "vsop87-venus"
+       CustomRotation "iau-venus"
+     }
+     # SPICE
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Venus_bary" }}
+       BodyFrame  { EclipticJ2000 { Center "Sol"            }}     
+       Ending     "2649 11 25 00:00:00.000"  # less 3 month for orbit
+       
+       SpiceOrbit
+       {
+         Kernel  "de436.bsp"
+         Target  "299"
+         Origin  "2" 
+	 Period   0.615
+         BoundingRadius 1e10
+       }   
+       #CustomRotation "iau-venus"
+
+       SpiceRotation
+        {
+       Kernel    [ "pck00010.tpc"  "naif0012.tls"  ]
+       Frame     "IAU_VENUS"
+       }
+     }   
+     # After SPICE
+     {
+       BodyFrame { EquatorJ2000 { Center "Sol" } }     
+       CustomOrbit "vsop87-venus"
+       CustomRotation "iau-venus"
+     }    
+    ]     
+   } 
+   
+   Replace "Earth" "Sol"
+   {
+     Texture "Earth.png"
+     NightTexture "EarthLights.png"
+     NormalMap "EarthNormal.png"
+     SpecularTexture "EarthSpec.png"
+     SpecularColor [ 0.2 0.2 0.25 ]
+     SpecularPower 18.0
+     Oblateness 0.0034
+     Radius 6378.140
+     
+     Atmosphere {
+       Height 60
+       Lower [ 0.43 0.52 0.65 ]
+       Upper [ 0.26 0.47 0.84 ]
+       Sky [ 0.20 0.4 0.8 ]
+       Sunset [ 1.0 0.6 0.2 ]
+       
+       CloudHeight 20
+       CloudSpeed 0
+       CloudMap "EarthCloud.png"
+       # CloudShadowDepth 2.0
+       Mie 0.001
+       MieAsymmetry -0.25
+       Rayleigh [ 0.001 0.0025 0.006 ]
+       MieScaleHeight 12
+     }
+     
+     Timeline
+     [
+     # Before SPICE
+     { 
+       BodyFrame { EquatorJ2000 { Center "Sol" } }
+       Ending   "1550 02 27 00:00:00.000"  # add 2 month for orbit drawing    
+       CustomOrbit "vsop87-earth"
+       CustomRotation "iau-earth"
+     }
+     # SPICE
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Earth_bary"}}
+       BodyFrame { EclipticJ2000 { Center "Sol" } }
+       Ending    "2649 11 25 00:00:00.000"  # less 2 month for orbit
+       SpiceOrbit
+       {
+         Kernel "de436.bsp"
+         Target "399"
+         Origin "3" 
+         Period 1
+         BoundingRadius 1e10
+       }     
+       SpiceRotation
+       {
+
+          Kernel        
+          [
+          "pck00010.tpc"
+          "naif0012.tls"
+          "earth_000101_170324_161231.bpc"
+          "earth_070425_370426_predict.bpc"
+          "earth_fixed.tf" 
+          ]
+         # Frame               "IAU_EARTH"
+          Frame                 "EARTH_FIXED"
+       }      
+     }    
+     # After Spice
+     {
+       BodyFrame { EquatorJ2000 { Center "Sol" } }      
+       CustomOrbit "vsop87-earth"
+       CustomRotation "iau-earth"
+     }   
+    ]        
+   }
+     
+ Replace "Moon" "Sol/Earth"
+   {
+     Texture "MoonLRO-WAC.png"
+     NormalMap "MoonNormalLRO_WAC.png"
+     SpecularColor [ 0.16 0.16 0.17 ]
+     SpecularPower 0.5
+     Oblateness 0.002
+     Radius 1737.4
+     Timeline
+     [
+     # Before SPICE
+     {     
+       OrbitFrame { EquatorJ2000 { Center "Sol/Earth"}}
+       BodyFrame  { EquatorJ2000 { Center "Sol/Earth"}}
+       Ending   "1550 02 27 00:00:00.000"  # add 2 month for orbit drawing       
+       CustomOrbit "moon"      
+       CustomRotation "iau-moon"      
+     }   
+     # SPICE
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Earth_bary"}}
+       BodyFrame  { EclipticJ2000 { Center "Sol/Earth"     }}      
+       Ending     "2649 11 25 00:00:00.000"  # less 2 month for orbit   
+       
+       SpiceOrbit
+       {
+         Kernel "de436.bsp"
+         Target "301" 
+         Origin "3"  
+         Period         27.321661        
+         BoundingRadius 1e10
+       } 
+       
+       SpiceRotation
+       {
+         Kernel     
+         [
+         "pck00010.tpc" 
+         "naif0012.tls" 
+         
+         ]
+       
+          Frame     "IAU_MOON"       
+       }
+     }    
+     # After SPICE
+     {
+       OrbitFrame { EquatorJ2000 { Center "Sol/Earth"}}
+       BodyFrame  { EquatorJ2000 { Center "Sol/Earth"}}
+       CustomOrbit "moon"
+       CustomRotation "iau-moon"      
+     }
+         ]        
+         LunarLambert 1.0        
+         Albedo           0.12        
+   }
+   
+   ##############
+   # Easter Egg #
+   ##############
+   Location "TMA-1" "Sol/Earth/Moon"
+   {
+     LongLat [ -10.52 -43.00 -1.5 ]
+     Size 2.00
+     Importance  5.0
+     Type "AA"
+   }
+    
+ Replace "Mars" "Sol"
+   {
+     Texture "Mars.png"
+     NormalMap "MarsNormal.png"
+     #Color   [ 0.6 0.6 0.6 ]
+     HazeColor [ 0.55 0.35 0.25 ]
+     HazeDensity 0.25
+     SpecularColor [ 0.2 0.19 0.19 ]
+     SpecularPower 2.0
+     Radius 3396 # equatorial
+     Oblateness 0.0069
+     
+     Atmosphere {
+       Height 30
+       Lower [ 0.7 0.5 0.5 ]
+       Upper [ 0.6 0.2 0.2 ]
+       Sky [ 0.73 0.65 0.55 ]
+       Sunset [ 0.6 0.6 0.7 ] 
+       # Slightly bluish sunset, as seen in true color pictures
+       # from Pathfinder
+       
+       Mie 0.00015
+       MieAsymmetry -0.25
+       Rayleigh [ 0.00015 0.00011 0.00010 ]
+       Absorption [ 0.000055 0.00030 0.00025 ]
+       MieScaleHeight 30
+     }
+     
+     Timeline
+     [
+     # Before Spice
+     {
+       CustomOrbit "vsop87-mars"
+       Ending   "1550 02 27 00:00:00.000"  # add 2 month for orbit drawing 
+       BodyFrame { EquatorJ2000 { Center "Sol"} }
+       CustomRotation "iau-mars"
+     }
+     # spice
+     {
+       OrbitFrame { EclipticJ2000  { Center "Sol/Mars_bary" }}
+       BodyFrame  { EclipticJ2000 { Center "Sol"           }}
+       Ending     "2649 11 25 00:00:00.000"  # less 2 month for orbit
+       SpiceOrbit
+       {
+         Kernel "de436.bsp"
+         Target "4"
+         Origin "4" 
+         Period  1.88
+         BoundingRadius 1e10
+       }
+       
+       SpiceRotation
+       {
+         Kernel    [ "pck00010.tpc" "naif0012.tls" ]
+         Frame       "IAU_MARS"        
+       }
+     }
+     # After Spice
+     {      
+       CustomOrbit "vsop87-mars"
+       BodyFrame { EquatorJ2000 { Center "Sol"} }
+       CustomRotation "iau-mars"
+     }
+    ]
+   }
+   
+ Replace "Phobos" "Sol/Mars"
+   {     
+     Mesh "Phobos.low.bin.cmod"
+     Radius 13.0 # maximum semi-axis
+     
+     Timeline
+     [
+     # Before 
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars" }}
+       BodyFrame  { EquatorJ2000  {Center "Sol/Mars"  }}
+       Ending    "1900 02 04 00:00:41.184 " # add 1 month for drawing orbit
+       
+       EllipticalOrbit
+       {
+         Epoch        2415054.500000000              # 1900 02 04
+         Eccentricity       1.518804109399017E-02    # well Ecc.
+         AscendingNode      8.267052630309641E+01    # Deg.
+         SemiMajorAxis      9.377997102713629E+03    # Km.
+         ArgOfPericenter    3.043078653748888E+02    # Deg.
+         MeanAnomaly        5.332299997217411E+01    # Deg.
+         Inclination        2.565060806884143E+01    # Deg.
+         Period             3.191284128449522E-01    # days
+       }
+       
+        CustomRotation  "iau-phobos"
+         
+     }
+     # spice
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars_bary" }}
+       BodyFrame  { EclipticJ2000  { Center "Sol/Mars"      }}
+       Ending    "2099 12 01 00:01:07.183"  # minus 1 month for drawing orbit 
+       SpiceOrbit
+       {
+         Kernel "mar097.bsp"
+         Target "401"
+         Origin "4"   
+         Period  0.32
+         BoundingRadius 1e10
+       }
+       
+       SpiceRotation
+       {
+         Kernel            [ "pck00010.tpc"   "naif0012.tls" ]
+         Frame               "IAU_PHOBOS"
+       }
+     }
+     # After Spice
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars" }}
+       BodyFrame  { EquatorJ2000  { Center "Sol/Mars" }}
+       
+       EllipticalOrbit
+       {
+         Epoch        2488038.500000000              # 2099 12 01
+         Eccentricity       1.483144293957042E-02    # well Ecc.
+         AscendingNode      8.481820920977968E+01    # Deg.
+         SemiMajorAxis      9.378104613638820E+03    # Km.
+         ArgOfPericenter    2.643248684702730E+01    # Deg.
+         MeanAnomaly        1.350187386377397E+02    # Deg.
+         Inclination        2.718705574501926E+01    # Deg.
+         Period             3.191339006728237E-01    # days
+       }
+       
+       # CustomRotation "iau-phobos"
+     }
+         ]
+         
+         Albedo         0.08
+         
+   }
+   
+  Replace "Deimos" "Sol/Mars"
+   {
+     Mesh "Deimos.low.bin.cmod"
+     Radius 7.9
+     MeshCenter [ 0.00 -0.10 0.10 ]  
+     Timeline
+     [
+     # Before 
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars" }}
+       BodyFrame  { EquatorJ2000  { Center "Sol/Mars" }}
+       Ending    "1900 02 04 00:00:41.184 " # add 1 month for drawing orbit
+       
+       EllipticalOrbit
+       {
+         Epoch        2415054.500000000              # 1900 02 04
+         Eccentricity       2.727785842374572E-04    # well Ecc.
+         AscendingNode      8.014712529094811E+01    # Deg.
+         SemiMajorAxis      2.345843352277748E+04    # Km.
+         ArgOfPericenter    2.794768893629913E+02    # Deg.
+         MeanAnomaly        4.108445654415713E+01    # Deg.
+         Inclination        2.706516193051360E+01    # Deg.
+         Period             1.262550755300245E+00    #  days
+       }
+       
+       
+       CustomRotation "iau-deimos"
+     }
+     # spice
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars_bary" }}
+       BodyFrame  { EclipticJ2000  { Center "Sol/Mars"      }}
+       Ending    "2099 12 01 00:01:07.183"  # minus 1 month for drawing orbit 
+       SpiceOrbit
+       {
+         Kernel "mar097.bsp"
+         Target "402"
+         Origin "4"   
+         Period   1.2624408
+         BoundingRadius 1e10
+       }
+       
+       
+       #CustomRotation "iau-deimos"
+       SpiceRotation
+       {
+         Kernel           [ "pck00010.tpc"   "naif0012.tls" ]
+         Frame               "IAU_DEIMOS"
+       }
+     }
+     # After Spice
+     {
+       OrbitFrame { EclipticJ2000 { Center "Sol/Mars" }}
+       BodyFrame  { EquatorJ2000  { Center "Sol/Mars" }}
+       
+       EllipticalOrbit
+       {
+         Epoch        2488038.500000000              # 2099 12 01
+         Eccentricity       2.637095563057808E-04    # well Ecc.
+         AscendingNode      8.643314126921305E+01    # Deg.
+         SemiMajorAxis      2.345856966798129E+04    # Km.
+         ArgOfPericenter    1.469448698896884E+02    # Deg.
+         MeanAnomaly        1.026702715681343E+02    # Deg.
+         Inclination        2.641083361232704E+01    # Deg.
+         Period             1.262561746474004E+00    # days
+       }     
+       CustomRotation "iau-deimos"
+     }
+    ]       
+         Albedo   0.08
+   }
+   
+   
+
+############# Jupiter ###########
+
+Replace "Jupiter" "Sol"
+{
+
+  Texture "Jupiter.png"
+  HazeColor [ 0.2 0.05 0.01 ]
+  HazeDensity 0.3
+  SpecularPower 5.0
+  NightTexture "JupiterNight.png"
+
+  Atmosphere {
+    Height 300
+    Lower [ 0.3 0.2 0.2 ]
+    Upper [ 0.1 0.05 0.05 ]
+    Sky [ 0.3 0.2 0.2 ]
+    Sunset [ 0.4 0.2 0.1 ]
+
+    Mie 0.0002
+    MieAsymmetry -0.15
+    Rayleigh [ 0.0002 0.0001 0.00005 ]
+    Absorption [ 0 0 0 ]
+    MieScaleHeight 20
+  }
+
+  Radius 71492 # equatorial
+  Oblateness 0.0649
+
+  Rings
+  {
+    Inner   102200
+    Outer  227000
+    Texture "JupiterRings.png"
+  }
+
+  Timeline
+  [
+  # Before SPICE
+   {
+    CustomOrbit "vsop87-jupiter"
+    BodyFrame {  EquatorJ2000 { Center "Sol"}}
+    Ending   "1550 02 27 00:00:00.000"  # add 1 month for orbit drawing
+    CustomRotation "iau-jupiter"
+  }
+  # SPICE
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EclipticJ2000 { Center "Sol"             }}
+    Ending    "2649 11 25 00:00:00.000"  # less 2 month for orbit
+    SpiceOrbit
+    {
+      Kernel "de436.bsp"
+      Target "5"
+      Origin "5"
+      Period 11.8618
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel           [  "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_JUPITER"
+    }
+  }
+  # After SPICE
+  {
+    CustomOrbit "vsop87-jupiter"
+    BodyFrame { EquatorJ2000 { Center "Sol"}}
+    CustomRotation "iau-jupiter"
+   }
+  ]
+}
+
+##################
+### jup310.bsp ###
+##################
+
+Replace "Io" "Sol/Jupiter"
+{
+  Texture "Io.png"
+  NormalMap "IoNormal.png"
+  NightTexture "IoNight.png"
+  SemiAxes [ 1829.4 1819.3 1815.7 ]
+  OrbitColor [ 0.5 0.2 0.2 ]
+  Timeline
+  [
+  # Before Spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame { EquatorJ2000 { Center "Sol/Jupiter"}}
+    Ending    "1900 02 01 00:00:41.183  " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 
+      Eccentricity       4.698380555991260E-03    # EC
+      AscendingNode      3.386546022984761E+02    # OM
+      SemiMajorAxis      4.221288103382803E+05    # A
+      ArgOfPericenter    6.119257137657716E+01    # W
+      MeanAnomaly        3.403213364178930E+01    # MA
+      Inclination        2.225242991908296E+00    # IN
+      Period             1.771960654170738E+00    # PR
+    }
+    CustomRotation "iau-io"
+  }
+  # SPICE
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "501"
+      Origin "5"
+      Period         1.769138
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel           [  "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_IO"
+     # Period               42.459312
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       4.175348838896003E-03    # well Ecc. EC
+      AscendingNode      3.388763045703885E+02    # Deg. OM
+      SemiMajorAxis      4.218699151657117E+05    # Km. A
+      ArgOfPericenter    7.627078622808591E+01    # Deg. W
+      MeanAnomaly        2.673230986792317E+02    # Deg. MA
+      Inclination        2.197255315652924E+00    # Deg. IN
+      Period             1.770330766438162E+00    # days PR
+    }
+    CustomRotation "iau-io"
+   }
+  ]
+}
+
+Replace "Europa" "Sol/Jupiter"
+{
+  Texture "Europa.png"
+  SemiAxes [ 1564.13 1561.23 1560.93 ]
+  # Radius 1562.09
+  OrbitColor [ 0.5 0.2 0.2 ]
+
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending    "1900 02 01 00:00:41.183  " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       9.164134125921288E-03    # well Ecc.
+      AscendingNode      3.306442056587801E+02    # Deg. OM
+      SemiMajorAxis      6.713055311571993E+05    # Km. A
+      ArgOfPericenter    2.431341697553788E+02    # Deg. W
+      MeanAnomaly        2.003983039107400E+02    # Deg. MA
+      Inclination        2.580361215468598E+00    # Deg. IN
+      Period             3.553470761999806E+00    # days PR
+    }
+    CustomRotation "iau-europa"
+
+  }
+  # SPICE
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "502"
+      Origin "5"
+      Period  3.551810
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel          [   "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_EUROPA"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame { EquatorJ2000 { Center "Sol/Jupiter"}}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       9.224960689495068E-03    # well Ec
+      AscendingNode      3.499567750194527E+02    # Deg. OM
+      SemiMajorAxis      6.710504987060047E+05    # Km. A
+      ArgOfPericenter    2.492353871404621E+02    # Deg. W
+      MeanAnomaly        1.320702008386561E+02    # Deg. MA
+      Inclination        2.192894273386658E+00    # Deg. IN
+      Period             3.551445981392012E+00    # days PR
+    }
+    CustomRotation "iau-europa"
+   }
+  ]
+}
+
+Replace "Ganymede" "Sol/Jupiter"
+{
+  Texture    "Ganymede.png"
+  NormalMap  "GanymedeNormal.png"
+  SemiAxes [ 2631.2 2631.2 2631.2 ]
+  OrbitColor [ 0.5 0.2 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending    "1900 02 01 00:00:41.183  " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       2.332604945630837E-03    # well Ecc.
+      AscendingNode      3.381666861464131E+02    # Deg. OM
+      SemiMajorAxis      1.070552204404691E+06    # Km. A
+      ArgOfPericenter    3.930462634608413E+00    # Deg. W
+      MeanAnomaly        3.323453262316041E+02    # Deg. MA
+      Inclination        2.322012243720252E+00    # Deg. IN
+      Period             7.156794607863700E+00    # days PR
+    }
+    CustomRotation "iau-ganymede"
+  }
+
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "503"
+      Origin "5"
+      Period         7.154553
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel          [   "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_GANYMEDE"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       2.181924296728704E-03    # well Ecc.
+      AscendingNode      3.373184754862495E+02    # Deg. OM
+      SemiMajorAxis      1.070705968365682E+06    # Km. A
+      ArgOfPericenter    1.383648296415033E+02    # Deg. W
+      MeanAnomaly        9.930018775276196E+00    # Deg. MA
+      Inclination        1.937659169613495E+00    # Deg. IN  
+      Period             7.158336564336593E+00    # days PR
+    }
+    CustomRotation "iau-ganymede"
+   }
+  ]
+}
+
+Replace "Callisto" "Sol/Jupiter"
+{
+  Texture     "Callisto.png"
+  #NormalMap  "CallistoNormal.png"
+  #NormalMap  "8k.CallistoNormal.png"
+   SemiAxes [ 2410.3 2410.3 2410.3 ]
+  #SpecularColor [ 0.07 0.06 0.05 ]
+  #SpecularPower 0.2
+   OrbitColor [ 0.5 0.2 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending    "1900 02 01 00:00:41.183  " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       7.359959261877268E-03    # well Ecc.
+      AscendingNode      3.467492198799084E+02    # Deg.
+      SemiMajorAxis      1.882765816143390E+06    # Km.
+      ArgOfPericenter    2.955087483186379E+02    # Deg.
+      MeanAnomaly        2.730305972213145E+02    # Deg.
+      Inclination        2.005342103927259E+00    # Deg.
+      Period             1.669119034001401E+01    # days
+    }
+    CustomRotation "iau-callisto"
+  }
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "504"
+      Origin "5"
+      Period  16.689018
+      BoundingRadius 1e10
+    }
+    SpiceRotation
+    {
+      Kernel            [ "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_CALLISTO"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 01
+      Eccentricity       7.398464161504002E-03    # well Ecc.
+      AscendingNode      3.347480452383226E+02    # Deg.
+      SemiMajorAxis      1.882725849739685E+06    # Km.
+      ArgOfPericenter    8.196377675552074E+01    # Deg.
+      MeanAnomaly        2.664248717832737E+02    # Deg.
+      Inclination        1.822953763989910E+00    # Deg.
+      Period             1.669065887457186E+01    # days
+    }
+    CustomRotation "iau-callisto"
+   }
+  ]
+}
+
+Replace  "Amalthea" "Sol/Jupiter"
+{
+  Class       "moon"
+  Texture     "Amathia.png"
+   SemiAxes   [ 125 73 64 ]
+  Color       [ 0.63 0.45 0.35 ]
+   OrbitColor [ 0.4 0.4 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending    "1900 02 01 00:00:41.183  " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       6.229049453154953E-03    # well Ecc.
+      AscendingNode      3.283248702131328E+02    # Deg.
+      SemiMajorAxis      1.820012549310880E+05    # Km.
+      ArgOfPericenter    1.914966156889035E+02    # Deg.
+      MeanAnomaly        3.312098819726006E+02    # Deg.
+      Inclination        2.262658038355694E+00    # Deg.
+      Period             5.016115372901322E-01    # days
+    }
+    CustomRotation "iau-amalthea"
+  }
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "505"
+      Origin "5"
+      Period  0.498179
+      BoundingRadius 1e10
+    }
+    SpiceRotation
+    {
+      Kernel           [  "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_AMALTHEA"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       5.760737236792011E-03    # well Ecc.
+      AscendingNode      3.345158405161260E+02    # Deg.
+      SemiMajorAxis      1.818220814959620E+05    # Km.
+      ArgOfPericenter    2.594078209021028E+01    # Deg.
+      MeanAnomaly        3.321515640038996E+02    # Deg.
+      Inclination        2.568557540969850E+00    # Deg.
+      Period             5.008709929003712E-01    # days
+    }
+    CustomRotation "iau-amalthea"
+   }
+  ]
+}
+
+Replace "Thebe" "Sol/Jupiter"
+{
+  Class "moon"
+  Texture   "z.SmallMoon1.png"
+  NormalMap "z.SmallMoonNormal1.png"
+  BlendTexture true
+  Color       [ 0.63 0.45 0.35 ]
+  SemiAxes    [ 58 49 42 ]
+  OrbitColor  [ 0.4 0.4 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending    "1900 02 01 00:00:41.183 " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       1.606137227913269E-02    # well Ecc.
+      AscendingNode      6.844940030445441E+00    # Deg.
+      SemiMajorAxis      2.223052542004502E+05    # Km.
+      ArgOfPericenter    1.659774102895996E+02    # Deg.
+      MeanAnomaly        1.435115748075189E+02    # Deg.
+      Inclination        1.983675847730219E+00    # Deg.
+      Period             6.771432185333762E-01    # days
+    }
+    CustomRotation "iau-thebe"
+  }
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter"      }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "514"
+      Origin "5"
+      Period         0.674536
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel            [ "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_THEBE"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       1.591049836345017E-02    # well Ecc.
+      AscendingNode      3.088102356320387E+02    # Deg.
+      SemiMajorAxis      2.222653595682718E+05    # Km.
+      ArgOfPericenter    2.499945229827543E+02    # Deg.
+      MeanAnomaly        2.194515177401913E+02    # Deg.
+      Inclination        2.007095968885968E+00    # Deg.
+      Period             6.769609477563918E-01    # days
+    }
+    CustomRotation "iau-thebe"
+  }
+  ]
+  Albedo 0.047
+}
+
+
+Replace "Adrastea" "Sol/Jupiter"
+{
+  Class "moon"
+  Texture   "z.SmallMoon2.png"
+  NormalMap "z.SmallMoonNormal2.png"
+  BlendTexture true
+  Color       [ 0.63 0.45 0.35 ]
+  SemiAxes    [ 10 8 7 ]
+  OrbitColor  [ 0.4 0.4 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending     "1900 02 01 00:00:41.183 " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       7.212347622337700E-03    # well Ecc.
+      AscendingNode      3.377038365042424E+02    # Deg.
+      SemiMajorAxis      1.299555702343904E+05    # Km.
+      ArgOfPericenter    5.918049715821878E+01    # Deg.
+      MeanAnomaly        2.243854364688085E+00    # Deg.
+      Inclination        2.205547490625356E+00    # Deg.
+      Period             3.026553053292438E-01    # days
+    }
+    CustomRotation "iau-adrastea"
+  }
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter" }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "515"
+      Origin "5"
+      Period         0.29826
+      BoundingRadius 1e10
+    }
+
+    SpiceRotation
+    {
+      Kernel            [ "pck00010.tpc"  "naif0012.tls"  ]
+      Frame               "IAU_ADRASTEA"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2049 12 01
+      Eccentricity       6.342741512055649E-03    # well Ecc.
+      AscendingNode      3.380652677416233E+02    # Deg.
+      SemiMajorAxis      1.297212266690445E+05    # Km.
+      ArgOfPericenter    4.604812090500413E+01    # Deg.
+      MeanAnomaly        2.140865627985972E+00    # Deg.
+      Inclination        2.212870252379792E+00    # Deg.
+      Period             3.018370255964786E-01    # days
+    }
+    CustomRotation "iau-adrastea"
+   }
+  ]
+  Albedo 0.1
+}
+
+Replace "Metis" "Sol/Jupiter"
+{
+  Class       "moon"
+  Texture   "z.SmallMoon3.png"
+  NormalMap "z.SmallMoonNormal3.png"
+  BlendTexture true
+  Color       [ 0.63 0.45 0.35 ]
+  SemiAxes    [ 30 20 17 ]
+  OrbitColor  [ 0.4 0.4 0.2 ]
+  Timeline
+  [
+  # Before spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+    Ending     "1900 02 01 00:00:41.183 " # add 1 month for drawing orbit
+
+    EllipticalOrbit
+    {
+      Epoch        2415051.500000000              # 1900 02 01
+      Eccentricity       6.658867050832065E-03    # well Ecc.
+      AscendingNode      3.376024842123383E+02    # Deg.
+      SemiMajorAxis      1.287990540450937E+05    # Km.
+      ArgOfPericenter    3.284397030382638E+02    # Deg.
+      MeanAnomaly        3.597224225836761E+02    # Deg.
+      Inclination        2.219102679192548E+00    # Deg.
+      Period             2.986241677677839E-01    # days
+    }
+    CustomRotation "iau-metis"
+  }
+  # spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EclipticJ2000 { Center "Sol/Jupiter" }}
+    Ending    "2099 12 01 00:01:07.183"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel "jup310.bsp"
+      Target "516"
+      Origin "5"
+      Period         0.29862
+      BoundingRadius 1e10
+    }
+    SpiceRotation
+    {
+      Kernel             [ "pck00010.tpc"  "naif0012.tls" ]
+      Frame               "IAU_METIS"
+    }
+  }
+  # After spice
+  {
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000  { Center "Sol/Jupiter" }}
+
+    EllipticalOrbit
+    {
+      Epoch        2488038.500000000              # 2099 12 02
+      Eccentricity       6.712422480869530E-03    # well Ecc.
+      AscendingNode      3.378207483299570E+02    # Deg.
+      SemiMajorAxis      1.287235814915217E+05    # Km.
+      ArgOfPericenter    4.435925594884014E+01    # Deg.
+      MeanAnomaly        3.846091106927250E-01    # Deg.
+      Inclination        2.227771824175365E+00    # Deg.
+      Period             2.983617284195376E-01    # days
+    }
+    CustomRotation "iau-metis"
+   }
+  ]
+  Albedo 0.061
+}
+
+#########################
+###### jup340.bsp #######
+### the long time span ##
+#########################
+
+Replace "Himalia:Jupiter VI" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture   "z.SmallMoon4.png"
+  NormalMap "z.SmallMoonNormal4.png"
+  SemiAxes    [ 85 85 85 ]
+  Albedo      0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel   "jup340.bsp"
+      Target   "506"
+      Origin   "5"
+      Period   250.56
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period  7.782
+    }
+}
+
+Replace "Elara:Jupiter VII" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  SemiAxes    [ 40 40 40 ]
+  Albedo     0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel    "jup340.bsp"
+      Target    "507"
+      Origin    "5"
+      Period    259.64
+      BoundingRadius 1e10
+    }
+
+    UniformRotation
+    {
+      Period     12
+    }
+}
+
+Replace "Pasiphae:Jupiter VIII" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  SemiAxes    [ 18 18 18 ]
+  Albedo       0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "508"
+      Origin      "5"
+      Period     743.63
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+Replace "Sinope:Jupiter IX" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  SemiAxes    [ 14 14 14 ]
+  Albedo      0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "509"
+      Origin      "5"
+      Period     758.90
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     13.16
+    }
+  }
+}
+
+Replace "Lysithea:Jupiter X" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  SemiAxes    [ 12 12 12 ]
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel   "jup340.bsp"
+      Target   "510"
+      Origin   "5"
+      Period   259.20
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period   12.78 # ???
+    }
+}
+
+Replace "Carme:Jupiter XI" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  SemiAxes    [ 15 15 15 ]
+  Albedo      0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "511"
+      Origin      "5"
+      Period     736.4468
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10.40  # ???
+    }
+}
+
+Replace "Ananke:Jupiter XII" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  SemiAxes    [ 10 10 10 ]
+  Albedo      0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel     "jup340.bsp"
+      Target     "512"
+      Origin     "5"
+      Period      613.6494
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     8.31 # ???
+    }
+}
+
+Replace "Leda:Jupiter XIII" "Sol/Jupiter"
+{
+   Class     "minormoon"
+  Texture   "asteroid.jpg"
+  SemiAxes    [ 5 5 5  ]
+  Albedo    0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel  "jup340.bsp"
+      Target  "513"
+      Origin  "5"
+      Period  240.9439
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period   10
+    }
+}
+
+Replace "Callirrhoe:Jupiter XVII:1999 J 1" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  Radius     4.3
+  Albedo     0.04
+  OrbitColor [0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "517"
+      Origin      "5"
+      Period     771.5244
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Themisto:Jupiter XVIII:2000 J 1" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      4.0
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "518"
+      Origin      "5"
+      Period     129.7140
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Megaclite:Jupiter XIX:2000 J 8" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  Radius     2.7
+  Albedo     0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "519"
+      Origin      "5"
+      Period       752.82
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Taygete:Jupiter XX:2000 J 9" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  Radius     2.5
+  Albedo     0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "520"
+      Origin      "5"
+      Period     732.24
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Chaldene:Jupiter XXI:2000 J 10" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture    "asteroid.jpg"
+  Radius      1.9
+  Albedo      0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "521"
+      Origin      "5"
+      Period     685.0362
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Harpalyke:Jupiter XXII:2000 J 5" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      2.2
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+  
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "522"
+      Origin      "5"
+      Period       632.0110
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Kalyke:Jupiter XXIII:2000 J 2" "Sol/Jupiter"
+{
+   Class     "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      2.6
+  Albedo      0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "523"
+      Origin      "5"
+      Period       712.95
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Iocaste:Jupiter XXIV:2000 J 3" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      2.6
+  Albedo      0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "524"
+      Origin      "5"
+      Period       631.49
+      BoundingRadius 1e10
+    }
+
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Erinome:Jupiter XXV:2000 J 4" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      1.6
+  Albedo      0.04
+  OrbitColor  [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "525"
+      Origin      "5"
+      Period     728.26
+      BoundingRadius 1e10
+    }
+
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Isonoe:Jupiter XXVI:2000 J 6" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      1.9
+  Albedo      0.04
+  OrbitColor  [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "526"
+      Origin      "5"
+      Period     684.7145
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Praxidike:Jupiter XXVII:2000 J 7" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      3.4
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "527"
+      Origin      "5"
+      Period       609.4551
+      BoundingRadius 1e10
+    }
+
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Autonoe:Jupiter XXVIII:2001 J 1" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      2.0
+  Albedo      0.04
+  OrbitColor [0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "528"
+      Origin      "5"
+      Period      765.95
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Thyone:Jupiter XXIX:2001 J 2" "Sol/Jupiter"
+{
+   Class     "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      2.0
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"       }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "529"
+      Origin      "5"
+      Period     627.21
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Hermippe:Jupiter XXX:2001 J 3" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture       "asteroid.jpg"
+  Radius        2.0
+  Albedo        0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "530"
+      Origin      "5"
+      Period     633.90
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Aitne:Jupiter XXXI:2001 J 11" "Sol/Jupiter"
+{
+   Class     "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      1.5
+  Albedo      0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "531"
+      Origin      "5"
+      Period     679.2881
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Eurydome:Jupiter XXXII:2001 J 4" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.5
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "532"
+      Origin      "5"
+      Period     679.3836
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Euanthe:Jupiter XXXIII:2001 J 7" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.5
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "533"
+      Origin      "5"
+      Period     618.1666
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Euporie:Jupiter XXXIV:2001 J 10" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture      "asteroid.jpg"
+  Radius        1.0
+  Albedo       0.04
+  OrbitColor  [0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "534"
+      Origin      "5"
+      Period     535.3645
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Orthosie:Jupiter XXXV:2001 J 9" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "535"
+      Origin      "5"
+      Period     632.9955
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Sponde:Jupiter XXXVI:2001 J 5" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius      1.0
+  Albedo      0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "536"
+      Origin      "5"
+      Period     699.1444
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Kale:Jupiter XXXVII:2001 J 8" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor  [0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel       "jup340.bsp"
+      Target      "537"
+      Origin      "5"
+      Period     700.4370
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Pasithee:Jupiter XXXVIII:2001 J 6" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture       "asteroid.jpg"
+  Radius        1.0
+  Albedo       0.04
+  OrbitColor  [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter" }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "538"
+      Origin      "5"
+      Period     692.5484
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Hegemone:Jupiter XXXIX:2003 J 8" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.5
+  Albedo       0.04
+  OrbitColor  [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "539"
+      Origin      "5"
+      Period     688.3916
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Mneme:Jupiter XL:2003 J 21" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "540"
+      Origin      "5"
+      Period     620.04
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Aoede:Jupiter XLI:2003 J 7" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       2.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "541"
+      Origin      "5"
+      Period     746.2308
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Thelxinoe:Jupiter XLII:2003 J 22" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel       "jup340.bsp"
+      Target      "542"
+      Origin      "5"
+      Period     628.09
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Arche:Jupiter XLIII:2002 J 1" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.5
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "543"
+      Origin      "5"
+      Period     723.90
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Kallichore:Jupiter XLIV:2003 J 11" "Sol/Jupiter"
+{
+   Class        "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "544"
+      Origin      "5"
+      Period     681.3298
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Helike:Jupiter XLV:2003 J 6" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       2.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "545"
+      Origin      "5"
+      Period     624.4784
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Carpo:Jupiter XLVI:2003 J 20" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.5
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "546"
+      Origin      "5"
+      Period     456.10
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Eukelade:Jupiter XLVII:2003 J 1" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       2.0
+  Albedo       0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "547"
+      Origin      "5"
+      Period     748.9166
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Cyllene:Jupiter XLVIII:2003 J 13" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "548"
+      Origin      "5"
+      Period     713.7958
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Kore:Jupiter XLIX:2003 J 14" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "549"
+      Origin      "5"
+      Period     734.1584
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "Herse:Jupiter L:2003 J 17" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "550"
+      Origin      "5"
+      Period     714.47
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+####################
+## new renumbered ##
+####################
+
+ "2010J1-551:Jupiter" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "551"
+      Origin      "5"
+      Period       697 # ave.
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+
+ "2010J2-552:Jupiter" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "552"
+      Origin      "5"
+      Period     612
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+
+ "Dia / 2000J11-553:Jupiter" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+   
+    Beginning  "1600 03 01 00:00:00.000"
+    Ending     "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "553"
+      Origin      "5"
+      Period     612
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 2" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary" }}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"      }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"   # minus 1 month for drawing orbit
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55060"
+      Origin      "5"
+      Period     979.99
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 3" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55061"
+      Origin      "5"
+      Period     583.88
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 4" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture     "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55062"
+      Origin      "5"
+      Period     755.24
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 5" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       2.0
+  Albedo       0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55063"
+      Origin      "5"
+      Period     753.4444
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+
+}
+
+Replace "2003 J 9" "Sol/Jupiter"
+{
+   Class      "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       0.5
+  Albedo       0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55064"
+      Origin      "5"
+      Period     733.29
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+
+}
+
+Replace "2003 J 10" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.4 0.2 0.4 ]
+
+  
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55065"
+      Origin      "5"
+      Period     716.25
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 12" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       0.5
+  Albedo       0.04
+  OrbitColor [ 0.6 0.2 0.6 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55066"
+      Origin      "5"
+      Period     494.0456
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+
+}
+
+Replace "2003 J 15" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55067"
+      Origin      "5"
+      Period     663.0479
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+  
+}
+
+Replace "2003 J 16" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55068"
+      Origin      "5"
+      Period      622.3038
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 18" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55069"
+      Origin      "5"
+      Period     588.2125
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+Replace "2003 J 19" "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+ 
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55070"
+      Origin      "5"
+      Period     762.2039
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+  
+}
+
+Replace "2003 J 23" "Sol/Jupiter"
+{
+   Class        "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55071"
+      Origin      "5"
+      Period     713
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+
+
+"2011J1:55074"  "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.6 0.2 0.6 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55074"
+      Origin      "5"
+      Period     690
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+
+"2011J2:55075"  "Sol/Jupiter"
+{
+   Class       "minormoon"
+  Texture      "asteroid.jpg"
+  Radius       1.0
+  Albedo       0.04
+  OrbitColor [ 0.2 0.4 0.2 ]
+
+    OrbitFrame { EclipticJ2000 { Center "Sol/Jupiter_bary"}}
+    BodyFrame  { EquatorJ2000 { Center "Sol/Jupiter"     }}
+    Beginning "1600 03 01 00:00:00.000"
+    Ending    "2599 11 01 00:00:00.000"
+
+    SpiceOrbit
+    {
+      Kernel      "jup340.bsp"
+      Target      "55075"
+      Origin      "5"
+      Period     700
+      BoundingRadius 1e10
+    }
+    UniformRotation
+    {
+      Period     10
+    }
+}
+
+
+   
