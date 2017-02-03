@@ -61,14 +61,7 @@ The GTK version is built with...
   make
   make install
 
-
-
- 
-The Gnome version is built with...
-  ./configure --with-gnome
-  make
-  make install
-
+-- as of 2-1-2017 this is untested  --
 If all else fails, try the gui-less version with...
   ./configure --with-glut
   make
