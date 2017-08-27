@@ -13,7 +13,7 @@ mkdir BUILD
 
 cd BUILD
 
-qmake-qt4 ../
+qmake-qt4 prefix=/YOUR_INSTALL_LOCATION ..
 </code>
 
 -------
