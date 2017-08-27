@@ -698,10 +698,10 @@ void renderRings_GLSL(RingSystem& rings,
         Vector3f sAxis = axis * 0.5f;
         Vector3f tAxis = (axis.cross(light.direction_obj)) * 0.5f * tScale;
         Vector4f texGenS;
-        texGenS.start(3) = sAxis;
+        texGenS.head(3) = sAxis;
         texGenS[3] = 0.5f;
         Vector4f texGenT;
-        texGenT.start(3) = tAxis;
+        texGenT.head(3) = tAxis;
         texGenT[3] = 0.5f;
 
         // r0 and r1 determine the size of the planet's shadow and penumbra
@@ -772,8 +772,8 @@ void renderGeometryShadow_GLSL(Geometry* geometry,
 
     int lightIndex = 0;
     Vector3f viewDir = -ls.lights[lightIndex].direction_obj;
-    Vector3f upDir = viewDir.unitOrthogonal();
-    Vector3f rightDir = upDir.cross(viewDir);
+ // Vector3f upDir = viewDir.unitOrthogonal();
+ // Vector3f rightDir = upDir.cross(viewDir);
 
 
     glUseProgramObjectARB(0);

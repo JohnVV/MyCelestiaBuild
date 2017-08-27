@@ -1688,14 +1688,15 @@ void CelestiaCore::charEntered(const char *c_p, int modifiers)
             {
                 renderer->setStarColorTable(GetStarColorTable(ColorTable_Blackbody_D65));
             }
-            else if (current == GetStarColorTable(ColorTable_Blackbody_D65))
+             else if (current == GetStarColorTable(ColorTable_Blackbody_D65))
+
             {
                 renderer->setStarColorTable(GetStarColorTable(ColorTable_Enhanced));
             }
-            else
+           /* else
             {
                 // Unknown color table
-            }
+            } */
         }
         break;
 

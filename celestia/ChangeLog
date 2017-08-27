@@ -1661,3 +1661,21 @@ Scripting
 Code optimization and reorganization
 * Fixes for gcc-4.5, and include -ldl for systems that need it.
 * More granular setting of CFLAGS.
+
+
+####################### new 1.7.0 #############################
+
+updated to png16 
+updated to Eigen 3.3.4 
+updated to gcc4.8 
+Removed Autotools and non QT code 
+moved to Qmake as a replacement for Autotools 
+
+
+
+
+
+
+
+
+

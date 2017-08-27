@@ -405,7 +405,7 @@ void StarTableModel::populate(const UniversalCoord& _observerPos,
     if (stars.size() != 0)
     {
         stars.clear();
-        reset();
+        //reset();
     }
 
     if (filteredStars.empty())

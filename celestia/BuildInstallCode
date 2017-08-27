@@ -1,0 +1,25 @@
+
+
+edit celestia.pro to your system 
+
+Requires lua5.1 and lua5.1-devel( or -dev) 
+the rest are the current versions in most linux distros 
+-- fedora warnning as is NORMAL with fedora some lib's might be TOO NEW 
+
+Requires qt5 development tools and qmake-qt5 
+( i link qmake-qt5 OR qmake-qt4 to qmake as needed )
+
+edit the "celestia.pro " to add your cspice location and your install location 
+
+
+mkdir build
+cd build
+qmake ..
+( or  qmake prefix=/usr .. ) 
+make
+make install 
+
+----------------
+
+qmake prefix=/DATA/SUSE/Qt5Celestia ..
+

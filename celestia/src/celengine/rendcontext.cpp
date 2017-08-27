@@ -15,7 +15,7 @@
 #include "body.h"
 #include <GL/glew.h>
 #include "vecgl.h"
-#include <Eigen/NewStdVector>
+
 
 using namespace cmod;
 using namespace Eigen;

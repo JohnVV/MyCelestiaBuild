@@ -21,6 +21,7 @@
 #include <QPixmap>
 #include <QBitmap>
 #include <vector>
+#include <QString>
 #include "qtappwin.h"
 #include <qtextcodec.h> 
 
@@ -74,7 +75,7 @@ int main(int argc, char *argv[])
 
     // By default, QString converts the const char * data into Unicode Latin-1 characters.
     // We need to change this to UTF-8 for i18n purpose.
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+   // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     CelestiaAppWindow window;
 

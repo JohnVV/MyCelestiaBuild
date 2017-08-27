@@ -23,7 +23,9 @@ ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk
 
 and a few Special ones for " THE EARTH " 
 
-"earth_000101_170324_161231.bpc" and "earth_fixed.tf"
+"earth_000101_171030_170809.bpc" 
+
+and "earth_fixed.tf"
 
 ftp://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/
 

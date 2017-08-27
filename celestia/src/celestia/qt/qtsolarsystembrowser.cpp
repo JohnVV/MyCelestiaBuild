@@ -142,7 +142,7 @@ void SolarSystemTreeModel::buildModel(Star* star, bool _groupByClass)
         rootItem->children[0] = createTreeItem(Selection(star), rootItem, 0);
     }
 
-    reset();
+    //reset();
 }
 
 

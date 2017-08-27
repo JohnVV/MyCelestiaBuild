@@ -516,7 +516,7 @@ void EventTableModel::sort(int column, Qt::SortOrder order)
 void EventTableModel::setEclipses(const vector<EclipseRecord>& _eclipses)
 {
     eclipses = _eclipses;
-    reset();
+    //reset();
 }
 
 

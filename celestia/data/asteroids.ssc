@@ -6,7 +6,8 @@
 "1 Ceres:Ceres:A899 OF" "Sol" 
 { 
 	Class "dwarfplanet" 
-	Texture "asteroid.jpg" 
+	Texture "Ceres.png" 
+	NormalMap "CeresNormal.png"
 	Color [ 1.000 0.945 0.881 ]
 	BlendTexture true
 	Radius 487.5        # 975x909km
@@ -103,12 +104,12 @@
 "4 Vesta:Vesta" "Sol" 
 { 
 	Class "asteroid" 
-	Mesh   "vesta.cmod" 
-	Texture "asteroid.jpg" 
-        Color [ 1.000 0.923 0.851 ]
+	Mesh   "Vesta.cmod" 
+
+    Color [ 1.000 0.923 0.851 ]
 	BlendTexture true
 	Radius    279 # maximum semi-axis
-	MeshCenter [ 0.77 3.424 -0.554 ]
+	
 
 	InfoURL "http://www.solarviews.com/eng/vesta.htm"
 

@@ -8,8 +8,14 @@ RCC_DIR = rcc
 
 QT += opengl
 QT += xml
+QT += widgets
 
 unix {
+
+### isEmpty(PREFIX) { PREFIX =/usr } 
+
+isEmpty(PREFIX) { PREFIX =/DATA/SUSE/Qt5Celestia }
+
     !exists(config.h):system(touch config.h)
     QMAKE_DISTCLEAN += config.h
 }
@@ -42,6 +48,7 @@ UTIL_HEADERS = \
     src/celutil/util.h \
     src/celutil/watcher.h
 
+## i am not supporting Windows VC2015 and 2017 nor qt creator on Win10  ##
 win32 {
     UTIL_SOURCES += \
         src/celutil/windirectory.cpp \
@@ -394,12 +401,12 @@ QTAPP_HEADERS = \
 
 # Third party libraries
 
-# GL extension wrangler
+# GL extension wrangler Version 2.1.0 
 
-GLEW_SOURCES = \
+ GLEW_SOURCES = \
     thirdparty/glew/src/glew.c
 
-GLEW_HEADERS = \
+ GLEW_HEADERS = \
     thirdparty/glew/include/GL/glew.h \
     thirdparty/glew/include/GL/glxew.h \
     thirdparty/glew/include/GL/wglew.h
@@ -544,7 +551,7 @@ release {
       NO_DEBUG
 }
 
-
+## i am not supporting Windows VC2015 and 2017 nor qt creator on Win10  ##
 win32 {
     INCLUDEPATH += \
         windows/inc/libintl \
@@ -586,6 +593,8 @@ unix {
     isEmpty (LUAPC) {error("No shared Lua library found!")}
 
     PKGCONFIG += glu $$LUAPC libpng theora
+    
+    ## Edit the below to YOUR install location ##
     INCLUDEPATH += /DATA/NGT/cspice/include
     LIBS += -ljpeg /DATA/NGT/cspice/lib/cspice.a
 }
@@ -652,13 +661,11 @@ macx {
 
 DEFINES += CELX LUA_VER=0x050100
 
-# QMAKE_CXXFLAGS += -ffast-math
+# QMAKE_CFLAGS += -Wno-unused-function
 
 unix {
 
     #VARIABLES
-
-    isEmpty(PREFIX) { PREFIX = /usr/local }
 
     BINDIR = $$PREFIX/bin
     DATADIR =$$PREFIX/share
@@ -682,7 +689,7 @@ unix {
     hires_textures.path  =  $$WORKDIR/textures/hires
     hires_textures.files =  $$HIRES_TEXTURE_SOURCE/*.jpg
     models.path    = $$WORKDIR/models
-    models.files  += $$MODEL_SOURCE/*.cmod $$MODEL_SOURCE/*.png
+    models.files  += $$MODEL_SOURCE/*.cmod $$MODEL_SOURCE/*.cms  $$MODEL_SOURCE/*.3ds $$MODEL_SOURCE/*.png
     shaders.path   = $$WORKDIR/shaders
     shaders.files += $$SHADER_SOURCE/*.vp $$SHADER_SOURCE/*.fp
     fonts.path     = $$WORKDIR/fonts
@@ -696,7 +703,7 @@ unix {
                            $$CONFIGURATION_SOURCE/controls.txt \
                            $$CONFIGURATION_SOURCE/COPYING \
                            $$CONFIGURATION_SOURCE/README \
-                           $$CONFIGURATION_SOURCE/ChangeLog \
+                           $$CONFIGURATION_SOURCE/ChangeLog \ 
                            $$CONFIGURATION_SOURCE/AUTHORS
 
     locale.path = $$WORKDIR/locale
@@ -704,11 +711,15 @@ unix {
 
     extras.path = $$WORKDIR/extras
     extras.files = extras/*
-    extras-standard.path = $$WORKDIR/extras-standard
-    extras-standard.files = extras-standard/*
-
+    extras-standard.path   = $$WORKDIR/extras-standard
+    extras-standard.files  = extras-standard/*
+    SpiceSolarSystem.path  = $$WORKDIR/SpiceSolarSystem
+    SpiceSolarSystem.files = SpiceSolarSystem/*
+    SplashImage.path       = $$BINDIR
+    SplashImage.files      = splash.png
+    
 
     INSTALLS += target data textures lores_textures hires_textures \
-    flares models shaders fonts scripts locale extras extras-standard \
-    configuration 
+    flares models shaders fonts scripts locale extras extras-standard SpiceSolarSystem configuration SplashImage
+    
 }

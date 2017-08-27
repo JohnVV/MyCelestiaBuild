@@ -21,7 +21,7 @@
     switch(0){case 0: case pred:;}
 #endif
 
-/* Use the system byteswap.h definitions if we have them */
+/* Use the system byteswap.h definitions if we have them
 #ifdef HAVE_BYTESWAP_H
 #include <byteswap.h>
 #else
@@ -35,6 +35,11 @@ static unsigned int bswap_32(unsigned int val) {
     (((val) & 0x0000ff00) <<  8) | (((val) & 0x000000ff) << 24);
 }
 #endif
+*/
+
+#define HAVE_BYTESWAP_H
+#include <byteswap.h>
+
 
 inline double bswap_double(double d)
 {

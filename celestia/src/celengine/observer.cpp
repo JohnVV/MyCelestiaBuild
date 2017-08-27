@@ -629,7 +629,7 @@ void Observer::computeGotoParameters(const Selection& destination,
     }
     
     UniversalCoord targetPosition = destination.getPosition(getTime());
-    Vector3d v = targetPosition.offsetFromKm(getPosition()).normalized();
+ // Vector3d v = targetPosition.offsetFromKm(getPosition()).normalized();
     
     jparams.traj = Linear;
     jparams.duration = gotoTime;
@@ -694,7 +694,7 @@ void Observer::computeGotoParametersGC(const Selection& destination,
     setFrame(frame->getCoordinateSystem(), destination);
 
     UniversalCoord targetPosition = destination.getPosition(getTime());
-    Vector3d v = targetPosition.offsetFromKm(getPosition()).normalized();
+ // Vector3d v = targetPosition.offsetFromKm(getPosition()).normalized();
 
     jparams.traj = GreatCircle;
     jparams.duration = gotoTime;
