@@ -31,7 +31,7 @@ make install
 
 updated to qt5
 
-updatd to egin 3.4 
+updatd to eigen 3.4 
 
 updated to png 16 
 .
