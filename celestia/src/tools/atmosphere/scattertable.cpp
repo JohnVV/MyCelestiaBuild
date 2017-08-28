@@ -43,7 +43,8 @@
 #include <map>
 #include <cassert>
 #include <Eigen/Core>
-#include <Eigen/Array>
+
+/* #include <Eigen/Array> */
 
 using namespace Eigen;
 using namespace std;
@@ -150,7 +151,8 @@ Vector3f transmittance(float r, float mu, float l, const Atmosphere& atm)
     float depthM = opticalDepth(r, mu, l, atm.mieScaleHeight, atm.planetRadius);
     return (-depthR * atm.rayleighCoeff
             - depthM * Vector3f::Constant(atm.mieCoeff)
-            - depthM * atm.absorptionCoeff).cwise().exp();
+         /*   - depthM * atm.absorptionCoeff).cwise().exp(); */
+          - depthM * atm.absorptionCoeff).array().exp();
 }
 
 
@@ -335,7 +337,8 @@ Atmosphere::computeInscatterTable() const
                         float sunPathLength = -rx * c + sqrt(Rt2 - rx2 * s2);
                         Vector3f sunPathTransmittance = transmittance(rx, c, sunPathLength, *this);
 
-                        t = viewPathTransmittance.cwise() * sunPathTransmittance;
+                       /* t = viewPathTransmittance.cwise() * sunPathTransmittance; */
+                         t = viewPathTransmittance.cwiseProduct(sunPathTransmittance);
                     }
                     else
                     {
@@ -351,7 +354,8 @@ Atmosphere::computeInscatterTable() const
                 }
 
                 unsigned int index = (i * ViewAngleSamples + j) * SunAngleSamples + k;
-                inscatter[index] << rayleigh.cwise() * rayleighCoeff,
+             /*   inscatter[index] << rayleigh.cwise() * rayleighCoeff, */
+              inscatter[index] << rayleigh.cwiseProduct(rayleighCoeff),
                                     mie * mieCoeff;
                 if (i == HeightSamples - 1 && k == 0)
                 {
@@ -404,7 +408,8 @@ void usage()
 
 Vector3f computeRayleighCoeffs(const Vector3f& wavelengths)
 {
-    return wavelengths.cwise().pow(-4.0f);
+   /* return wavelengths.cwise().pow(-4.0f);*/
+   return wavelengths.array().pow(-4.0f);
 }
 
 

@@ -6,7 +6,8 @@ QT += opengl
 DESTDIR = bin
 OBJECTS_DIR = obj
 MOC_DIR = moc
-
+ LIBS += -lGLU
+ 
 CMOD_SOURCES = \
     ../common/convert3ds.cpp \
     ../common/convertobj.cpp \
@@ -72,13 +73,14 @@ CELUTIL_HEADERS = \
 #### GL Extension Wrangler ####
 DEFINES += GLEW_STATIC 
 
- GLEW_SOURCES = \
+GLEW_SOURCES = \
     ../../../../thirdparty/glew/src/glew.c
 
-    GLEW_HEADERS = \
-    thirdparty/glew/include/GL/glew.h \
-    thirdparty/glew/include/GL/glxew.h \
-    thirdparty/glew/include/GL/wglew.h
+GLEW_HEADERS = \
+    ../../../../thirdparty/glew/include/GL/glew.h \
+    ../../../../thirdparty/glew/include/GL/glxew.h \
+    ../../../../thirdparty/glew/include/GL/wglew.h
+
 
 SOURCES = \
     $$CMOD_SOURCES \

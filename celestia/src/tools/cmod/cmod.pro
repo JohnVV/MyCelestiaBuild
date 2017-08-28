@@ -3,5 +3,4 @@ SUBDIRS = \
     3dstocmod \
     cmodfix \
     cmodsphere \
-    cmodview \
-    itokawa
+    cmodview 

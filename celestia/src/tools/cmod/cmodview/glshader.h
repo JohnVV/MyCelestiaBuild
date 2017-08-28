@@ -10,6 +10,7 @@
 // C++ wrapper for OpenGL shaders and shader programs
 
 #include <GL/glew.h>
+#include <GL/glu.h>
 #include <Eigen/Core>
 #include <string>
 
@@ -196,5 +197,7 @@ glsh_setUniformValue<float, 4, 4>(GLhandleARB id, const char *name, const float*
 template<typename DERIVED> void
 GLShaderProgram::setUniformValue(const char* name, const Eigen::MatrixBase<DERIVED>& value)
 {
-    glsh_setUniformValue<typename Eigen::ei_traits<DERIVED>::Scalar, Eigen::MatrixBase<DERIVED>::RowsAtCompileTime, Eigen::MatrixBase<DERIVED>::ColsAtCompileTime>(m_id, name, value.eval().data());
+  /*  glsh_setUniformValue<typename Eigen::ei_traits<DERIVED>::Scalar, Eigen::MatrixBase<DERIVED>::RowsAtCompileTime, Eigen::MatrixBase<DERIVED>::ColsAtCompileTime>(m_id, name, value.eval().data());*/
+  
+    glsh_setUniformValue<typename Eigen::internal::traits<DERIVED>::Scalar, Eigen::MatrixBase<DERIVED>::RowsAtCompileTime, Eigen::MatrixBase<DERIVED>::ColsAtCompileTime>(m_id, name, value.eval().data());
 }
