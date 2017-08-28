@@ -7,27 +7,22 @@ My edits and files i use for Celestia
 
 Use this to build 
 
+also edit the "celestia.pro" to your system settings 
 --------
 <code>
 mkdir BUILD
 
 cd BUILD
 
-qmake-qt4 prefix=/YOUR_INSTALL_LOCATION ..
+qmake-qt5 prefix=/usr ..
+
+make -j4 
+
+su
+
+make install 
 </code>
 
--------
-
--- OR use autotools --
-
-currently i am having a gettext issue so...."--disable-nls"
-------
-<code>
-autoreconf -v -i
-
-./configure --prefix=/usr --with-lua --with-qt --with-cspice-dir=/YOUR_INSTALL_LOCATION/NGT/cspice --disable-nls
-
-make 
 
 su
 
@@ -38,13 +33,7 @@ make install
 
 
 -- very much still a work in progress 
-
--- fixed cmodtools headers not found
-
--- turned on the qt4 splashscreen and using my splash image 
-
--- added inner solarsystem spice ssc files 
-
--- removed old kde3 code ( except for the translations in the *.po files)
-
+updated to qt5
+updatd to egin 3.4 
+updated to png 16 
 .
