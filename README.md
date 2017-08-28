@@ -24,16 +24,14 @@ make install
 </code>
 
 
-su
-
-make install 
-</code>
-
 --------
 
 
 -- very much still a work in progress 
+
 updated to qt5
+
 updatd to egin 3.4 
+
 updated to png 16 
 .
