@@ -31,7 +31,10 @@ make install
 
 updated to qt5
 
-updatd to eigen 3.4 
+updatd to eigen 3.3.4 
 
-updated to png 16 
+updated to png 16
+
+-- "cmodview" still NEEDS qmake-qt4 
+
 .
