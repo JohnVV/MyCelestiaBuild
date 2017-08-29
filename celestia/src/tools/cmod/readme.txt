@@ -1,9 +1,6 @@
 
--- edited  Oct.02 2016 
-
-fixed the QT pro build 
------
-
+as of Aug 2017 this still needs qmake-qt4 to build 
+cmodview updated to eigen 3.3 
 
 
 
