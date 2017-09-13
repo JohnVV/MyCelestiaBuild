@@ -10,7 +10,7 @@ for the file "1.Barycenters.ssc"
 ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de436.bsp
 
 
-for : "SolarSystem.inner.ssc" 
+for : "SolarSystem.SPICE.ssc" 
 you also need the rotation , leapsecond
 
 the Rotation "pck00010.tpc"
