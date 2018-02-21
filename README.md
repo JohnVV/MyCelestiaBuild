@@ -1,4 +1,9 @@
 # Celestia-SPICE.linux
+
+code cleanup and removing unused code 
+
+then maybe merge back in with a microsoft and apple/BSD code base 
+
 My NAIF SPICE  and SUSE leap build 
 
 My edits and files i use for Celestia 
