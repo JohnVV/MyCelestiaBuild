@@ -16,10 +16,7 @@
 #include <string>
 #include <vector>
 
-#ifdef _WIN32
-	#include <io.h>
-	#include <fcntl.h>
-#endif 
+
 
 using namespace std;
 
@@ -139,19 +136,7 @@ int main(int argc, char* argv[])
 		}	
 	}
 	
-   	#ifdef _WIN32
-		if (_setmode(_fileno(stdin), _O_BINARY) == -1 )
-    	{
-    		cerr<<"Binary read mode from STDIN failed\n";
-    		return 1;
-    	}
 
-		if (_setmode(_fileno(stdout), _O_BINARY) == -1 )
-    	{
-    		cerr<<"Binary write mode via STDOUT failed\n";
-    		return 1;
-    	}
-   	#endif
 
 	// Binary 8-bit/channel RGB header
     fprintf(stdout, "P6\n");

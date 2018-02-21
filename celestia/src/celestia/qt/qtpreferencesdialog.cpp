@@ -216,9 +216,7 @@ PreferencesDialog::PreferencesDialog(QWidget* parent, CelestiaCore* core) :
 
     ui.autoMagnitudeCheck->setChecked(renderFlags & Renderer::ShowAutoMag);
 
-#ifndef _WIN32
-    ui.dateFormatBox->addItem(_("Local format"), astro::Date::Locale);
-#endif
+
     ui.dateFormatBox->addItem(_("Time zone name"), astro::Date::TZName);
     ui.dateFormatBox->addItem(_("UTC offset"), astro::Date::UTCOffset);
 

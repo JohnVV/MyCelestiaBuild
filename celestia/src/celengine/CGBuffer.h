@@ -42,7 +42,7 @@ Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer
 // -bob
 
 #include <mach/mach.h>
-#include <Carbon/Carbon.h>
+
 // Celestia's DPRINTF is different than Carbon's
 #undef DPRINTF
 #include <celutil/debug.h>

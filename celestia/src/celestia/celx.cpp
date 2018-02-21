@@ -3282,7 +3282,7 @@ static int celestia_takescreenshot(lua_State* l)
     GLint viewport[4];
     glGetIntegerv(GL_VIEWPORT, viewport);
 
-#ifndef TARGET_OS_MAC
+
     if (strncmp(filetype, "jpg", 3) == 0)
     {
         string filepath = path + filenamestem + ".jpg";
@@ -3297,7 +3297,7 @@ static int celestia_takescreenshot(lua_State* l)
                                        viewport[0], viewport[1],
                                        viewport[2], viewport[3]);
     }
-#endif
+
     lua_pushboolean(l, success);
 
     // no matter how long it really took, make it look like 0.1s to timeout check:
@@ -3342,15 +3342,7 @@ static int celestia_runscript(lua_State* l)
     lua_getinfo(l, "S", &ar);
     string base_dir = ar.source; // Script file from which we are called
     if (base_dir[0] == '@') base_dir = base_dir.substr(1);
-#ifdef _WIN32
-    // Replace all backslashes with forward in base dir path
-    size_t pos = base_dir.find('\\');
-    while (pos != string::npos)
-    {
-        base_dir.replace(pos, 1, "/");
-        pos = base_dir.find('\\');
-    }
-#endif
+
     // Remove script filename from path
     base_dir = base_dir.substr(0, base_dir.rfind('/')) + '/';
 
@@ -4017,10 +4009,10 @@ static void ExtendCelestiaMetaTable(lua_State* l)
 * as an emulation layer on top of native functions.
 */
 
-#ifndef _WIN32
+
 extern "C" {
 #include <lualib.h>
-/* #include <lauxlib.h.h> */
+
 #include <dlfcn.h>
 }
 
@@ -4055,7 +4047,7 @@ cout << "loading lua lib\n"; cout.flush();
  return 3;
 }
 #endif
-#endif // _WIN32
+
 #endif // LUA_VER < 0x050100
 
 // ==================== Load Libraries ================================================
@@ -4070,11 +4062,7 @@ static void loadLuaLibs(lua_State* state)
 
     // TODO: Not required with Lua 5.1
 #if 0
-#ifndef _WIN32
-    lua_pushstring(state, "xloadlib");
-    lua_pushcfunction(state, x_loadlib);
-    lua_settable(state, LUA_GLOBALSINDEX);
-#endif
+
 #endif
 
     CreateObjectMetaTable(state);

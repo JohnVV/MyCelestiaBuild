@@ -160,11 +160,9 @@ bool OggTheoraCapture::start(const std::string& filename,
         return false;
     }
     /* Set up Ogg output stream */
-#ifdef _WIN32
-	std::srand(std::time(NULL));
-#else
+
 	std::srand(time(NULL));
-#endif
+
 
     ogg_stream_init(&to,std::rand());
 

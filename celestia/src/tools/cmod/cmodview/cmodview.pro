@@ -107,27 +107,6 @@ unix {
     !exists(config.h):system(touch config.h)
 }
 
-macx {
-    DEFINES += TARGET_OS_MAC
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
-    CONFIG += x86
-}
 
-win32-g++ {
-    # Workaround for g++ / Windows bug where requested stack
-    # alignment is ignored. Without this, using fixed-size
-    # vectorizable Eigen structures (like Vector4f) will cause
-    # alignment assertions.
-    QMAKE_CXXFLAGS += -mincoming-stack-boundary=2
-}
 
-win32-msvc* {
-    DEFINES += _CRT_SECURE_NO_WARNINGS
-    DEFINES += _SCL_SECURE_NO_WARNINGS
-    LIBS += /nodefaultlib:libcmt.lib
-}
 
-win32 {
-    # Disable the min and max macros in windows.h
-    DEFINES += NOMINMAX
-}

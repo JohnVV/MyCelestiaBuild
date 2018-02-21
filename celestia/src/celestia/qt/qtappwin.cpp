@@ -58,15 +58,13 @@
 #include "celestia/url.h"
 #include "qtbookmark.h"
 
-#if defined(_WIN32)
-#include "celestia/avicapture.h"
 
-// TODO: Add Mac support
-#elif !defined(TARGET_OS_MAC)
+
+
 #ifdef THEORA
 #include "celestia/oggtheoracapture.h"
 #endif
-#endif
+
 
 #ifndef CONFIG_DATA_DIR
 #define CONFIG_DATA_DIR "./"
@@ -720,12 +718,10 @@ void CelestiaAppWindow::slotCaptureVideo()
             QSize videoSize = resolutionCombo->itemData(resolutionCombo->currentIndex()).toSize();
             float frameRate = frameRateCombo->itemData(frameRateCombo->currentIndex()).toFloat();
 
-#ifdef _WIN32
-            MovieCapture* movieCapture = new AVICapture();
-#else
+
             MovieCapture* movieCapture = new OggTheoraCapture();
             movieCapture->setAspectRatio(1, 1);
-#endif
+
             bool ok = movieCapture->start(saveAsName.toLatin1().data(),
                                           videoSize.width(), videoSize.height(),
                                           frameRate);

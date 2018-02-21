@@ -48,14 +48,7 @@ UTIL_HEADERS = \
     src/celutil/util.h \
     src/celutil/watcher.h
 
-## i am not supporting Windows VC2015 and 2017 nor qt creator on Win10  ##
-win32 {
-    UTIL_SOURCES += \
-        src/celutil/windirectory.cpp \
-        src/celutil/wintimer.cpp
 
-    UTIL_HEADERS += src/celutil/winutil.h
-}
 
 unix {
     UTIL_SOURCES += \
@@ -356,11 +349,7 @@ APP_HEADERS = \
         src/celestia/celx_rotation.h \
         src/celestia/celx_vector.h
 
-macx {
-    APP_SOURCES -= src/celestia/imagecapture.cpp
-    APP_SOURCES += macosx/POSupport.cpp
-    APP_HEADERS += macosx/POSupport.h
-}
+
 
 #### Qt front-end sources ####
 
@@ -527,21 +516,7 @@ FONT_SOURCE = fonts
 FONT_FILES =
 
 # ## End package files
-macx {
-    # Scan directories for files for Mac bundle
-    FILES = $$system(ls $$TEXTURE_SOURCE)
-    TEXTURE_FILES = $$join(FILES, " $$TEXTURE_SOURCE/", $$TEXTURE_SOURCE/)
-    FILES = $$system(ls $$LORES_TEXTURE_SOURCE)
-    LORES_TEXTURE_FILES = $$join(FILES, " $$LORES_TEXTURE_SOURCE/", $$LORES_TEXTURE_SOURCE/)
-    FILES = $$system(ls $$HIRES_TEXTURE_SOURCE)
-    HIRES_TEXTURE_FILES = $$join(FILES, " $$HIRES_TEXTURE_SOURCE/", $$HIRES_TEXTURE_SOURCE/)
-    FILES = $$system(ls $$MODEL_SOURCE)
-    MODEL_FILES = $$join(FILES, " $$MODEL_SOURCE/", $$MODEL_SOURCE/)
-    FILES = $$system(ls $$SHADER_SOURCE)
-    SHADER_FILES = $$join(FILES, " $$SHADER_SOURCE/", $$SHADER_SOURCE/)
-    FILES = $$system(ls $$FONT_SOURCE)
-    FONT_FILES = $$join(FILES, " $$FONT_SOURCE/", $$FONT_SOURCE/)
-}
+
 
 
 DEFINES += EIGEN_NO_DEBUG
@@ -551,35 +526,7 @@ release {
       NO_DEBUG
 }
 
-## i am not supporting Windows VC2015 and 2017 nor qt creator on Win10  ##
-win32 {
-    INCLUDEPATH += \
-        windows/inc/libintl \
-        windows/inc/libz \
-        windows/inc/libpng \
-        windows/inc/libjpeg \
-        windows/inc/lua-5.1 \
-        windows/inc/spice
-    LIBS += -Lwindows/lib/x86 \
-        -lzlib \
-        -llibpng \
-        -llibjpeg \
-        -lintl \
-        -llua5.1 \
-        -lcspice \
-        -lvfw32
 
-    SOURCES += src/celestia/avicapture.cpp
-    HEADERS += src/celestia/avicapture.h
-
-    RC_FILE = src/celestia/qt/celestia.rc
-    DEFINES += _CRT_SECURE_NO_WARNINGS
-
-    # Disable the regrettable min and max macros in windows.h
-    DEFINES += NOMINMAX
-
-    LIBS += /nodefaultlib:libcmt.lib
-}
 
 unix {
     SOURCES += src/celestia/oggtheoracapture.cpp
@@ -599,65 +546,7 @@ unix {
     LIBS += -ljpeg /DATA/NGT/cspice/lib/cspice.a
 }
 
-macx {
-    message(Copying extras-standard to bundle)
-    RESOURCES_DIR = $$DESTDIR/$${TARGET}.app/Contents/Resources/CelestiaResources
-    system(rm -rf $$RESOURCES_DIR/extras-standard)
-    system(cp -r extras-standard $$RESOURCES_DIR)
-    #system(ls $$DESTDIR/$${TARGET}.app/Contents/Resources/CelestiaResources)
 
-    # Necessary with Qt 4.6
-    QMAKE_LFLAGS += -framework CoreFoundation -framework ApplicationServices
-
-    ICON = macosx/celestia.icns
-
-    INCLUDEPATH += macosx
-
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
-    #QMAKE_MAC_SDK=/Developer/SDKs/MacOSX10.4u.sdk
-    CONFIG += x86
-    PRECOMPILED_HEADER += macosx/Util.h
-    FRAMEWORKPATH = macosx/Frameworks
-    LIBS -= -ljpeg
-    LIBS += -llua
-    LIBS += -L$$FRAMEWORKPATH
-    DEFINES += PNG_SUPPORT
-    DEFINES += TARGET_OS_MAC __AIFF__
-
-    FRAMEWORKS.files = $$FRAMEWORKPATH/liblua.dylib $$FRAMEWORKPATH/libpng.dylib
-    FRAMEWORKS.path = Contents/Frameworks
-    QMAKE_BUNDLE_DATA += FRAMEWORKS
-
-    CONFIGURATION.path = Contents/Resources/CelestiaResources
-    CONFIGURATION.files = $$CONFIGURATION_FILES
-    CATALOGS.path = Contents/Resources/CelestiaResources/data
-    CATALOGS.files = $$CATALOG_FILES
-    TEXTURES.path = Contents/Resources/CelestiaResources/textures/medres
-    TEXTURES.files = $$TEXTURE_FILES
-    LORES_TEXTURES.path = Contents/Resources/CelestiaResources/textures/lores
-    LORES_TEXTURES.files = $$LORES_TEXTURE_FILES
-    HIRES_TEXTURES.path = Contents/Resources/CelestiaResources/textures/hires
-    HIRES_TEXTURES.files = $$HIRES_TEXTURE_FILES
-    MODELS.path = Contents/Resources/CelestiaResources/models
-    MODELS.files = $$MODEL_FILES
-    FONTS.path = Contents/Resources/CelestiaResources/fonts
-    FONTS.files = $$FONT_FILES
-    SHADERS.path = Contents/Resources/CelestiaResources/shaders
-    SHADERS.files = $$SHADER_FILES
-
-    QMAKE_BUNDLE_DATA += \
-        CONFIGURATION \
-        CATALOGS \
-        TEXTURES \
-        LORES_TEXTURES \
-        HIRES_TEXTURES \
-        MODELS \
-        FONTS \
-        SHADERS \
-        EPHEMERIDES
-
-    LIBS += macosx/lib/cspice.a
-}
 
 DEFINES += CELX LUA_VER=0x050100
 

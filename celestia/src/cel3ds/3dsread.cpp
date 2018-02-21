@@ -72,20 +72,6 @@ static char readChar(ifstream& in)
 }
 
 
-/* Not currently used
-static int readString(ifstream& in, char* s, int maxLength)
-{
-    int count;
-    for (count = 0; count < maxLength; count++)
-    {
-        in.read(s + count, 1);
-        if (s[count] == '\0')
-            break;
-    }
-
-    return count;
-}*/
-
 static string readString(ifstream& in)
 {
     char s[1024];
@@ -116,9 +102,9 @@ void indent()
         cout << "  ";
 }
 
-void logChunk(uint16 chunkType/*, int chunkSize*/)
+void logChunk(uint16 chunkType)
 {
-    const char* name = NULL;
+    const char *name = NULL;
 
     switch (chunkType)
     {

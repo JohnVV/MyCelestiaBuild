@@ -1,6 +1,9 @@
 
-as of Aug 2017 this still needs qmake-qt4 to build 
-cmodview updated to eigen 3.3 
+-- edited  Oct.02 2016 
+
+fixed the QT pro build 
+-----
+
 
 
 
@@ -122,13 +125,6 @@ BUGS:
 
 The NvTriStrip library only handles 16-bit vertex indices, so submeshes with
 more than 65536 vertices will be skipped when optimizing.
-
-Binary file output does not work with redirection on Windows machines.  To
-write a binary file on Windows, you must specify the output file name.
-For example, instead of this:
-   cmodfix -b in.cmod > out.cmod
-Write this:
-   cmodfix -b in.cmod out.cmod
 
 
 

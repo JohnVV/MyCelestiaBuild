@@ -702,7 +702,7 @@ CommandCapture::CommandCapture(const std::string& _type,
 
 void CommandCapture::process(ExecutionEnvironment&)
 {
-#ifndef TARGET_OS_MAC
+
     bool success = false;
 
 
@@ -722,7 +722,7 @@ void CommandCapture::process(ExecutionEnvironment&)
                                        viewport[0], viewport[1],
                                        viewport[2], viewport[3]);
     }
-#endif
+
 }
 
 

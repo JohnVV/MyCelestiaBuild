@@ -21,11 +21,8 @@
 #include <celmath/ray.h>
 #include <celmath/sphere.h>
 #include <celmath/intersect.h>
-#ifdef MACOSX
-#include "../../../macosx/png.h"
-#else
 #include "png.h"
-#endif // MACOSX
+
 
 using namespace std;
 

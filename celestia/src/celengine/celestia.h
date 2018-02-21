@@ -10,17 +10,7 @@
 #ifndef _CELESTIA_H_
 #define _CELESTIA_H_
 
-#ifdef _MSC_VER
 
-#define BROKEN_FRIEND_TEMPLATES
-
-
-#if _MSC_VER >= 1000
-// Make VC shut up about long variable names from templates
-#pragma warning(disable : 4786)
-#endif // _MSC_VER
-
-#endif // _MSC_VER
 
 
 #define HAVE_SSTREAM
@@ -29,11 +19,6 @@
 #define NONSTANDARD_STRING_COMPARE
 #endif // __GNUC__
 
-#ifndef _WIN32
-#ifndef TARGET_OS_MAC
-#include <config.h>
-#endif /* TARGET_OS_MAC */
-#endif /* _WIN32 */
 
 
 

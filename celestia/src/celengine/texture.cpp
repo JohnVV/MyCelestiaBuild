@@ -30,11 +30,7 @@
 #include <cstring>
 #include <cassert>
 
-#ifndef _WIN32
-#ifndef TARGET_OS_MAC
-#include <config.h>
-#endif /* ! TARGET_OS_MAC */
-#endif /* ! _WIN32 */
+
 
 #include <celutil/filetype.h>
 #include <celutil/debug.h>
@@ -52,21 +48,13 @@
 #endif // PNG_SUPPORT
 
 extern "C" {
-#ifdef _WIN32
-#include "jpeglib.h"
-#else
 #include <jpeglib.h>
-#endif
 }
-
 #endif // JPEG_SUPPORT
 
 #ifdef PNG_SUPPORT // PNG_SUPPORT
-#ifdef TARGET_OS_MAC
-#include "../../macosx/png.h"
-#else
-#include "png.h"
-#endif // TARGET_OS_MAC
+#include <png.h>
+
 
 // Define png_jmpbuf() in case we are using a pre-1.0.6 version of libpng
 #ifndef png_jmpbuf

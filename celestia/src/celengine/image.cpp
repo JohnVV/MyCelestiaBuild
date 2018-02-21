@@ -9,25 +9,9 @@
 
 #include <fstream>
 
-#ifndef TARGET_OS_MAC
+
 #define JPEG_SUPPORT
 #define PNG_SUPPORT
-#endif
-
-#ifdef TARGET_OS_MAC
-#include <unistd.h>
-#include "CGBuffer.h"
-#ifndef PNG_SUPPORT
-#include <Quicktime/ImageCompression.h>
-#include <QuickTime/QuickTimeComponents.h>
-#endif
-#endif
-
-#ifndef _WIN32
-#ifndef TARGET_OS_MAC
-#include <config.h>
-#endif /* ! TARGET_OS_MAC */
-#endif /* ! _WIN32 */
 
 #include "image.h"
 
@@ -40,22 +24,18 @@
 #endif // PNG_SUPPORT
 
 extern "C" {
-#ifdef _WIN32
-#include "jpeglib.h"
-#else
+
 #include <cstdio>
 #include <jpeglib.h>
-#endif
+
 }
 
 #endif // JPEG_SUPPORT
 
 #ifdef PNG_SUPPORT // PNG_SUPPORT
-#ifdef TARGET_OS_MAC
-#include "../../macosx/png.h"
-#else
+
 #include "png.h"
-#endif // TARGET_OS_MAC
+
 
 #include <celutil/debug.h>
 #include <celutil/util.h>
@@ -586,11 +566,9 @@ Image* LoadJPEGImage(const string& filename, int)
 
     // DPRINTF(0,"cgJpegImage :: %d x %d x %d [%d] bpp\n", img_w, img_h, (size_t)cgJpegImage->image_depth, img_d);
 
-#ifdef MACOSX_ALPHA_JPEGS
-    int format = (img_d == 1) ? GL_LUMINANCE : GL_RGBA;
-#else
+
     int format = (img_d == 1) ? GL_LUMINANCE : GL_RGB;
-#endif
+
     img = new Image(format, img_w, img_h);
     if (img == NULL || img->getPixels() == NULL) {
         DPRINTF(0, "Could not create image\n");
@@ -608,12 +586,7 @@ Image* LoadJPEGImage(const string& filename, int)
          // at end of row, move back two rows
         if ( (i % (img_w * img_d)) == 0 ) bin -= 2*(img_w * img_d);
 
-#ifndef MACOSX_ALPHA_JPEGS
-        if (( (img_d != 1) && !((i&3)^3) )) // skip extra byte
-        {
-            ++bin;
-        } else
-#endif // !MACOSX_ALPHA_JPEGS
+
 
         *bout++ = *bin++;
     }
@@ -771,8 +744,7 @@ Image* LoadPNGImage(const string& filename)
 }
 
 
-// BMP file definitions--can't use windows.h because we might not be
-// built on Windows!
+
 typedef struct
 {
     unsigned char b;

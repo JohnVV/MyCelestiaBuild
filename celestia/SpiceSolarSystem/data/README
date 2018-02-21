@@ -10,7 +10,7 @@ for the file "1.Barycenters.ssc"
 ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de436.bsp
 
 
-for : "SolarSystem.SPICE.ssc" 
+for : "SolarSystem.inner.ssc" 
 you also need the rotation , leapsecond
 
 the Rotation "pck00010.tpc"
@@ -40,10 +40,7 @@ ftp://ssd.jpl.nasa.gov/pub/eph/satellites/bsp
 
 
 
-TO DO !!!!! 
-add the saturn and neptune moons kernels 
-for now SEE:
-http://forum.celestialmatters.org/viewforum.php?f=18&sid=90f14b4220ed8cf5c659f397d56a8b6c
+
 
 
 

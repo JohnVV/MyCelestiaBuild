@@ -23,11 +23,9 @@
 #include <QGroupBox>
 #include <QGridLayout>
 
-#ifdef _WIN32
-static const double minLocalTime = 2440587.5; // 1970 Jan 1 00:00:00
-#else
+
 static const double minLocalTime = 2415733.0; // 1901 Dec 14 12:00:00
-#endif
+
 static const double maxLocalTime = 2465442.0; // 2038 Jan 18 12:00:00
 
 

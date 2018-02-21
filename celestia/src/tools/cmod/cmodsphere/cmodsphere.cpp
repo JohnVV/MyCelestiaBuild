@@ -199,10 +199,6 @@ int main(int argc, char* argv[])
 
     samples = new float[latSamples * longSamples];
 
-#ifdef _WIN32
-    // Enable binary reads for stdin on Windows
-    _setmode(_fileno(stdin), _O_BINARY);
-#endif
 
     // Read the height map
     readBinary(cin, latSamples, longSamples);

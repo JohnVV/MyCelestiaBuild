@@ -27,23 +27,10 @@
 #define  gettext_noop(string) string
 #endif
 
-#ifdef _WIN32
-
-#include "libintl.h"
-
-#elif defined(TARGET_OS_MAC)
-
-#ifndef gettext
-#include "POSupport.h"
-#define gettext(s)      localizedUTF8String(s)
-#define dgettext(d,s)   localizedUTF8StringWithDomain(d,s)
-#endif
-
-#else
 
 #include <libintl.h>
 
-#endif
+
 
 extern int compareIgnoringCase(const std::string& s1, const std::string& s2);
 extern int compareIgnoringCase(const std::string& s1, const std::string& s2, int n);

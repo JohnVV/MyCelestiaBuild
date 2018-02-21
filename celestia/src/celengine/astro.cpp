@@ -115,7 +115,7 @@ static const LeapSecondRecord LeapSeconds[] =
 };
 
 
-#if !defined(__GNUC__) || defined(_WIN32)
+#if !defined(__GNUC__) 
 static const char* MonthAbbrList[12] =
 { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 #endif
@@ -535,7 +535,7 @@ const char* astro::Date::toCStr(Format format) const
 
     // MinGW's libraries don't have the tm_gmtoff and tm_zone fields for
     // struct tm.
-#if defined(__GNUC__) && !defined(_WIN32)
+#if defined(__GNUC__) 
     struct tm cal_time;
     memset(&cal_time, 0, sizeof(cal_time));
     cal_time.tm_year = year-1900;
@@ -546,12 +546,8 @@ const char* astro::Date::toCStr(Format format) const
     cal_time.tm_sec = (int)seconds;
     cal_time.tm_wday = wday;
     cal_time.tm_gmtoff = utc_offset;
-#if defined(TARGET_OS_MAC) || defined(__FreeBSD__)
-    // tm_zone is a non-const string field on the Mac and FreeBSD (why?)
-    cal_time.tm_zone = const_cast<char*>(tzname.c_str());
-#else
     cal_time.tm_zone = tzname.c_str();
-#endif
+
 
     const char* strftime_format;
     switch(format)
@@ -831,7 +827,7 @@ astro::TDBtoLocal(double tdb)
             d.minute = localt->tm_min;
             d.seconds = (int) localt->tm_sec;
             d.wday = localt->tm_wday;
-        #if defined(__GNUC__) && !defined(_WIN32)
+        #if defined(__GNUC__) 
             d.utc_offset = localt->tm_gmtoff;
             d.tzname = localt->tm_zone;
         #else

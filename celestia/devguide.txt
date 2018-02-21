@@ -1,9 +1,6 @@
 File Overview
 -------------
 
-* winmain.cpp
-  Windows front-end.  There's a lot of initialization code that should be
-  moved to a module that's not platform-specific.
 
 * simulation.cpp
   The heart of Celestia . . .  handles tracking an observer moving through

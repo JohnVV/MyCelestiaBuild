@@ -7,17 +7,11 @@
 // as published by the Free Software Foundation; either version 2
 // of the License, or (at your option) any later version.
 
-#ifdef _MSC_VER
-#include <windows.h>
-#endif
+
 #include <stdio.h>
 #include <cstdarg>
 
-#ifndef _WIN32
-#ifndef TARGET_OS_MAC
-#include <config.h>
-#endif /* TARGET_OS_MAC */
-#endif /* _WIN32 */
+
 
 static int debugVerbosity = 0;
 
@@ -29,20 +23,9 @@ void DebugPrint(int level, char *format, ...)
 
     if (level <= debugVerbosity)
     {
-#ifdef _MSC_VER
-        if (IsDebuggerPresent())
-        {
-            char buf[1024];
-            vsprintf(buf, format, args);
-            OutputDebugStringA(buf);
-        }
-        else
-        {
-            vfprintf(stdout, format, args);
-        }
-#else
+
         vfprintf(stderr, format, args);
-#endif
+
     }
 
     va_end(args);
