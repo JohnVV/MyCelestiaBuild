@@ -29,6 +29,15 @@ make install
 
 -- very much still a work in progress 
 
+02-21-18 
+removed most of the unused microsoft and apple code loops and some of the gtk files 
+
+still working on converting to 100% QT5 
+
+still to do:
+remove unused glut and gtk heades and related code 
+
+
 updated to qt5
 
 updatd to eigen 3.3.4 
