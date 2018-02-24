@@ -16,7 +16,7 @@
 
 using namespace std;
 
-
+/*
 #ifdef TARGET_OS_MAC
 #ifdef QT_CORE_LIB
 // Crash on Mac OS X / Qt4 version when calling wordfree.
@@ -24,7 +24,7 @@ using namespace std;
 #define WORDEXP_PROBLEM
 #endif
 #endif
-
+*/
 class UnixDirectory : public Directory
 {
 public:

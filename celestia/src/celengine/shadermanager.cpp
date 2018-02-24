@@ -23,8 +23,6 @@
 using namespace Eigen;
 using namespace std;
 
-// GLSL on Mac OS X appears to have a bug that precludes us from using structs
-// #define USE_GLSL_STRUCTS
 #define POINT_FADE 0
 
 ShaderManager g_ShaderManager;
@@ -330,11 +328,8 @@ LightProperty(unsigned int i, const char* property)
 {
     char buf[64];
 
-#ifndef USE_GLSL_STRUCTS
     sprintf(buf, "light%d_%s", i, property);
-#else
-    sprintf(buf, "lights[%d].%s", i, property);
-#endif
+
     return string(buf);
 }
 
@@ -901,7 +896,7 @@ DeclareLights(const ShaderProperties& props)
     if (props.nLights == 0)
         return string("");
 
-#ifndef USE_GLSL_STRUCTS
+
     ostringstream stream;
 
     for (unsigned int i = 0; i < props.nLights; i++)
@@ -917,16 +912,6 @@ DeclareLights(const ShaderProperties& props)
             stream << "uniform float light" << i << "_brightness;\n";
     }
 
-#else
-    stream << "uniform struct {\n";
-    stream << "   vec3 direction;\n";
-    stream << "   vec3 diffuse;\n";
-    stream << "   vec3 specular;\n";
-    stream << "   vec3 halfVector;\n";
-    if (props.texUsage & ShaderProperties::NightTexture)
-        stream << "   float brightness;\n";
-    stream << "} lights[%d];\n";
-#endif
 
     return stream.str();
 }
@@ -2736,11 +2721,8 @@ ShaderManager::buildEmissiveVertexShader(const ShaderProperties& props)
     // models, the material color is premultiplied with the light color.
     // Emissive shaders interoperate better with other shaders if they also
     // take the color from light source 0.
-#ifndef USE_GLSL_STRUCTS
+
     source += string("uniform vec3 light0_diffuse;\n");
-#else
-    source += string("uniform struct {\n   vec3 diffuse;\n} lights[1];\n");
-#endif
 
     if (props.texUsage & ShaderProperties::PointSprite)
     {

@@ -10,11 +10,8 @@
 // as published by the Free Software Foundation; either version 2
 // of the License, or (at your option) any later version.
 
-#ifdef TARGET_OS_MAC
-#include <Carbon/Carbon.h>
-#endif
-#include <time.h>
 
+#include <time.h>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -399,22 +396,12 @@ void CelestiaAppWindow::init(const QString& qConfigFileName,
 }
 
 
-/*! Set up the application data directory, creating it if necessary. The
- *  directory contains user-specific, persistent information for Celestia
- *  (such as bookmarks) which aren't stored in settings. The location
- *  of the data directory depends on the platform:
- *
- *  Win32: %APPDATA%\Celestia
- *  Mac OS X: $HOME/Library/Application Support/Celestia
- *  Unix and Mac OS X: $HOME/.config/Celestia
- */
+
 void CelestiaAppWindow::initAppDataDirectory()
 {
-#if defined(_WIN32)
-    // On Windows, the Celestia data directory is %APPDATA%\Celestia
-    // First, get the value of the APPDATA environment variable
-    QStringList envVars = QProcess::systemEnvironment();
-    QString appDataPath;
+
+ QStringList envVars = QProcess::systemEnvironment();
+    QString appDataPath= QDir::home().filePath(".config");
     foreach (QString envVariable, envVars)
     {
         if (envVariable.startsWith("APPDATA"))
@@ -425,12 +412,6 @@ void CelestiaAppWindow::initAppDataDirectory()
             break;
         }
     }
-#elif defined(TARGET_OS_MAC)
-    QString appDataPath = QDir::home().filePath("Library/Application Support");
-#else
-    // UNIX
-    QString appDataPath = QDir::home().filePath(".config");
-#endif
 
     if (appDataPath != "")
     {
@@ -644,8 +625,6 @@ void CelestiaAppWindow::slotGrabImage()
 
 void CelestiaAppWindow::slotCaptureVideo()
 {
-// TODO: Add Mac support
-#if defined(_WIN32) || (defined(THEORA) && !defined(TARGET_OS_MAC))
     QString dir;
     QSettings settings;
     settings.beginGroup("Preferences");
@@ -672,17 +651,11 @@ void CelestiaAppWindow::slotCaptureVideo()
 
     float videoFrameRates[5] = { 15.0f, 24.0f, 25.0f, 29.97f, 30.0f };
 
-#ifdef _WIN32
-    QString saveAsName = QFileDialog::getSaveFileName(this,
-                                                      _("Capture Video"),
-                                                      dir,
-                                                      _("Video (*.avi)"));
-#else
     QString saveAsName = QFileDialog::getSaveFileName(this,
                                                       _("Capture Video"),
                                                       dir,
                                                       _("Video (*.ogv)"));
-#endif
+
     if (!saveAsName.isEmpty())
     {
         QDialog videoInfoDialog(this);
@@ -735,7 +708,7 @@ void CelestiaAppWindow::slotCaptureVideo()
     }
 
     settings.endGroup();
-#endif
+
 }
 
 
@@ -999,18 +972,20 @@ void CelestiaAppWindow::slotShowAbout()
 {
     static const char* aboutText =
     gettext_noop("<html>"
-    "<p><b>Celestia 1.7.0 (Qt4 experimental version)</b></p>"
-    "<p>Copyright (C) 2001-2009 by the Celestia Development Team. Celestia "
-    "is free software. You can redistribute it and/or modify it under the "
+    "<p><b>Celestia 1.7.0 RC1 (Qt5 - JVV's SPICE Linux Build )</b></p>"
+    "<p>Copyright (C) 2001-2018 by the Celestia Development Team .</p>"
+    "<p><b>forked by JVV </b></p>"
+    "<br>"
+    "<p>This is free software. You can redistribute it and/or modify it under the "
     "terms of the GNU General Public License version 2.</p>"
     "<b>Celestia on the web</b>"
     "<br>"
-    "Main site: <a href=\"http://www.shatters.net/celestia/\">"
-    "http://www.shatters.net/celestia/</a><br>"
-    "Forum: <a href=\"http://www.shatters.net/forum/\">"
-    "http://www.shatters.net/forum/</a><br>"
-    "SourceForge project: <a href=\"http://www.sourceforge.net/projects/celestia\">"
-    "http://www.sourceforge.net/projects/celestia</a><br>"
+    "Main site: <a href=\"https://celestia.space/\">"
+    "https://celestia.space/</a><br>"
+    "Forum: <a href=\"https://celestia.space/forum/\">"
+    "https://celestia.space/forum//</a><br>"
+    "My Github page: <a href=\"https://github.com/JohnVV/MyCelestiaBuild\">"
+    "https://github.com/JohnVV/MyCelestiaBuild</a><br>"
     "</html>");
 
 	QMessageBox::about(this, "Celestia", _(aboutText));
@@ -1039,14 +1014,8 @@ void CelestiaAppWindow::slotShowGLInfo()
         out << glrenderer;
     out << "<br>\n";
 
-    // shading language version
-    // GL_SHADING_LANGUAGE_VERSION_ARB seems to be missing in the Mac OS X OpenGL
-    // headers even though ARB_shading_language_100 is defined.
-#ifdef GL_SHADING_LANGUAGE_VERSION
-    const char* glslversion = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-#else
     const char* glslversion = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION_ARB));
-#endif
+
     if (glslversion != NULL)
     {
         out << _("<b>GLSL Version: </b>") << glslversion << "<br>\n";
@@ -1105,10 +1074,8 @@ void CelestiaAppWindow::createMenus()
 
     QAction* captureVideoAction = new QAction(QIcon(":data/capture-video.png"),
                                               _("Capture &video"), this);
-    // TODO: Add Mac support for video capture
-#if defined(TARGET_OS_MAC) || (!defined(_WIN32) && !defined(THEORA))
-    captureVideoAction->setEnabled(false);
-#endif
+   
+
     connect(captureVideoAction, SIGNAL(triggered()), this, SLOT(slotCaptureVideo()));
     fileMenu->addAction(captureVideoAction);
 
@@ -1310,15 +1277,10 @@ void CelestiaAppWindow::createMenus()
     // Set up the default time zone name and offset from UTC
     time_t curtime = time(NULL);
     m_appCore->start(astro::UTCtoTDB((double) curtime / 86400.0 + (double) astro::Date(1970, 1, 1)));
-    localtime(&curtime); // Only doing this to set timezone as a side effect
+    localtime(&curtime); 
 
-#ifdef TARGET_OS_MAC
-    CFTimeZoneRef tz = CFTimeZoneCopyDefault();
-    m_appCore->setTimeZoneBias(-CFTimeZoneGetSecondsFromGMT(tz, CFAbsoluteTimeGetCurrent())+3600*daylight);
-    CFRelease(tz);
-#else
     m_appCore->setTimeZoneBias(-timezone + 3600 * daylight);
-#endif
+
     m_appCore->setTimeZoneName(tzname[daylight?0:1]);
 
     // If LocalTime is set to false, set the time zone bias to zero.
