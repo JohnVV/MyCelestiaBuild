@@ -1,0 +1,374 @@
+.
+├── buildstardb.cpp
+
+├── celengine
+│   ├── asterism.cpp
+│   ├── asterism.h
+│   ├── astro.cpp
+│   ├── astro.h
+│   ├── atmosphere.h
+│   ├── axisarrow.cpp
+│   ├── axisarrow.h
+│   ├── body.cpp
+│   ├── body.h
+│   ├── boundaries.cpp
+│   ├── boundaries.h
+│   ├── catalogxref.cpp
+│   ├── catalogxref.h
+│   ├── celestia.h
+│   ├── CGBuffer.h
+│   ├── cmdparser.cpp
+│   ├── cmdparser.h
+│   ├── command.cpp
+│   ├── command.h
+│   ├── console.cpp
+│   ├── console.h
+│   ├── constellation.cpp
+│   ├── constellation.h
+│   ├── dds.cpp
+│   ├── deepskyobj.cpp
+│   ├── deepskyobj.h
+│   ├── dispmap.cpp
+│   ├── dispmap.h
+│   ├── dsodb.cpp
+│   ├── dsodb.h
+│   ├── dsoname.cpp
+│   ├── dsoname.h
+│   ├── dsooctree.cpp
+│   ├── dsooctree.h
+│   ├── eigenport.h
+│   ├── execenv.h
+│   ├── execution.cpp
+│   ├── execution.h
+│   ├── fragmentprog.cpp
+│   ├── fragmentprog.h
+│   ├── frame.cpp
+│   ├── frame.h
+│   ├── frametree.cpp
+│   ├── frametree.h
+│   ├── galaxy.cpp
+│   ├── galaxy.h
+│   ├── geometry.h
+│   ├── glcontext.cpp
+│   ├── glcontext.h
+│   ├── globular.cpp
+│   ├── globular.h
+│   ├── glshader.cpp
+│   ├── glshader.h
+│   ├── image.cpp
+│   ├── image.h
+│   ├── lightenv.h
+│   ├── location.cpp
+│   ├── location.h
+│   ├── lodspheremesh.cpp
+│   ├── lodspheremesh.h
+│   ├── marker.cpp
+│   ├── marker.h
+│   ├── meshmanager.cpp
+│   ├── meshmanager.h
+│   ├── modelgeometry.cpp
+│   ├── modelgeometry.h
+│   ├── multitexture.cpp
+│   ├── multitexture.h
+│   ├── name.h
+│   ├── nebula.cpp
+│   ├── nebula.h
+│   ├── observer.cpp
+│   ├── observer.h
+│   ├── octree.h
+│   ├── opencluster.cpp
+│   ├── opencluster.h
+│   ├── overlay.cpp
+│   ├── overlay.h
+│   ├── parseobject.cpp
+│   ├── parseobject.h
+│   ├── parser.cpp
+│   ├── parser.h
+│   ├── particlesystem.cpp
+│   ├── particlesystemfile.cpp
+│   ├── particlesystemfile.h
+│   ├── particlesystem.h
+│   ├── planetgrid.cpp
+│   ├── planetgrid.h
+│   ├── referencemark.h
+│   ├── regcombine.cpp
+│   ├── regcombine.h
+│   ├── rendcontext.cpp
+│   ├── rendcontext.h
+│   ├── render.cpp
+│   ├── renderglsl.cpp
+│   ├── renderglsl.h
+│   ├── render.h
+│   ├── renderinfo.h
+│   ├── rotationmanager.cpp
+│   ├── rotationmanager.h
+│   ├── selection.cpp
+│   ├── selection.h
+│   ├── shadermanager.cpp
+│   ├── shadermanager.h
+│   ├── simulation.cpp
+│   ├── simulation.h
+│   ├── skygrid.cpp
+│   ├── skygrid.h
+│   ├── solarsys.cpp
+│   ├── solarsys.h
+│   ├── spheremesh.cpp
+│   ├── spheremesh.h
+│   ├── starbrowser.cpp
+│   ├── starbrowser.h
+│   ├── starcolors.cpp
+│   ├── starcolors.h
+│   ├── star.cpp
+│   ├── stardb.cpp
+│   ├── stardb.h
+│   ├── star.h
+│   ├── starname.cpp
+│   ├── starname.h
+│   ├── staroctree.cpp
+│   ├── staroctree.h
+│   ├── stellarclass.cpp
+│   ├── stellarclass.h
+│   ├── surface.h
+│   ├── texmanager.cpp
+│   ├── texmanager.h
+│   ├── texture.cpp
+│   ├── texture.h
+│   ├── timeline.cpp
+│   ├── timeline.h
+│   ├── timelinephase.cpp
+│   ├── timelinephase.h
+│   ├── tokenizer.cpp
+│   ├── tokenizer.h
+│   ├── trajmanager.cpp
+│   ├── trajmanager.h
+│   ├── univcoord.cpp
+│   ├── univcoord.h
+│   ├── universe.cpp
+│   ├── universe.h
+│   ├── vecgl.h
+│   ├── vertexbuf.h
+│   ├── vertexprog.cpp
+│   ├── vertexprog.h
+│   ├── virtualtex.cpp
+│   ├── virtualtex.h
+│   ├── visibleregion.cpp
+│   └── visibleregion.h
+
+├── celestia
+│   ├── celestiacore.cpp
+│   ├── celestiacore.h
+│   ├── celx_celestia.cpp
+│   ├── celx_celestia.h
+│   ├── celx.cpp
+│   ├── celx_frame.cpp
+│   ├── celx_frame.h
+│   ├── celx_gl.cpp
+│   ├── celx_gl.h
+│   ├── celx.h
+│   ├── celx_internal.h
+│   ├── celx_object.cpp
+│   ├── celx_object.h
+│   ├── celx_observer.cpp
+│   ├── celx_observer.h
+│   ├── celx_phase.cpp
+│   ├── celx_phase.h
+│   ├── celx_position.cpp
+│   ├── celx_position.h
+│   ├── celx_rotation.cpp
+│   ├── celx_rotation.h
+│   ├── celx_vector.cpp
+│   ├── celx_vector.h
+│   ├── configfile.cpp
+│   ├── configfile.h
+│   ├── destination.cpp
+│   ├── destination.h
+│   ├── eclipsefinder.cpp
+│   ├── eclipsefinder.h
+│   ├── favorites.cpp
+│   ├── favorites.h
+│   ├── imagecapture.cpp
+│   ├── imagecapture.h
+│   ├── moviecapture.h
+│   ├── oggtheoracapture.cpp
+│   ├── oggtheoracapture.h
+│   ├── qt
+│   │   ├── addbookmark.ui
+│   │   ├── Celestia.ico
+│   │   ├── celestia.rc
+│   │   ├── data
+│   │   │   ├── celestia.desktop.sh
+│   │   │   ├── celestia.png
+│   │   │   ├── time-currenttime.png
+│   │   │   ├── time-double.png
+│   │   │   ├── time-faster.png
+│   │   │   ├── time-half.png
+│   │   │   ├── time-pause.png
+│   │   │   ├── time-realtime.png
+│   │   │   ├── time-reverse.png
+│   │   │   └── time-slower.png
+│   │   ├── icons.qrc
+│   │   ├── newbookmarkfolder.ui
+│   │   ├── organizebookmarks.ui
+│   │   ├── preferences.ui
+│   │   ├── qtappwin.cpp
+│   │   ├── qtappwin.h
+│   │   ├── qtbookmark.cpp
+│   │   ├── qtbookmark.h
+│   │   ├── qtcelestiaactions.cpp
+│   │   ├── qtcelestiaactions.h
+│   │   ├── qtcelestialbrowser.cpp
+│   │   ├── qtcelestialbrowser.h
+│   │   ├── qtcolorswatchwidget.cpp
+│   │   ├── qtcolorswatchwidget.h
+│   │   ├── qtdeepskybrowser.cpp
+│   │   ├── qtdeepskybrowser.h
+│   │   ├── qteventfinder.cpp
+│   │   ├── qteventfinder.h
+│   │   ├── qtglwidget.cpp
+│   │   ├── qtglwidget.h
+│   │   ├── qtinfopanel.cpp
+│   │   ├── qtinfopanel.h
+│   │   ├── qtmain.cpp
+│   │   ├── qtpreferencesdialog.cpp
+│   │   ├── qtpreferencesdialog.h
+│   │   ├── qtselectionpopup.cpp
+│   │   ├── qtselectionpopup.h
+│   │   ├── qtsettimedialog.cpp
+│   │   ├── qtsettimedialog.h
+│   │   ├── qtsolarsystembrowser.cpp
+│   │   ├── qtsolarsystembrowser.h
+│   │   ├── qttimetoolbar.cpp
+│   │   ├── qttimetoolbar.h
+│   │   ├── xbel.cpp
+│   │   └── xbel.h
+│   ├── scriptmenu.cpp
+│   ├── scriptmenu.h
+│   ├── url.cpp
+│   └── url.h
+
+├── celutil
+│   ├── basictypes.h ----
+│   ├── bigfix.cpp----
+│   ├── bigfix.h----
+│   ├── bytes.h---
+│   ├── color.cpp-----
+│   ├── color.h----
+│   ├── debug.cpp-----
+│   ├── debug.h----
+│   ├── directory.cpp----
+│   ├── directory.h----
+│   ├── filetype.cpp-----
+│   ├── filetype.h----
+│   ├── formatnum.cpp------
+│   ├── formatnum.h-----
+│   ├─----------─ memorypool.cpp
+│   ├─----------─ memorypool.h
+│   ├── reshandle.h----
+│   ├── resmanager.h----
+│   ├── timer.h----
+│   ├── unixdirectory.cpp---
+│   ├── unixtimer.cpp ----
+│   ├── utf8.cpp----
+│   ├── utf8.h---
+│   ├── util.cpp------
+│   ├── util.h---
+│   └── watcher.h---
+├── packdb.cpp
+├── packnames.cpp
+├── readstars.cpp
+├── tools
+│   ├── atmosphere
+│   │   ├── build.sh
+│   │   ├── earth.cfg
+│   │   ├── earth-thick.cfg
+│   │   ├── scattersim.cpp
+│   │   ├── scattertable.cpp
+│   │   ├── titan2.cfg
+│   │   └── titan.cfg
+│   ├── binaries
+│   │   ├── spectbins.pl
+│   │   └── visualbins.pl
+│   ├── buildstardb.cpp
+│   ├── charm2
+│   │   ├── charm2.pl
+│   │   └── charm2simbatch.pl
+│   ├── cmod
+│   │   ├── 3dstocmod
+│   │   │   ├── 3dstocmod.cpp
+│   │   │   ├── 3dstocmod.pro
+│   │   │   └── config.h
+│   │   ├── cmodfix
+│   │   │   ├── cmodfix.cpp
+│   │   │   ├── cmodfix.pro
+│   │   │   └── config.h
+│   │   ├── cmod.pro
+│   │   ├── cmodsphere
+│   │   │   ├── cmodsphere.cpp
+│   │   │   └── cmodsphere.pro
+│   │   ├── cmodtangent.cpp
+│   │   ├── cmodtools-readme.txt
+│   │   ├── cmodview
+│   │   │   ├── cmodview.cpp
+│   │   │   ├── cmodview.pro
+│   │   │   ├── config.h
+│   │   │   ├── glframebuffer.cpp
+│   │   │   ├── glframebuffer.h
+│   │   │   ├── glshader.cpp
+│   │   │   ├── glshader.h
+│   │   │   ├── mainwindow.cpp
+│   │   │   ├── mainwindow.h
+│   │   │   ├── materialwidget.cpp
+│   │   │   ├── materialwidget.h
+│   │   │   ├── modelviewwidget.cpp
+│   │   │   └── modelviewwidget.h
+│   │   ├── common
+│   │   │   ├── cmodops.cpp
+│   │   │   ├── cmodops.h
+│   │   │   ├── convert3ds.cpp
+│   │   │   ├── convert3ds.h
+│   │   │   ├── convertobj.cpp
+│   │   │   └── convertobj.h
+│   │   ├── itokawa
+│   │   │   ├── itokawa.pro
+│   │   │   └── txt2cmod.cpp
+│   │   └── readme.txt
+│   ├── galaxies
+│   │   └── deepsky.pl
+│   ├── globulars
+│   │   └── globulars.pl
+│   ├── nm16u
+│   │   └── nms16u.cpp
+│   ├── qttxf
+│   │   ├── main.cpp
+│   │   ├── mainwindow.cpp
+│   │   ├── mainwindow.h
+│   │   ├── qttxf.pro
+│   │   └── README
+│   ├── scripts
+│   │   ├── pdsVertexTAB2obj.py
+│   │   └── VertTexVIPS.sh
+│   ├── spectrum2rgb
+│   │   ├── solar_spectrum.txt
+│   │   └── spectrum2rgb.c
+│   ├── spice2xyzv
+│   │   ├── cassini-cruise.cfg
+│   │   ├── cassini-orbit.cfg
+│   │   ├── huygens.cfg
+│   │   ├── naif0008.tls
+│   │   ├── readme.txt
+│   │   └── spice2xyzv.cpp
+│   ├── stardb
+│   │   ├── buildstardb.pl
+│   │   ├── makestardb.cpp
+│   │   ├── makexindex.cpp
+│   │   ├── readme.txt
+│   │   └── startextdump.cpp
+│   ├── vsop
+│   │   ├── vsoptrunc-rect.c
+│   │   └── vsoptrunc-sph.c
+│   └── xindex
+│       ├── buildxindices.pl
+│       └── readme.txt
+└── tree.txt
+
+31 directories, 406 files

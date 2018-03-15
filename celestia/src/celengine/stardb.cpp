@@ -45,7 +45,8 @@ static string SAOCatalogPrefix("SAO ");
 // local group of galaxies. A larger value should be OK, but the
 // performance implications for octree traversal still need to be
 // investigated.
-static const float STAR_OCTREE_ROOT_SIZE  = 10000000.0f;
+// edited by JVV to 1.0e9
+static const float STAR_OCTREE_ROOT_SIZE  = 1000000000.0f;
 
 static const float STAR_OCTREE_MAGNITUDE  = 6.0f;
 static const float STAR_EXTRA_ROOM        = 0.01f; // Reserve 1% capacity for extra stars

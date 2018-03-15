@@ -1,10 +1,9 @@
 // celestiacore.cpp
 //
 // Platform-independent UI handling and initialization for Celestia.
-// winmain, gtkmain, and glutmain are thin, platform-specific modules
-// that sit directly on top of CelestiaCore and feed it mouse and
-// keyboard events.  CelestiaCore then turns those events into calls
-// to Renderer and Simulation.
+// Qtmain is a module that sit directly on top of CelestiaCore and feed 
+// it mouse and keyboard events.  CelestiaCore then turns those events
+// into calls to Renderer and Simulation.
 //
 // Copyright (C) 2001-2009, the Celestia Development Team
 //

@@ -1,5 +1,4 @@
-// qttxf - a Qt-based application to generate GLUT txf files from
-// system fonts
+
 //
 // Copyright (C) 2009, Chris Laurel <claurel@gmail.com>
 //

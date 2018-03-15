@@ -10,15 +10,12 @@ QT += opengl
 QT += xml
 QT += widgets
 
-unix {
+
 
 ### isEmpty(PREFIX) { PREFIX =/usr } 
 
-isEmpty(PREFIX) { PREFIX =/DATA/SUSE/Qt5Celestia }
+isEmpty(PREFIX) { PREFIX =/DATA/SUSE/src/CelestiaQT5/Debug }
 
-    !exists(config.h):system(touch config.h)
-    QMAKE_DISTCLEAN += config.h
-}
 
 #### Utility library ####
 
@@ -30,6 +27,8 @@ UTIL_SOURCES = \
     src/celutil/filetype.cpp \
     src/celutil/formatnum.cpp \
     src/celutil/utf8.cpp \
+    src/celutil/unixdirectory.cpp \
+    src/celutil/unixtimer.cpp \
     src/celutil/util.cpp
 
 UTIL_HEADERS = \
@@ -48,13 +47,6 @@ UTIL_HEADERS = \
     src/celutil/util.h \
     src/celutil/watcher.h
 
-
-
-unix {
-    UTIL_SOURCES += \
-        src/celutil/unixdirectory.cpp \
-        src/celutil/unixtimer.cpp
-}
 
 #### Math library ####
 
@@ -318,15 +310,15 @@ APP_SOURCES = \
     src/celestia/scriptmenu.cpp \
     src/celestia/url.cpp \
     src/celestia/celx.cpp \
-        src/celestia/celx_celestia.cpp \
-        src/celestia/celx_frame.cpp \
-        src/celestia/celx_gl.cpp \
-        src/celestia/celx_object.cpp \
-        src/celestia/celx_observer.cpp \
-        src/celestia/celx_phase.cpp \
-        src/celestia/celx_position.cpp \
-        src/celestia/celx_rotation.cpp \
-        src/celestia/celx_vector.cpp
+    src/celestia/celx_celestia.cpp \
+    src/celestia/celx_frame.cpp \
+    src/celestia/celx_gl.cpp \
+    src/celestia/celx_object.cpp \
+    src/celestia/celx_observer.cpp \
+    src/celestia/celx_phase.cpp \
+    src/celestia/celx_position.cpp \
+    src/celestia/celx_rotation.cpp \
+    src/celestia/celx_vector.cpp
 
 APP_HEADERS = \
     src/celestia/celestiacore.h \
@@ -338,16 +330,16 @@ APP_HEADERS = \
     src/celestia/scriptmenu.h \
     src/celestia/url.h \
     src/celestia/celx.h \
-        src/celestia/celx_celestia.h \
-        src/celestia/celx_internal.h \
-        src/celestia/celx_frame.h \
-        src/celestia/celx_gl.h \
-        src/celestia/celx_object.h \
-        src/celestia/celx_observer.h \
-        src/celestia/celx_phase.h \
-        src/celestia/celx_position.h \
-        src/celestia/celx_rotation.h \
-        src/celestia/celx_vector.h
+    src/celestia/celx_celestia.h \
+    src/celestia/celx_internal.h \
+    src/celestia/celx_frame.h \
+    src/celestia/celx_gl.h \
+    src/celestia/celx_object.h \
+    src/celestia/celx_observer.h \
+    src/celestia/celx_phase.h \
+    src/celestia/celx_position.h \
+    src/celestia/celx_rotation.h \
+    src/celestia/celx_vector.h
 
 
 

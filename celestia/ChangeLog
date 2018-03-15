@@ -1668,9 +1668,10 @@ Code optimization and reorganization
 updated to png16 
 updated to Eigen 3.3.4 
 updated to gcc4.8 
-Removed Autotools and non QT code 
+Removed Autotools and non QT build files
 moved to Qmake as a replacement for Autotools 
-
+Removed Apple and Windows build and hack loops 
+Removed GTK dependancies 
 
 
 

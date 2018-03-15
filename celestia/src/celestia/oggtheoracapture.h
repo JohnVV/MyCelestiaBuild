@@ -22,7 +22,7 @@ public:
     int getBytesOut() const { return video_bytesout; } ;
     void setAspectRatio(int, int);
     void setQuality(float);
-    void recordingStatus(bool) {};  // Added to allow GTK compilation
+   void recordingStatus(bool) {};  
 
 private:
     void cleanup();

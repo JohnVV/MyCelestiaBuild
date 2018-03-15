@@ -637,19 +637,14 @@ void CelestiaAppWindow::slotCaptureVideo()
         dir = QDir::current().path();
     }
 
-    int videoSizes[8][2] =
+    int videoSizes[3][2] =
                        {
-                         { 160, 120 },
-                         { 320, 240 },
-                         { 640, 480 },
-                         { 720, 480 },
-                         { 720, 576 },
                          { 1024, 768 },
                          { 1280, 720 },
                          { 1920, 1080 }
                        };
 
-    float videoFrameRates[5] = { 15.0f, 24.0f, 25.0f, 29.97f, 30.0f };
+    float videoFrameRates[6] = { 25.0f, 29.97f, 30.0f , 48.0f , 50.0f , 60.0f };
 
     QString saveAsName = QFileDialog::getSaveFileName(this,
                                                       _("Capture Video"),
