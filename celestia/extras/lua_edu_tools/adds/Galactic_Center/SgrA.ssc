@@ -1,0 +1,136 @@
+# Original addon by Cham: http://www.shatters.net/forum/viewtopic.php?f=6&t=13555
+# Modified by Vincent for the Lua Edu Tools v1.2
+
+"Sgr A*" "Galactic Center" # Galactic black hole (M ~ 4 million x MSun)
+{
+    Class "planet"
+    Visible false
+
+    Texture "black-hole.jpg"
+    Emissive true
+    Radius 1.1e7
+    Oblateness 0.15
+
+    EllipticalOrbit {
+        Period 9E12
+        SemiMajorAxis 0
+    }
+
+    Atmosphere {
+        Height 44000000
+        Lower [ 0.15 0 0.05 ]
+        Upper [ 0.8 0 0 ]
+        Sky [ 0.5 0 1 ]
+    }
+    
+    RotationPeriod 0.00225
+    Obliquity 118.936111  # 90 - GC Dec
+    EquatorAscendingNode 90
+    Albedo 0.5
+    Color [0.3 0 0]
+
+    InfoURL    "http://fr.wikipedia.org/wiki/Sagittarius_A*"
+}
+
+"Jets" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "jets.cmod"
+    Radius 0.6e11
+    Emissive true
+    Class "diffuse"
+    Orientation [90 1 0 0]
+
+    EllipticalOrbit {
+        Period 9E12
+        SemiMajorAxis 0
+    }
+}
+
+"Disk 1" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "disk1.3ds"
+    Radius 4e10
+    Emissive true
+    EllipticalOrbit {
+    Period            2e-4
+    SemiMajorAxis     0.00
+    Eccentricity      0.001
+    Inclination       0.001
+    }
+    Albedo            0.5
+}
+
+"Disk 2" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "disk2.3ds"
+    Radius 4e10
+    Emissive true
+    EllipticalOrbit {
+    Period            5e-4
+    SemiMajorAxis     0.00
+    Eccentricity      0.0001
+    Inclination       0.001
+    }
+    Albedo            0.5
+}
+
+"Disk 3" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "disk3.3ds"
+    Radius 2e10
+    Emissive true
+    EllipticalOrbit {
+    Period            7e-4
+    SemiMajorAxis     0.00
+    Eccentricity      0.001
+    Inclination       0.001
+    }
+    Albedo            0.5
+}
+
+"Disk 4" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "disk3.3ds"
+    Radius 3e10
+    Color [ 1 0.5 0 ]
+    BlendTexture true
+    Emissive true
+    EllipticalOrbit {
+    Period            1e-2
+    SemiMajorAxis     0.00
+    Eccentricity      0.001
+    Inclination       0.001
+    }
+    RotationOffset 180
+    RotationPeriod 3e-2
+    Albedo            0.5
+}
+
+"Dust Belt" "Galactic Center/Sgr A*"
+{
+    Visible false
+
+    Mesh "belt.cmod"
+    Emissive true
+    Radius 2.2e11
+    Class "diffuse"
+
+    EllipticalOrbit {
+        Period 9e12
+        SemiMajorAxis 0
+    }
+
+    RotationPeriod 0.05
+    Orientation [90 1 0 0]
+    Albedo 0.01
+}

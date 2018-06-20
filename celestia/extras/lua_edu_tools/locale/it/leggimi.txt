@@ -1,0 +1,167 @@
+*****************************************************************************
+*	LUA EDU TOOLS 1.2 per CELESTIA 1.6
+*	(c) 2008
+*	Vincent Giangiulio <vince.gian@free.fr>
+*	Hank Ramsey
+*	Traduzione italiana a cura di Massimo (Fenerit) <fenerit@interfree.it>
+*****************************************************************************
+
+-----------------------------------------------------------------
+CHE COSA SONO I 'LUA EDU TOOLS'?
+-----------------------------------------------------------------
+
+I 'Lua Edu Tools' sono un'estensione di Celestia 1.6 che offrono all'utilizzatore finale le seguenti caratteristiche:
+- Un interfaccia grafica che semplifica all'utente l'utilizzo delle funzioni di Celestia al fine di permettergli 
+	nel modo migliore la navigazione all'interno del programma;
+- Nuove utilità ancora non presenti nella versione ufficiale quali ad esempio la bussola,
+  	l'aggiunta di ulteriori informazioni in chiave testuale e grafica, i marcatori delle distanze, etc.
+
+L'interfaccia grafica include gli elementi sottoindicati:
+  > La data e l'ora della simulazione in formato locale;
+  > I cursori per la regolazione rapida dei tempi, della data e dell'ora;
+  > I cursori per la regolazione rapida delle magnitudini;
+  > I cursori per la regolazione rapida delle luce ambientale;
+  > I cursori per la regolazione rapida del guadagno in luminosità delle galassie;
+  > La regolazione dei parametri di rendering;
+  > I pulsanti di navigazione: Vai al Sole; Vai alla selezione; Segui la selezione;
+    Sincronizza l'orbita; Traccia la selezione;
+  > Un navigatore del Sistema Solare che classifica gli oggetti secondo il tipo (pianeti, lune, asteroidi, ...);
+  > Un cursore per la regolazione rapida del Campo di Vista;
+  > Una finestra per la selezione delle aggiunte (Add-ons);
+  > Due files configurabili per l'aggiunta di ulteriori informazioni sotto forma di testo (infoText), 
+    	e di immagini (infoImage) ;
+  > Marcatori di distanze con le seguenti caratteristiche:
+     	- marcatori quadrati posti nel piano dell'osservatore e centrati sullo schermo;
+     	- marcatori circolari posti nel piano dell'eclittica e centrati sulla selezione corrente;
+  > Un ingranditore a carattere pedagogico per una visione d'insieme del Sistema Solare;
+  > Un pad virtuale per il controllo dei movimenti;
+  > Una bussola (clickabile, per personalizzarne la posizione sullo schermo) avente come sottocomandi:
+     	- i pulsanti d'accesso ai modi Planetario/Navigazione;
+     	- il display delle Longitudini/Latitudini intercambiabile con l'Azimuth/Elevazione tramite click;
+  > Un comando "Custom Goto" accessibile tramite [maiusc] + [G], che muove la camera alla selezione corrente e la adatta 
+	allo schermo.
+	La durata della traversata del comando "Custom Goto" è personalizzabile all'interno del file di configurazione
+	(cfr. la sezione: COME PERSONALIZZARE I 'LUA EDU TOOLS'?).
+
+-----------------------------------------------------------------
+COME INSTALLARE I 'LUA EDU TOOLS'?
+-----------------------------------------------------------------
+
+1 - Scompattare il file 'lua_edu_tools.zip' all'interno della cartella "extras" di Celestia oppure copiarci la
+    	cartella se scompattato altrove.
+2 - Copiare o muovere il file "luahookinit.lua" nella cartella principale di Celestia.
+3 - Aggiungere la seguente linea al file "celestia.cfg" (file visualizzabile in un editor):
+	
+	Configuration 
+	{ 
+	LuaHook "luahookinit.lua" # <-- linea da aggiungere
+	...
+
+	I 'Lua Edu Tools' 1.2 funzioneranno esclusivamente con Celestia 1.6.
+		http://www.shatters.net/celestia/download.html
+
+-----------------------------------------------------------------
+COME UTILIZZARE I 'LUA EDU TOOLS'?
+-----------------------------------------------------------------
+
+- Una volta installati, i 'Lua Edu Tools' mostreranno la loro interfaccia grafica ogni volta che lancerete Celestia.
+- E' possibile attivarli/disattivarli tramite click all'estrema destra dello schermo oppure premendo [maiusc] + [i].
+- Tutti i comandi standard da tastiera di Celestia resteranno gli stessi anche con i 'Lua Edu Tools' attivi.
+
+-----------------------------------------------------------------------------------------
+COME PERSONALIZZARE I 'LUA EDU TOOLS'?
+-----------------------------------------------------------------------------------------
+
+- E' possibile personalizzare i 'Lua Edu Tools' seguendo le istruzioni presenti nel file "config.lua". 
+	Qui troverete e potrete definire quali elementi desiderate che l'interfaccia mostri, e scegliere se attivare
+	automaticamente i 'Lua Edu Tools' all'avvio oppure manualmente come sopra indicato. Potrete così definire
+	i vostri parametri personali quali la lingua, il fuso orario, i colori degli elementi dell'interfaccia, 
+	la posizione della bussola, etc... Il file "config.lua" può essere modificato con un semplice editor di testo.
+	
+- Sotto Windows e Linux il linguaggio locale è stabilito automaticamente. La versione italiana dei 'Lua Edu Tools'
+	è già fornita e dunque verrà lanciata automaticamente. Se così non fosse, verificate quale linguaggio 
+	è installato sul vostro sistema.
+	Per quanto riguarda gli utenti Mac, potete selezionare la versione italiana (oppure le altre versioni disponibili)
+	modificando il parametro 'language' all'interno del file "config.lua": sostituite "system_default" con "it" 
+	(o con il codice del linguaggio che preferite).
+	I linguaggi attualmente disponibili sono "en" (inglese), "fr" (francese), "ru" (russo), "sv" (svedese), 
+	"de" (tedesco) e "it" (italiano).
+
+- Per aggiungere il vostro testo informativo in italiano editare il file: "locale/it/infoText_it.lua".
+  	Per aggiungere il vostro testo informativo in inglese editare il file: "infos/infoText.lua",
+  	aggiungendo semplicemente la linea-(e) sottoindicata per ciascun oggetto:
+	 
+	Nome_dell'_oggetto = [[ info Testo ]];
+  
+  	Nota: Utilizzare ["Nome dell'oggetto"] (con le parentesi quadre) se il nome contiene degli spazi.
+
+- Per aggiungere le vostre immagini personali, editare il file infos/infoImage.lua".
+  	Possono essere utilizzate più immagini per lo stesso oggetto (diaporama),
+  	aggiungendo semplicemente la linea(e) sottoindicata per ciascun oggetto:
+	 
+	Nome_dell'_oggetto = { "nome_del_file_immagine_1"; "nome_del_file_immagine_2"; ... }
+  
+  	Nota: Utilizzare ["Nome dell'oggetto"] (con le parentesi quadre) se il nome contiene degli spazi.
+  	Mettete infine i vostri files immagine nella cartella "images".
+
+- Il formato della data può essere difinito all'interno del file "locale/it/it.lua".
+  	Potete scegliere tra "day/month/year", "month/day/year", e "year/month/day", che qui corrispondono
+  	rispettivamente a "giorno/mese/anno" (default), "mese/giorno/anno", e "anno/mese/giorno".
+
+- E' possibile includere le proprie aggiunte (add-ons) nell'opzione 'Mostra gli add-ons'. Per far questo
+	dovete creare una struttura sul medesimo modello dei percorsi/file: "adds/Political_Borders/Political_Borders.lua"
+	internamente alla cartella "adds". In seguito, aggiungete il nome del file alla lista "adds" all'interno
+	del file "config.lua". Il nome che apparirà nella finestra 'Lista degli Add-ons' sarà lo stesso del nome del
+	vostro file Lua, senza il carattere sottolineato "_" che sarà rimpiazzato da uno spazio.
+	Il file Lua può contenere i seguenti campi:
+	
+	> objects = { percorso:oggetto1, percorso:oggetto2, ... }
+	Definisce la lista degli oggetti la cui visibilità sarà attivata/disattivata.
+	
+	> labelcolor = {numero:rosso, numero:verde, numero:blu, numero:alpha}
+	Definisce il colore del nome dell'add-on. Il nome dell'add-on apparirà colorato all'interno della finestra 
+	'Lista degli Add-ons'.
+	
+	> locationtype = nome:segno_convenzionale.
+	Definisce il tipo di segno convenzionale per il marcatore dei luoghi che sarà attivato/disattivato 
+	contemporaneamente alla	visibilità degli oggetti. Troverete la lista dei segni convenzionali nella pagina dedicata
+	a Celestia su Wikipedia versione inglese all'indirizzo: 
+	http://en.wikibooks.org/wiki/Celestia/SSC_File#Type_.22string.22  
+
+Nota: è possibile editare tutti i files .lua con l'aiuto di un semplice editor di testo (Notepad, etc...).
+	Se s'intende trattare del testo contenente caratteri accentati, diacritici, cirillici, greco etc,
+	è consigliabile usare Notepad 2:
+	
+	1 - scaricate Notepad 2 dal sito: http://www.flos-freeware.ch/notepad2.html,
+	2 - Aprite il vostro file .lua in Notepad 2 : File > Open...
+	3 - Scegliete l'encoding UTF-8 (senza BOM): File > Encoding > UTF-8 (senza BOM)
+	4 - Editate il file aggiornando il vostro testo e salvatelo: File > Save.
+
+-----------------------------------------------------------------
+CREDITS
+-----------------------------------------------------------------
+- I 'Lua Edu Tools' possono essere utilizzati/copiati/modificati/distribuiti liberamente per uso non commerciale.
+	Assicuratevi di mantenere una copia della versione originale del file "leggimi.txt" dentro la cartella
+	'Lua Edu Tools".
+
+- Se si vuole utilizzare la versione originale oppure una versione modificata dei 'Lua edu Tools' a fini commerciali
+	deve essere contattato l'autore all'indirizzo <vince.gian@free.fr>.
+
+- Tutte le immagini, ad eccezione dei files "compass.png" nelle varie lingue, sono cortesia della NASA [www.nasa.gov].
+
+- Si ringraziano tutti i traduttori per il loro contributo all'internazionalizzazione dei 'Lua Edu Tools':
+	
+	DE: Ulrich Dickmann aka Adirondack <celestia-deutsch@gmx.net>
+	RU: Sergey Leonov <leserg@ua.fm>
+	SV: Anders Pamdal <anders@pamdal.se>
+	IT: Massimo (Fenerit) <fenerit@interfree.it>
+	KO: Seung-Bum Lee <blcktgr73@gmail.com>
+	NL: Marco Klunder <marco.klunder@hccnet.nl>
+
+- Un sentito ringraziamento va a Christophe (ElChristou) per il suo aiuto ed il suo prezioso contributo a tutta
+	la durata del progetto.
+	Un grazie a Martin (Cham), Massimo (Fenerit), ed a tutti i beta tester per i loro preziosi rapporti.
+	Un grazie a Ken (Jedi) per il suo contributo alla stesura del codice per i marcatori circolari delle distanze.
+
+@+
+Vincent

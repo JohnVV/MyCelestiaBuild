@@ -81,11 +81,6 @@ File Overview
   makes it much easier to implement a more sophisticated texture manager
   in the future.
 
-* 3dschunk.h
-* 3dsread.cpp
-* 3dsmodel.cpp
-  3DS mesh reading stuff.  Slurp a file and spits out a Mesh3DS.
-
 * console.cpp
   GL text console class that supports both printf and C++ << style output.
 

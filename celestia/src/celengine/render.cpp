@@ -5994,7 +5994,9 @@ static void renderRings(RingSystem& rings,
             // When fragment programs aren't used, we render shadows with circular
             // textures.  We scale up the texture slightly to account for the
             // padding pixels near the texture borders.
-            sScale *= ShadowTextureScale;
+            
+            // sScale - is never read 
+           // sScale *= ShadowTextureScale;
             tScale *= ShadowTextureScale;
         }
 

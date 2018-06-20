@@ -1,0 +1,138 @@
+********************************************************
+*	LUA EDU TOOLS 1.2 FOR CELESTIA 1.6
+*	(c) 2009
+*	Vincent Giangiulio <vince.gian@free.fr>
+*	Hank Ramsey
+********************************************************
+
+--------------------------------------------------------
+VAD ÄR LUA EDU TOOLS ?
+--------------------------------------------------------
+'Lua Edu Tools' är ett tillägg till Celestia 1.6 som ger :
+- Ett grafiskt gränssnitt som förenklar åtkomst till alla huvudfunktioner för att snabbt
+  tillåta användning av Celestia i total autonomi.
+- Nya funktioner som ännu inte finns i den officiella distributionen:
+  kompass, InfoText/Bild, avståndsmarkörer, etc...
+
+Det grafiska gränssnittet innehåller följande komponenter:
+  > Simulera Datum och Tid i systemets lokala format, skjutreglage för Tid, knapp för Tid/Datum inställningar;
+  > Skjutreglage för Omgivningsljus;
+  > Skjutreglage för Förstoring;
+  > Skjutreglage för Galaxljusförstärkning;
+  > Knapp för Renderingsval;
+  > Navigationsknappar: Gå till Sol; Gå till Vald; Följ Vald; Synka Omloppsbana; Spåra Vald;
+  > Solsystemsutforskare som klassifierar objekt enligt deras typ (planeter, månar, asteroider, ...);
+  > Skjutreglare för FOV;
+  > Tilläggs aktiveringsinställning;
+  > Informationstextpålägg (infoText), och Bildpålägg med diaporama (infoImage);
+  > Avståndsmarkeringar:
+     - kvadratiska avståndsmarkeringar visas i observatörens plan och är centrerade på skärmen;
+     - circulära avståndsmarkeringar visas i det eliptiska planet och är centrerade på valt objekt;
+  > Förstoringsval för utbildande visualisering av vårt Solsystem (objekt i förstorad storlek);
+  > Virtuell Platta för enkel kontroll av pitch och yaw rörelse.
+  > Kompass: (du kan klicka på kompassen för att ändra dess läge på skärmen)
+     - Knapp för Planetarium/Navigations läge;
+     - Longitud/Latitud eller Azimuth/Elevation (klicka för att byta);
+
+Kommandot 'Gå till egen', åtkommet genom [Shift]+[G], flyttar observatören till ett specifikt avstånd
+från det valda objektet för att passa på skärmen. Förflyttningstiden av kommandot 'Gå till egen' kan
+ställas i konfigurationsfilen (kf sektion: 'HUR PERSONLIGHETS ANPASSAR MAN LUA EDU TOOLS ?').
+
+--------------------------------------------------------
+HUR INSTALLERAS LUA EDU TOOLS ?
+--------------------------------------------------------
+1- Packa upp och klistra in mappen 'lua_edu_tools' i din 'extras' mapp.
+2- Klistra in filen 'luahookinit.lua' i din Celestia root mapp.
+3- Lägg till denna rad i din celestia.cfg fil :
+	Configuration
+	{
+	LuaHook "luahookinit.lua" # <-- Rad att lägga till
+	...
+
+Lua Edu Tools 1.2 ska användas med Celestia 1.6.
+http://www.shatters.net/celestia/download.html
+
+--------------------------------------------------------
+HUR ANVÄNDS LUA EDU TOOLS ?
+--------------------------------------------------------
+- När Lua Edu Tools är installerat kommer det grafiska gränssnittet automatiskt visas
+  varje gång du kör Celestia.
+- Du kan aktivera/avaktivera Lua Edu Tools antingen genom att högerklicka på
+  verktygsfältet eller genom att trycka på [Shift]+[i].
+- Alla Celestias standardfunktioner, som tangentbordskontroll, förblir aktivt även
+  när det grafiska gränssnittet är aktiverat.
+
+--------------------------------------------------------
+HUR PERSONLIGHETS ANPASSAR MAN LUA EDU TOOLS ?
+--------------------------------------------------------
+- Lua Edu Tools är lättanpassat efter personligt tycke via filen 'config.lua'. Där kan du definiera
+	dina egna element som du vill inkludera i Tool Box, och välja om
+	Lua Edu Tools ska visas eller ej varje gång Celestia körs. Du kan också sätta dina
+	egna parameterar som språk, tidszon, färger på element i det grafiska
+	gränssnittet, den förhandsbestämda positionen av kompassen...
+  Filen 'config.lua' kan ändras med en enkel text editor (Notepad, ...).
+
+- Lua Edu Tools finns redan tillgängligt på flera språk: "en" (Engelska), "fr" (Franska),
+  "ru" (Ryska), "sv" (Svenska) and "de" (Tyska).
+  I Windows och Linux så sätts system lokal språk ('lang') automatiskt.
+  På Mac, kan du bestämma ditt lokala språk genom att ändra 'language' posten i filen 'config.lua'.
+  En översatt version av denna läsmig.txt filen kan hittas i varje 'lang' mapp
+  i mappen 'locale'.
+
+- För att lägga till din egna Informationstext, ändra filen 'infos/infoText.lua', eller
+  filen 'locale/lang/infoText_lang.lua' som gäller för ditt språk.
+  > Lägg endast till följande rad för varje objekt:
+	   Namn_på_objekt = [[ infoText ]];
+  Notera: Använd ["Namn på objekt"] om namnet innehåller några mellanslag.
+
+- För att lägga till dina egna Informationsbilder, ändra filen 'infos/infoImage.lua'.
+  Flera bilder kan användas till samma objekt (diaporama).
+  > Lägg endast till följande rad för varje objekt:
+	   Namn_på_objekt = { "bild_filnamn_1"; "bild_filnamn_2"; ... }
+  Notera: Använd ["Namn på objekt"] om namnet innehåller några mellanslag.
+  Placera sedan dina bilder i mappen 'images'.
+
+--------------------------------------------------------
+VAR MED OCH BIDRAG TILL ATT INTERNATIONALISERA LUA EDU TOOLS:
+--------------------------------------------------------
+- Du kan översätta Lua Edu Tools till ditt egna språk (lang) genom att skapa följande filer:
+  > 'locale/lang/lang.lua'
+  > 'locale/lang/infoText_lang.lua'
+  > 'locale/lang/images/compass_lang.png'
+  Du kan använda filerna 'locale/sv/sv.lua', 'locale/sv/infoText_sv.lua', och 'locale/sv/images/compass_sv.png'
+  som exempel. Filen 'compass.psd' innehåller alla lager finns i 'images' mappen.
+  Var vänlig och glöm inte översätta denna 'läsmig.txt' filen också.
+  Var vänlig och skicka de översatta filerna till <vince.gian@free.fr> så att de kan bli inkluderade i den
+  officiella versionen av Lua Edu Tools. Tack !
+
+Notera:  You can edit any of the .lua files using your favorite text editor (Notepad, ...).
+         Du kan använda Notepad2 om du behöver lägga till text med accentuerade tecken,
+         eller tecken från Ryska, Green, Cyrillic, ... alfabetiska:
+          1- Hämta Notepad2 vid: http://www.flos-freeware.ch/notepad2.html
+          2- Öppna .lua filen i Notepad2: Arkiv > Öppna...
+          3- Välj UTF-8 encoding: Arkiv > Encoding > UTF-8
+          4- Ändra filen och lägg till din egna text, och spara filen: Arkiv > Spara
+
+--------------------------------------------------------
+CREDITS:
+--------------------------------------------------------
+- Lua Edu Tools får fritt användas/kopieras/ändras/distribueras i icke-kommersiellt syfte.
+  Var vänlig och bifoga en original kopia av denna 'läsmig.txt' filen i er 'lua_edu_tools' mapp.
+
+- Ni måste kontakta upphovsmannen <vince.gian@free.fr> om ni vill använda originalet eller en ändrad version
+  av Lua Edu Tools i kommersiellt syfte.
+
+- Alla bilder utom compass.png och compass_lang.png är från NASA [www.nasa.gov]
+
+- Tack går till alla översättare för deras bidrag att internationalisera Lua Edu Tools:
+	DE: Ulrich Dickmann aka Adirondack <celestia-deutsch@gmx.net>
+	KO: Seung-Bum Lee <blcktgr73@gmail.com>
+	RU: Sergey Leonov <leserg@ua.fm>
+	SV: Anders Pamdal <anders@pamdal.se>
+
+-	Specillt tack till Christophe (ElChristou) för hans hjälpsamhet och bidrag under utvecklingen av detta projekt.
+	Tack till Martin (Cham), Massimo (Fenerit), och alla testare för deras hjälpsamma rapporter.
+	Stort tack till (Jedi) för hans bidrag vid kodningen av de circulära avståndsmarkeringarna.
+
+@+
+Vincent

@@ -14,7 +14,7 @@ QT += widgets
 
 ### isEmpty(PREFIX) { PREFIX =/usr } 
 
-isEmpty(PREFIX) { PREFIX =/DATA/SUSE/src/CelestiaQT5/Debug }
+isEmpty(PREFIX) { PREFIX =/DATA/SUSE/Qt5Celestia }
 
 
 #### Utility library ####
@@ -70,19 +70,6 @@ MATH_HEADERS = \
     src/celmath/solve.h \
     src/celmath/sphere.h \
     src/celmath/vecmath.h
-
-
-#### 3DS Mesh library ####
-
-TDS_SOURCES = \
-    src/cel3ds/3dsmodel.cpp \
-    src/cel3ds/3dsread.cpp
-
-TDS_HEADERS = \
-    src/cel3ds/3dschunk.h \
-    src/cel3ds/3dsmodel.h \
-    src/cel3ds/3dsread.h
-
 
 #### CMOD Mesh library ####
 
@@ -383,15 +370,14 @@ QTAPP_HEADERS = \
 # Third party libraries
 
 # GL extension wrangler Version 2.1.0 
-
- GLEW_SOURCES = \
+GLEW_SOURCES = \
     thirdparty/glew/src/glew.c
 
  GLEW_HEADERS = \
     thirdparty/glew/include/GL/glew.h \
     thirdparty/glew/include/GL/glxew.h \
     thirdparty/glew/include/GL/wglew.h
-
+    
 CURVEPLOT_SOURCES = \
     thirdparty/curveplot/src/curveplot.cpp
 
@@ -518,9 +504,6 @@ release {
       NO_DEBUG
 }
 
-
-
-unix {
     SOURCES += src/celestia/oggtheoracapture.cpp
     HEADERS += src/celestia/oggtheoracapture.h
     DEFINES += THEORA
@@ -533,18 +516,15 @@ unix {
 
     PKGCONFIG += glu $$LUAPC libpng theora
     
-    ## Edit the below to YOUR install location ##
+    ## Edit the below to YOUR cspice  install location ##
     INCLUDEPATH += /DATA/NGT/cspice/include
     LIBS += -ljpeg /DATA/NGT/cspice/lib/cspice.a
-}
-
-
 
 DEFINES += CELX LUA_VER=0x050100
 
 # QMAKE_CFLAGS += -Wno-unused-function
 
-unix {
+
 
     #VARIABLES
 
@@ -570,7 +550,7 @@ unix {
     hires_textures.path  =  $$WORKDIR/textures/hires
     hires_textures.files =  $$HIRES_TEXTURE_SOURCE/*.jpg
     models.path    = $$WORKDIR/models
-    models.files  += $$MODEL_SOURCE/*.cmod $$MODEL_SOURCE/*.cms  $$MODEL_SOURCE/*.3ds $$MODEL_SOURCE/*.png
+    models.files  += $$MODEL_SOURCE/*.cmod $$MODEL_SOURCE/*.cms   $$MODEL_SOURCE/*.png
     shaders.path   = $$WORKDIR/shaders
     shaders.files += $$SHADER_SOURCE/*.vp $$SHADER_SOURCE/*.fp
     fonts.path     = $$WORKDIR/fonts
@@ -585,7 +565,8 @@ unix {
                            $$CONFIGURATION_SOURCE/COPYING \
                            $$CONFIGURATION_SOURCE/README \
                            $$CONFIGURATION_SOURCE/ChangeLog \ 
-                           $$CONFIGURATION_SOURCE/AUTHORS
+                           $$CONFIGURATION_SOURCE/AUTHORS \
+                            $$CONFIGURATION_SOURCE/luahookinit.lua
 
     locale.path = $$WORKDIR/locale
     locale.files = locale/*
@@ -603,4 +584,4 @@ unix {
     INSTALLS += target data textures lores_textures hires_textures \
     flares models shaders fonts scripts locale extras extras-standard SpiceSolarSystem configuration SplashImage
     
-}
+

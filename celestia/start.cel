@@ -33,10 +33,10 @@
 
   select {object "Sol/Earth"}
   follow {}
-  goto   {time 3.0  distance 6.0}
-  wait   {duration 2.0}
+ # goto   {time 3.0  distance 6.0}
+ # wait   {duration 2.0}
 
-  print  {text "Welcome to Celestia!"  row -3  column 1  duration 3}
+  print  {text "Celestia QT5 Github "  row -14  column 40  duration 3}
   wait   {duration 3.0}
 
 #****************************************************************************
@@ -126,7 +126,7 @@
 #    command described next.                                                *
 #****************************************************************************
 
-#  gotolonglat {time 5.0  distance 4.0  longitude 0.0  latitude 0.0}
+  gotolonglat {time 5.0  distance 4.0  longitude -83.48  latitude 42.36}
 
 
 #****************************************************************************
@@ -177,14 +177,14 @@
 
 # Ambient light level (UNcomment / modify to meet your needs)...
 # 0.0 to 0.5 is a good Lo-Hi range
-#  set {name "AmbientLightLevel" value 0.1}
+  set {name "AmbientLightLevel" value 0.0}
 
 
 # Faintest visible star magnitude (brightness)...
 # (UNcomment / modify to meet your needs)
 # Celestia UI: 0.8 to 15.2, default is 6.0
 #
-#  setvisibilitylimit {magnitude 6.0}
+  setvisibilitylimit {magnitude 12.0}
 
 
 # Faintest auto-magnitude brightness, at 45 degrees, Default is 8.5...

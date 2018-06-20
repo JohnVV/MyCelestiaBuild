@@ -1,0 +1,482 @@
+# Galactic Center cluster stars
+# Data from "Monitoring stellar orbits around the
+# Massive Black Hole in the Galactic Center"
+# Gillessen et al. http://arxiv.org/abs/0810.4674
+# "Early" spectral classes have been assigned as
+# B dwarfs; "late" are assigned as red giants.
+
+# Data conversion by Grant Hutchison 2008 Nov 23.
+
+#Barycenter "Galactic Center"  # Center of the Milky Way in Celestia
+#{
+#	RA 266.404167
+#	Dec -28.936111
+#	Distance 27720
+#}
+
+# Coordinates of Sgr A*
+Barycenter "Galactic Center"
+{
+	RA 266.4168371
+	Dec -29.0078106
+	Distance 27160
+}
+
+"S1"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  132
+		SemiMajorAxis  4230
+		Eccentricity  0.496
+		Inclination  109.87
+		AscendingNode  297.64
+		ArgOfPericenter  210.73
+		MeanAnomaly  357.41
+	}
+}
+
+"S2"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "B0V"
+	AbsMag  -4.0
+
+	EllipticalOrbit {
+		Period  15.8	
+		SemiMajorAxis  1024
+		Eccentricity  0.88
+		Inclination  123.76
+		AscendingNode  34.41
+		ArgOfPericenter  303.07
+		MeanAnomaly  307.14
+	}
+}
+
+"S4"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  59.5
+		SemiMajorAxis  2481
+		Eccentricity  0.406
+		Inclination  157.83
+		AscendingNode  140.20
+		ArgOfPericenter  278.98
+		MeanAnomaly  154.89
+	}
+}
+
+"S5"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  45.7
+		SemiMajorAxis  2082
+		Eccentricity  0.842
+		Inclination  61.12
+		AscendingNode  8.63
+		ArgOfPericenter  216.24
+		MeanAnomaly  129.19
+	}
+}
+
+"S6"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  105
+		SemiMajorAxis  3631
+		Eccentricity  0.886
+		Inclination  8.21
+		AscendingNode  280.96
+		ArgOfPericenter  204.75
+		MeanAnomaly  144.00
+	}
+}
+
+"S8"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  96.1
+		SemiMajorAxis  3422
+		Eccentricity  0.824
+		Inclination  130.98
+		AscendingNode  239.98
+		ArgOfPericenter  52.64
+		MeanAnomaly  60.69
+	}
+}
+
+"S9"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  58
+		SemiMajorAxis  2440
+		Eccentricity  0.825
+		Inclination  55.75
+		AscendingNode  93.93
+		ArgOfPericenter  135.88
+		MeanAnomaly  75.72
+	}
+}
+
+"S12"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  62.5
+		SemiMajorAxis  2565
+		Eccentricity  0.9
+		Inclination  111.33
+		AscendingNode  159.99
+		ArgOfPericenter  275.38
+		MeanAnomaly  25.17
+	}
+}
+
+"S13"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  59.2
+		SemiMajorAxis  2473
+		Eccentricity  0.49
+		Inclination  60.34
+		AscendingNode  185.82
+		ArgOfPericenter  47.09
+		MeanAnomaly  330.20
+	}
+}
+
+"S14"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  47.3
+		SemiMajorAxis  2132
+		Eccentricity  0.963
+		Inclination  136.54
+		AscendingNode  79.09
+		ArgOfPericenter  247.24
+		MeanAnomaly  359.47
+	}
+}
+
+"S17"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "MIII"
+	AbsMag  -0.3
+
+	EllipticalOrbit {
+		Period  63.2
+		SemiMajorAxis  2590
+		Eccentricity  0.364
+		Inclination  97.19
+		AscendingNode  81.04
+		ArgOfPericenter  234.32
+		MeanAnomaly  45.57
+	}
+}
+
+"S18"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  50
+		SemiMajorAxis  2207
+		Eccentricity  0.759
+		Inclination  122.69
+		AscendingNode  59.44
+		ArgOfPericenter  51.11
+		MeanAnomaly  28.80
+	}
+}
+
+"S19"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  260
+		SemiMajorAxis  6645
+		Eccentricity  0.844
+		Inclination  106.01
+		AscendingNode  247.97
+		ArgOfPericenter  232.32
+		MeanAnomaly  352.94
+	}
+}
+
+"S21"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "MIII"
+	AbsMag  -0.3
+
+	EllipticalOrbit {
+		Period  35.8
+		SemiMajorAxis  1774
+		Eccentricity  0.784
+		Inclination  135.55
+		AscendingNode  154.85
+		ArgOfPericenter  155.45
+		MeanAnomaly  77.43
+	}
+}
+
+"S24"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "MIII"
+	AbsMag  -0.3
+
+	EllipticalOrbit {
+		Period  398
+		SemiMajorAxis  8827
+		Eccentricity  0.933
+		Inclination  88.93
+		AscendingNode  283.35
+		ArgOfPericenter  15.34
+		MeanAnomaly  337.48
+	}
+}
+
+"S27"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "MIII"
+	AbsMag  -0.3
+
+	EllipticalOrbit {
+		Period  112
+		SemiMajorAxis  3781
+		Eccentricity  0.952
+		Inclination  100.69
+		AscendingNode  84.94
+		ArgOfPericenter  223.36
+		MeanAnomaly  168.11
+	}
+}
+
+"S29"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  91
+		SemiMajorAxis  3306
+		Eccentricity  0.916
+		Inclination  72.87
+		AscendingNode  50.87
+		ArgOfPericenter  271.55
+		MeanAnomaly  276.92
+	}
+}
+
+"S31"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  59.4
+		SemiMajorAxis  2481
+		Eccentricity  0.934
+		Inclination  69.95
+		AscendingNode  2.26
+		ArgOfPericenter  301.73
+		MeanAnomaly  276.36
+	}
+}
+
+"S33"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  96
+		SemiMajorAxis  3414
+		Eccentricity  0.731
+		Inclination  42.14
+		AscendingNode  185.51
+		ArgOfPericenter  135.39
+		MeanAnomaly  120.38
+	}
+}
+
+"S38"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "MIII"
+	AbsMag  -0.3
+
+	EllipticalOrbit {
+		Period  18.9
+		SemiMajorAxis  1157
+		Eccentricity  0.802
+		Inclination  109.14
+		AscendingNode  353.16
+		ArgOfPericenter  7.63
+		MeanAnomaly  302.86
+	}
+}
+
+"S66"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  486
+		SemiMajorAxis  10076
+		Eccentricity  0.178
+		Inclination  51.23
+		AscendingNode  1.69
+		ArgOfPericenter  99.14
+		MeanAnomaly  161.48
+	}
+}
+
+"S67"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  419
+		SemiMajorAxis  9118
+		Eccentricity  0.368
+		Inclination  56.93
+		AscendingNode  8.00
+		ArgOfPericenter  197.82
+		MeanAnomaly  262.05
+	}
+}
+
+"S71"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  399
+		SemiMajorAxis  8835
+		Eccentricity  0.844
+		Inclination  56.49
+		AscendingNode  254.12
+		ArgOfPericenter  63.74
+		MeanAnomaly  319.40
+	}
+}
+
+"S83"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  1700
+		SemiMajorAxis  23191
+		Eccentricity  0.657
+		Inclination  42.87
+		AscendingNode  334.89
+		ArgOfPericenter  223.81
+		MeanAnomaly  347.08
+	}
+}
+
+"S87"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  516
+		SemiMajorAxis  10492
+		Eccentricity  0.423
+		Inclination  60.38
+		AscendingNode  9.61
+		ArgOfPericenter  20.24
+		MeanAnomaly  246.28
+	}
+}
+
+"S96"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  701
+		SemiMajorAxis  12865
+		Eccentricity  0.131
+		Inclination  48.13
+		AscendingNode  23.17
+		ArgOfPericenter  197.56
+		MeanAnomaly  193.10
+	}
+}
+
+"S97"
+{
+	OrbitBarycenter "Galactic Center"
+	SpectralType "BV"
+	AbsMag  -1.2
+
+	EllipticalOrbit {
+		Period  1180
+		SemiMajorAxis  18203.07
+		Eccentricity  0.302
+		Inclination  34.12
+		AscendingNode  23.90
+		ArgOfPericenter  8.15
+		MeanAnomaly  306.61
+	}
+}

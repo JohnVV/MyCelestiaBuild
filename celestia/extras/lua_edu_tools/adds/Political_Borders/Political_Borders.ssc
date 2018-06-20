@@ -1,0 +1,16 @@
+"Political Borders" "Sol/Earth"
+{
+   Class "diffuse"
+   Visible false
+   Mesh "world_borders.cmod"
+   Emissive true
+   
+   Radius 6378.5
+
+   OrbitFrame { BodyFixed { Center "Sol/Earth" } }
+   FixedPosition [ 0 0 0 ]
+   BodyFrame { BodyFixed { Center "Sol/Earth" } }
+   FixedRotation { }
+   
+   Albedo 0
+}

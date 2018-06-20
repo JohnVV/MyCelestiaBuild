@@ -1,0 +1,49 @@
+-- This script is run whenever the Galactic Center addon checkbox is clicked
+-- (either checked or unchecked)
+
+local mw = celestia:find("Milky Way")
+local gc = celestia:find("Galactic Center/Sgr A*")
+local earth = celestia:find("Sol/Earth")
+
+GC_enabled = not GC_enabled
+
+if GC_enabled then
+    GC_glg = celestia:getgalaxylightgain()
+    local obs = celestia:getobserver()
+    celestia:setgalaxylightgain(0.2)
+    obs:setfov(math.rad(5))
+    celestia:setrenderflags {galaxies = true}
+
+    -- View of the whole Milky Way
+    local mw_d = obs:getposition():distanceto(mw:getposition()) / (3.08e19)
+    local mw_t = 5
+    if mw_d > 50 and mw_d < 1e3 then
+        mw_t = 2
+    end
+    local mw_dist = 4 * mw:radius() / (obs:getfov() / 0.4688)
+    celestia:select(mw)
+    obs:gotolonglat(mw, math.rad(0), math.rad(60), mw_dist, mw_t)
+    wait(mw_t)
+
+    -- View of Sgr A*
+    local gc_t = 5
+    local gc_dist = 1e6 * gc:radius() / (obs:getfov() / 0.4688)
+    celestia:select(gc)
+    -- View of orbiting stars
+    obs:gotodistance(gc, gc_dist, gc_t)
+    wait(gc_t)
+    -- View of Sgr A* black hole
+    obs:gotodistance(gc, gc_dist / 1e2, 5)
+    wait(5)
+
+else
+    -- Go back to Earth
+    local obs = celestia:getobserver()
+    local sw, sh = celestia:getscreendimension()
+    local fov0 = 2 / 3 * math.pi * 0.223832847 *sh / 722
+    obs:setfov(fov0);
+    celestia:setgalaxylightgain(GC_glg)
+    celestia:select(earth)
+    obs:gotodistance(earth, 6 * earth:radius(), 5)
+    wait(5)
+end

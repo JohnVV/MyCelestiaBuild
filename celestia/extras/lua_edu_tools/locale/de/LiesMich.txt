@@ -1,0 +1,154 @@
+********************************************************
+*	LUA EDU TOOLS 1.2 FÜR CELESTIA 1.6
+*	(c) 2009
+*	Vincent Giangiulio <vince.gian@free.fr>
+*	Hank Ramsey
+*	Deutsche übersetzung durch Ulrich Dickmann aka Adirondack <celestia-deutsch@gmx.net>
+*       Revision: September 11, 2009
+********************************************************
+
+--------------------------------------------------------
+WAS SIND DIE LUA EDU TOOLS ?
+--------------------------------------------------------
+
+Die 'Lua Edu Tools' sind ein Addon für Celestia 1.6 und bieten:
+- Eine grafische Oberfläche, die den Zugriff auf einige Hauptkommandos vereinfacht, um allen
+  Benutzern als autonome Schaltstelle schnell Spaß an Celestia zu ermöglichen.
+- Neue Möglichkeiten, die (noch) nicht in der offiziellen Celestia-Distribution 1.6 enthalten sind:
+  Kompass, Info-Text und Info-Image (Mehr Infos), Entfernungsmarkierungen, usw.
+
+Die grafische Oberfläche enthält folgende Komponenten:
+  > Datum und Zeitangabe im lokalen Format (TT/MM/JJJJ), Schieberegler zur Einstellung der Zeitrate
+    sowie Schalter zum Einstellen des Datums und der Zeit (Aktuelle Zeit / Zeit einstellen)
+  > Schieberegler zur Justierung des Streulichts
+  > Schieberegler zur Justierung der Magnitudengrenze
+  > Schalter zur Festlegung der Anzeige-Optionen
+  > Sonnensystem-Browser mit Einstufung der Objekte (Planeten, Monde, Asteroiden usw.).
+  > Navigationsschalter: Gehe zur Sonne, Gehe zur Auswahl, Folge der Auswahl, Synchr. Orbit, usw.
+  > Schieberegler zur Justierung des Gesichtsfeldes (FOV)
+  > Option zur Einblendung von (in den LuaEduTools integrierten) Addons -> Schalter "Addon Sichtbarkeit"
+  > Überlagerung von Infotexten und Bildern (falls vorhanden) zum ausgewählen Objekt (Mehr Infos)
+  > Astronomische Maße (Koordinaten): Rektaszension, Deklination, Entfernung zur Erde (wenn in config.lua aktiviert)
+  > Entfernungsmarkierungen
+     - Quadratische Entfernungsmarkierungen werden auf der Bezugsebene des Beobachters und in der
+       Mitte des Bildschirmes eingeblendet
+     - Kreisförmige Entfernungsmarkierungen werden werden auf der Ekliptikebene und zentriert auf
+       das ausgewählte Objekt eingeblendet
+  > Vergrößerungs-Option zur lehrreichen Visualisierung unseres Sonnensystems (Objekte werden vergrößert)
+  > Blickrichtungssteuerung zur leichten Steuerung der Blickrichtung.
+  > Einblendung eines Kompasses im Planetarium-Modus (Kompassposition kann durch Klick verändert werden)
+     - Schalter zum Umschalten in den Planetarium-Modus bzw. Navigationsmodus
+     - Anzeige von Längen-/Breitengrad oder Azimut/Altitude (per Klick umschaltbar) 
+     Der 'Gehe zu angemessene Entfernung'-Befehl durch Tastenkombination [Shift+G]
+     -> Ansicht begibt sich dann in eine angemessene Entfernung zum aktuell gewählten Objekt
+     Die Dauer des 'Gehe zu angemessene Entfernung'-Befehls kann in der Konfigurationsdatei eingestellt werden
+     (siehe auch "EINSTELLUNGEN DER LUA EDU TOOLS ÄNDERN" weiter unten)
+
+
+--------------------------------------------------------
+INSTALLATION DER LUA EDU TOOLS 
+--------------------------------------------------------
+
+Die Lua Edu Tools 1.2 erfordern Celestia 1.6 !
+http://www.shatters.net/celestia/download.html
+
+1- Entpacken Sie den Ordner 'lua_edu_tools' in das Verzeichnis \extras\
+2- Verschieben Sie die Datei 'luahookinit.lua' in das Celestia-Hauptverzeichnis
+3- Fügen Sie in der Datei 'celestia.cfg' (im Celestia-Hauptverzeichnis) folgende
+   Zeile unterhalb des Eintrages
+
+	Configuration
+	{
+	LuaHook "luahookinit.lua" # <-- diese Zeile einfügen
+	...
+
+
+--------------------------------------------------------
+WIE BENUTZT MAN DIE LUA EDU TOOLS ?
+--------------------------------------------------------
+
+- Nachdem die 'Lua Edu Tools' installiert sind, startet die grafische Oberfläche automatisch
+  bei jedem Start von Celestia (und befindet sich dann am rechten Bildschirmrand).
+- Sie können die grafische Oberfläche entweder mit Klick auf die rechte Seite der Toolbox 
+  oder mit [Shift+i] ab- oder einschalten.
+- Alle Standard-Optionen von Celestia (z.B. die Tastaturbefehle) bleiben auch bei aktivierter
+  grafischer Oberfläche funktionstüchtig.
+
+
+--------------------------------------------------------
+EINSTELLUNGEN DER LUA EDU TOOLS ÄNDERN
+--------------------------------------------------------
+
+- Die Einstellungen und das Verhalten der 'Lua Edu Tools' können in der Datei 'config.lua' leicht
+  verändert werden (wenn Sie dies möchten). Dort können Sie bestimmen, welche Elemente in der Box
+  angezeigt werden sollen, oder Sie können einstellen, ob die 'Lua Edu Tools' beim Start von Celestia
+  automatisch mitgestartet werden oder nicht. Sie können dort auch eigene Parameter einstellen
+  (Sprache, lokale Zeitzone, Farben der Elemente, Standard-Position des Kompasses usw.).
+  Zum Editieren können Sie z.B. NotePad oder einen sonstigen Texteditor verwenden.
+
+- Die grafische Oberfläche ist bereits in verschiedenen Sprachen verfügbar:
+  "de" (German), "en" (English), "fr" (French), "it" (Italian), "ko" (Korean), "nl" (Dutch),
+  "ru" (Russian), "sv" (Swedish).
+  Auf Windows- und Linux-Systemen wird die lokale Sprache automatisch ermittelt.
+  Bei Mac-Systemen müssen Sie die Sprache in der Datei 'config.lua' explizit vorgeben.
+  Eine Übersetzung dieser readme.txt-Datei befindet sich in jedem entsprechenden Sprachordner unter-
+  halb des Ordners \locale\.
+
+- Um eigenen Informationstext hinzuzufügen, editieren Sie einfach die Datei 'infoText_de.lua' (in
+  diesem Fall ist das die deutschsprachige Datei) im Ordner 'locale\de\'
+  > Fügen Sie dort die folgenden Zeilen für jedes gewünschte Objekt hinzu:
+    		Name_des_Objekts = [[ infoText ]];
+    Hinweis: 	wenn Sie Leerzeichen im Namen benutzen, müssen Sie ["Name des Objekts"] verwenden!
+
+- Um eigene Info-Images hinzuzufügen, editieren Sie die Datei 'infoImage.lua' im Ordner 'infos'.
+  Unterschiedliche Images können für das selbe Objekt benutzt werden (diaporama).
+  > Fügen Sie dort die folgenden Zeilen für jedes gewünschte Objekt hinzu:
+		Name_des_Objekts = { "image_filename_1"; "image_filename_2"; ... };
+    Hinweis: 	wenn Sie Leerzeichen benutzen, müssen Sie ["Name des Objekts"] verwenden!
+  > Kopieren Sie Ihr Image anschließend in den Ordner \images\.
+
+
+- Sie können Ihre eigenen Addons in die Option zur Einblendung von Addons (Schalter "Addon Sichtbarkeit") einbinden.
+  Dazu müssen Sie eine Lua-Datei nach dem Muster der 'adds/Political_Borders/Political_Borders.lua' Datei erstellen
+  und diese Datei im Ordner 'adds' speichern. Anschließend fügen Sie den Namen Ihrer Lua-Datei (ohne Dateierweiterung)
+  in die 'adds'-Liste in der Datei 'config.lua' hinzu.
+  Der Name, der dann im "Addon Sichtbarkeit einstellen"-Fenster erscheint, entspricht dem Dateinamen Ihrer Lua-Datei;
+  allerdings wird der Unterstrich (_) automatisch durch eine Leerstelle ( ) ersetzt.
+  Die Lua-Datei enthält eine Tabelle, welche folgende Werte enthalten darf:
+    >  objects = { string:object1path, string:object2path, ... }
+    Bestimmt die Liste der Objekte, deren Sichtbarkeit ein- oder ausgeschaltet werden soll
+    >  labelcolor = {number:red, number:green, number:blue, number:alpha}
+    Bestimmt die Farbe der Addon-Bezeichnung im "Addon Sichtbarkeit einstellen"-Fenster.
+    >  locationtype = string:location_type
+    Bestimmt den Typ des Merkmales, welches gleichzeitig mit der Sichtbarkeit ein- oder ausgeschaltet werden soll
+    Eine Aufstellung aller Merkmaltypen finden Sie hier: http://en.wikibooks.org/wiki/Celestia/SSC_File#Type_.22string.22    
+
+--------------------------------------------------------
+CREDITS
+--------------------------------------------------------
+
+- Die 'Lua Edu Tools' können für nichtkommerzielle Zwecke frei benutzt/kopiert/verbreitet werden.
+  Eine Kopie der Originalversion der readme.txt-Datei muss dabei im Ordner 'lua_edu_tools' enthalten sein.
+
+- Sie müssen den Autor unter <vince.gian@free.fr> kontaktieren, wenn Sie die 'Lua Edu Tools' in der Original-
+  version oder einer modifizierten Version für kommerielle Zwecke einsetzen wollen. Gleiches gilt für die
+  Lokalisierungen (Kontaktinfos finden Sie in der Datei lang.lua [in Deutsch also in der Datei 'de.lua'] sowie
+  oben in dieser Datei).
+
+- Alle enthaltenen Images (mit Ausnamhe von compass.png und deren Lokalisierungs-Images) wurden mit
+  freundlicher Genehmigung der NASA (www.nasa.gov) bereitgestellt.
+
+- Ein Dank an alle Übersetzer für Ihre Mithilfe bei der Internationalisierung der Lua Edu Tools:
+	DE: Ulrich Dickmann aka Adirondack <celestia-deutsch@gmx.net>
+	KO: Seung-Bum Lee <blcktgr73@gmail.com>
+	RU: Sergey Leonov <leserg@ua.fm>
+	SV: Anders Pamdal <anders@pamdal.se>
+        NL: Marco Klunder <marco.klunder@hccnet.nl>
+	IT: Massimo (Fenerit) <fenerit@interfree.it>
+
+- Besonderen Dank an Christophe (ElChristou) für seine sehr wertvolle Mitwirkung an diesem Projekt.
+	Ein Dankschön an Martin (Cham), Massimo (Fenerit), und allen Testern für ihre hilfreichen Hinweise.
+	Großen Dank an Ken (Jedi) für seine Mitwirkung an der Kodierung der kreisförmigen Entfernungs-Markierungen.
+
+@+
+Vincent

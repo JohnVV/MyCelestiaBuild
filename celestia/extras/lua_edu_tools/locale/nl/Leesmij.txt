@@ -1,0 +1,161 @@
+********************************************************
+*	LUA EDU TOOLS 1.2 VOOR CELESTIA 1.6
+*	(c) 2009
+*	Vincent Giangiulio <vince.gian@free.fr>
+*	Hank Ramsey
+*	Vertaald in het Nederlands door Marco Klunder <contact: marco.klunder@hccnet.nl>
+*       Revisie: 3 September 2009
+********************************************************
+
+--------------------------------------------------------
+WAT ZIJN DE LUA EDU TOOLS ?
+--------------------------------------------------------
+
+De 'Lua Edu Tools' zijn een Addon voor Celestia 1.6 die voorzien in:
+- Een Grafische Interface die de toegang tot de hoofdcommando's vereenvoudigen, om zodoende studenten en
+  minder ervaren gebruikers in staat te stellen volledig autonoom met Celestia te werken.
+- Nieuwe mogelijkheden die niet beschikbaar zijn in Celestia 1.6:
+  Kompas, Info-Tekst/afbeelding, afstand markeringen, enz...
+
+De Grafische Interface bevat de volgende componenten:
+  > Datum en Tijdweergave in lokaal Formaat (DD/MM/JJJJ), Schuifregelaar voor de snelheid van de Tijd,
+    optie om de Datum/Tijd in te stellen;
+  > Schuifregelaar omgevingslicht;
+  > Schuifregelaar magnitudegrens;
+  > Schuifregelaar voor de lichtsterkte van Sterrenstelsels;
+  > Mogelijkheid om de weergave opties in te stellen;
+  > Navigatie knoppen: Ga naar de Zon; Ga naar de Selectie; Achtervolg de Selectie; Synchronizeer omloopbaan; Volg Selectie;
+  > Zonnestelsel browser die objecten classificeert overeenkomstig hun type (planeten, manen, asteroiden, ...);
+  > Schuifregelaar zichtbaar veld (FOV);
+  > Addon Weergave instel optie;
+  > Informatie Tekst overlay (infoTekst), en Afbeelding overlay met diaporama (infoAfbeelding);
+  > Afstand markeringen:
+     - Vierkante afstandsmarkeringen worden in het referentievlak van de observer op het midden van het scherm weergegeven;
+     - Cirkelvormige afstandsmarkeringen worden in het ecliptisch vlak, in het midden van de huidige selectie weergegeven;
+  > Vergrotingsoptie voor een educatieve visualisatie van ons Zonnestelsel (objecten met vergrootte omvang);
+  > Virtuele Joystick om eenvoudige bewegingen te kunnen maken (op, neer, rechts, links). 
+  > Kompas: (Je kunt op het kompas klikken om z'n positie op het scherm te veranderen)
+     - Planetarium/Navigatie mode knoppen;
+     - Lengtegraad/Breedtegraad of Azimuth/Hoogte (klik om hier tussen te wisselen);
+  > De 'Standaard Ga naar' opdracht, uit te voeren met de [Shift]+[G] toetsen, verplaatst de camera dusdanig naar de huidige selectie,
+    dat deze nog net op het scherm past. De tijd die het kost om deze verplaatsing als gevolg van de 'Standaard Ga naar' opdracht uit te voeren
+    kan in het configuratie bestand worden ingesteld (zie sectie: 'HOE KUNNEN DE LUA EDU TOOLS WORDEN AANGEPAST ?').
+
+--------------------------------------------------------
+HOE MOETEN DE LUA EDU TOOLS WORDEN GEINSTALLEERD ?
+--------------------------------------------------------
+1- Unzip het Lua_Edu_Tools ZIP bestand en kopieer de 'lua_edu_tools' folder naar de 'extras' folder in de Celestia hoofdfolder.
+2- Kopieer het 'luahookinit.lua' bestand naar de Celestia hoofdfolder.
+3- Voeg m.b.v. een teksteditor (Notepad of Wordpad) de volgende regel toe aan het 'celestia.cfg' bestand in de Celestia hoofdfolder :
+	Configuration
+	{
+	LuaHook "luahookinit.lua" # <-- Toe te voegen regel
+	...
+
+De Lua Edu Tools 1.2 kunnen worden gebruikt in combinatie met Celestia v1.6:
+http://www.shatters.net/celestia/download.html
+
+--------------------------------------------------------
+HOE KUNNEN DE LUA EDU TOOLS WORDEN GEBRUIKT ?
+--------------------------------------------------------
+- Als de Lua Edu Tools eenmaal zijn geinstalleerd, wordt de Grafische Interface automatisch weergegeven
+  wanneer Celestia wordt gestart.
+- Je kunt de Lua Edu Tools aan en uitschakelen door op de rechterkant van de toolbox te klikken
+  of door op de [Shift]+[i] toetsen te drukken.
+- Alle standaard mogelijkheden van Celestia, zoals de toetsenbordbesturing, blijven actief,
+  ook wanneer de Graphische Interface aan staat.
+
+--------------------------------------------------------
+HOE KUNNEN DE LUA EDU TOOLS WORDEN AANGEPAST ?
+--------------------------------------------------------
+- De Lua Edu Tools zijn eenvoudig aan te passen via het 'config.lua' bestand. Daar kun je jouw eigen
+  set aan elementen definieren die je in de Tool Box wil laten opnemen, en je kunt kiezen of
+  de Lua Edu Tools telkens worden weergegeven wanneer Celestia wordt opgestart. Ook kun je zelf een aantal
+  parameters instellen, zoals de taal, de tijdzone, de kleur van elementen in de Graphische Interface,
+  de standaard positie van het kompas...
+  Het 'config.lua' bestand kan worden aangepast met een eenvoudige teksteditor (Notepad, Wordpad, ...).
+
+- De Lua Edu Tools zijn inmiddels beschikbaar in diverse talen: "en" (Engels), "fr" (Frans),
+  "ru" (Russisch), "sv" (Zweden), "de" (Duits) en "nl" (Nederlands).
+  Op Windows en Linux systemen wordt de lokale systeem taal ('lang') automatisch gedetecteerd.
+  Op Mac systemen kun je de lokale taal instellen door de 'language' instelling in het 'config.lua' bestand aan te passen.
+  Een vertaalde versie van het 'readme.txt' bestand is te vinden in iedere 'lang' folder,
+  welke zich bevinden in de 'locale' folder.
+
+- Om je eigen Informatie tekst toe te voegen, pas je het 'infos/infoText.lua' bestand aan, of het
+  'locale/lang/infoText_lang.lua' bestand dat overeenkmt met jouw taal.
+  > Voor ieder object kun je eenvoudig de volgende lijn(en) toevoegen:
+         Naam_van_het_object = [[ infoTekst ]];
+  Noot: Gebruik ["Naam van het object"] als de naam spaties bevat.
+
+- Om je eigen Informatie afbeelding toe te voegen, pas je het 'infos/infoImage.lua' bestand aan.
+  Voor hetzelfde object kunnen diverse afbeelding bestanden worden gebruikt (diaporama).
+  > Voor ieder object kun je eenvoudig de volgende lijn(en) toevoegen:
+         Naam_van_het_object = { "afbeelding_bestandsnaam_1"; "afbeelding_bestandsnaam_2"; ... }
+  Noot: Gebruik ["Naam van het object"] als de naam spaties bevat.
+  Vervolgens plaats je de afbeelding bestanden in de 'images' folder.
+
+- Je kunt jouw eigen addons toevoegen aan de 'Addon Weergave' optie.
+  Om dat te doen, moet je een Lua bestand aanmaken overeenkomstig hetzelfde model als het 'adds/Political_Borders/Political_Borders.lua' bestand,
+  en deze moet je vervolgens in de 'adds' folder plaatsen.
+  Vervolgens voeg je de naam van jouw Lua bestand toe in de 'adds' lijst in het 'config.lua' bestand.
+  De naam die wordt weergegeven in het 'Addon Weergave' venster zal hetzelfdce zijn als de naam van jouw Lua bestand,
+  met dien verstande dat onderstrepingstekens '_' worden vervangen door spaties ' '.
+  Het Lua bestand bevat een tabel die de volgende waardes kan bevatten:
+    >  objects = { string:object1path, string:object2path, ... }
+    Vastgelegde lijst van objecten waarvan de weergave kan worden ingeschakeld/uitgeschakeld.
+    >	labelcolor = {nummer:rood, nummer:groen, nummer:blauw, nummer:alfa}
+    Vastleggen van de kleur van addon labels. De naam van de addon wordt dan in deze
+    kleur weergegeven in het 'Addon Weergave' venster.
+    >	locationtype = string:locatie_type
+    Vastleggen van het type locatie die gelijktijdig zal worden ingeschakeld/uitgeschakeld met de weergave van het object.
+    Een lijst met alle locatie types is te vinden op: http://en.wikibooks.org/wiki/Celestia/SSC_File#Type_.22string.22
+
+--------------------------------------------------------
+BIJDRAGE AAN DE VERDERE INTERNATIONALISATIE VAN DE LUA EDU TOOLS:
+--------------------------------------------------------
+- Je kunt de Lua Edu Tools in jouw eigen taal (lang) vertalen door de volgende bestanden aan te maken:
+  > 'locale/lang/lang.lua'
+  > 'locale/lang/infoText_lang.lua'
+  > 'locale/lang/images/compass_lang.png'
+  Als voorbeeld kun je gebruik maken van de 'locale/fr/fr.lua', 'locale/fr/infoText_fr.lua', en 'locale/fr/images/compass_fr.png' bestanden.
+  Een 'compass.psd' bestand met daarin alle lagen is beschikbaar in de 'images' folder.
+  Vergeet AUB ook niet om het 'readme.txt' bestand te vertalen.
+  Vervolgens kun je de vertaalde bestanden opsturen naar <vince.gian@free.fr> zodat ze kunnen worden opgenomen in de
+  officiele release van de Lua Edu Tools. Dank daarvoor !
+
+Noot: Je kunt ieder .lua bestand aanpassen door gebruik te maken van je favoriete tekst editor (Notepad, Wordpad, ...).
+         Je kunt gebruik maken van Notepad2 als je tekst wilt toevoegen met geaccentueerde karakters,
+         of karakters uit het Russische, Griekse, Cyrillisch, ... alfabet:
+          1- Download Notepad2 via: http://www.flos-freeware.ch/notepad2.html
+          2- Open het .lua bestand in Notepad2: File > Open...
+          3- Kies UTF-8 codering: File > Encoding > UTF-8
+          4- Pas het bestand aan door je eigen tekst toe te voegen, en sla het op: File > Save
+
+--------------------------------------------------------
+(c) COPYRIGHT:
+--------------------------------------------------------
+- De Lua Edu Tools kunnen vrij worden gebruikt/gekopieerd/aangepast/gedistribueerd voor niet-commerciele activiteiten.
+  Je wordt wel verzocht om een kopie van de orginele versie van het 'readme.txt' bestand in de 'lua_edu_tools' folder op te nemen.
+
+- Je dient contact op te nemen met de auteur <vince.gian@free.fr> als je de orginele of aangepaste versie
+  van de Lua Edu Tools voor een commerciele activiteit wilt gebruiken.
+
+- Alle afbeeldingen met uitzondering van compass.png en compass_lang.png zijn met toestemming van de NASA beschikbaar gesteld [www.nasa.gov].
+
+--------------------------------------------------------
+MET DANK AAN:
+--------------------------------------------------------
+- Met dank aan alle vertalers voor hun bijdrage aan de verdere internationalisatie van de Lua Edu Tools:
+	DE: Ulrich Dickmann aka Adirondack <celestia-deutsch@gmx.net>
+	KO: Seung-Bum Lee <blcktgr73@gmail.com>
+	RU: Sergey Leonov <leserg@ua.fm>
+	SV: Anders Pamdal <anders@pamdal.se>
+        NL: Marco Klunder <marco.klunder@hccnet.nl>
+
+-	Speciale dank aan Christophe (ElChristou) voor zijn waardevolle hulp en bijdrage tijdens dit project.
+	Met dank aan Martin (Cham), Massimo (Fenerit), en alle testers voor hun zeer behulpzame rapportages.
+	Grote dank aan Ken (Jedi) voor zijn bijdrage aan de codering van de cirkelvormige afstandsmarkeringen.
+
+@+
+Vincent
