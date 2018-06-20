@@ -33,6 +33,8 @@ make install
 
 
 -- very much still a work in progress 
+06-19-18
+removed ANCIENT 3ds support , it was CAUSSING more problems than it was worth using 
 
 02-21-18 
 removed most of the unused microsoft and apple code loops and some of the gtk files 
