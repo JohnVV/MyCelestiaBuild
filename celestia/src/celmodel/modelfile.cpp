@@ -1310,7 +1310,7 @@ AsciiModelLoader::load()
                 if (seenMeshes)
                 {
                     reportError("Materials must be defined before meshes");
-                    //delete model;
+                    delete model;
                     return NULL;
                 }
 
@@ -1330,7 +1330,7 @@ AsciiModelLoader::load()
                 Mesh* mesh = loadMesh();
                 if (mesh == NULL)
                 {
-                    //delete model;
+                    delete model;
                     return NULL;
                 }
 
@@ -1339,7 +1339,7 @@ AsciiModelLoader::load()
             else
             {
                 reportError(string("Error: Unknown block type ") + name);
-                //delete model;
+                delete model;
                 return NULL;
             }
         }
@@ -1850,14 +1850,14 @@ BinaryModelLoader::load()
             if (seenMeshes)
             {
                 reportError("Materials must be defined before meshes");
-                //delete model;
+                delete model;
                 return NULL;
             }
 
             Material* material = loadMaterial();
             if (material == NULL)
             {
-                //delete model;
+                delete model;
                 return NULL;
             }
 
@@ -1870,7 +1870,7 @@ BinaryModelLoader::load()
             Mesh* mesh = loadMesh();
             if (mesh == NULL)
             {
-                //delete model;
+                delete model;
                 return NULL;
             }
 
@@ -1879,7 +1879,7 @@ BinaryModelLoader::load()
         else
         {
             reportError("Error: Unknown block type in model");
-            //delete model;
+            delete model;
             return NULL;
         }
     }

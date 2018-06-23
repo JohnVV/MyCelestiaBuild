@@ -71,6 +71,18 @@ MATH_HEADERS = \
     src/celmath/sphere.h \
     src/celmath/vecmath.h
 
+    
+#### 3DS Mesh library ####
+
+TDS_SOURCES = \
+    src/cel3ds/3dsmodel.cpp \
+    src/cel3ds/3dsread.cpp
+
+TDS_HEADERS = \
+    src/cel3ds/3dschunk.h \
+    src/cel3ds/3dsmodel.h \
+    src/cel3ds/3dsread.h
+    
 #### CMOD Mesh library ####
 
 MODEL_SOURCES = \

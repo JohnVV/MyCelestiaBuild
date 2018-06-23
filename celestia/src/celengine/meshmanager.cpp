@@ -22,11 +22,11 @@
 #include "meshmanager.h"
 #include "modelgeometry.h"
 
+#include <cel3ds/3dsread.h>
 #include <celmodel/modelfile.h>
 
 #include <celmath/mathlib.h>
 #include <celmath/perlin.h>
-
 #include <celutil/debug.h>
 #include <celutil/filetype.h>
 #include <celutil/util.h>
@@ -43,7 +43,7 @@ using namespace std;
 
 
 static Model* LoadCelestiaMesh(const string& filename);
-// static Model* Convert3DSModel(const M3DScene& scene, const string& texPath);
+static Model* Convert3DSModel(const M3DScene& scene, const string& texPath);
 
 static GeometryManager* geometryManager = NULL;
 
@@ -113,7 +113,7 @@ Geometry* GeometryInfo::load(const string& resolvedFilename)
     ContentType fileType = DetermineFileType(filename);
 
     if (fileType == Content_3DStudio)
-   /* {
+    {
         M3DScene* scene = Read3DSFile(filename);
         if (scene != NULL)
         {
@@ -129,9 +129,8 @@ Geometry* GeometryInfo::load(const string& resolvedFilename)
 
             delete scene;
         }
-    }*/
-    if (fileType == Content_CelestiaModel)
-// else if (fileType == Content_CelestiaModel)
+    }
+ else if (fileType == Content_CelestiaModel)
     {
         ifstream in(filename.c_str(), ios::binary);
         if (in.good())
@@ -308,7 +307,7 @@ Model* LoadCelestiaMesh(const string& filename)
     return model;
 }
 
-/*
+
 static Mesh*
 ConvertTriangleMesh(M3DTriangleMesh& mesh,
                     const M3DScene& scene)
@@ -595,4 +594,4 @@ Convert3DSModel(const M3DScene& scene, const string& texPath)
 
     return model;
 }
-*/
+
